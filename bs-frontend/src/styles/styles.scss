@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Rufina&display=swap');
+
+@import "top";
+@import "navbar";
+@import "shape-top";
+@import "shape-bottom";
+@import "main";
+@import "propositions";
+@import "genres";
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+    font-family: 'Rufina', serif;
+}
+
+body {
+    background-color: #344130;
+}

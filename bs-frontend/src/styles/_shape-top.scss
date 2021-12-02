@@ -1,0 +1,14 @@
+.top-shape-container {
+    position: relative;
+    width: 100%;
+
+    img {
+        position: absolute;
+        right: 0px;
+        top: -200px;
+        width: 40%;
+        height: auto;
+        z-index: -1;
+    }
+}
+
