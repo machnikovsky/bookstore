@@ -13,7 +13,4 @@ CREATE TABLE author (
 );
 --rollback drop table author;
 
---changeset cinemania:9
-INSERT INTO author(author_name) values ('author_one');
-INSERT INTO author(author_name) values ('author_two');
-INSERT INTO author(author_name) values ('author_three');
+--todo

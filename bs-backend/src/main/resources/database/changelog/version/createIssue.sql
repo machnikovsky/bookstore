@@ -11,7 +11,3 @@ CREATE TABLE issue (
 );
 --rollback drop table issue;
 
---changeset cinemania:3
-INSERT INTO issue(issue_name) values ('issue_one');
-INSERT INTO issue(issue_name) values ('issue_two');
-INSERT INTO issue(issue_name) values ('issue_three');
