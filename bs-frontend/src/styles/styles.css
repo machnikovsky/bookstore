@@ -1,0 +1,164 @@
+@import url("https://fonts.googleapis.com/css2?family=Rufina&display=swap");
+.top {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+nav {
+  width: 90%;
+  margin: 0px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-size: 2em;
+  height: 20vh;
+}
+
+nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-flex: 4;
+      -ms-flex: 4;
+          flex: 4;
+  list-style: none;
+  padding-top: 30px;
+}
+
+nav #logo-container {
+  -webkit-box-flex: 3;
+      -ms-flex: 3;
+          flex: 3;
+  padding-top: 5px;
+}
+
+.black {
+  color: black;
+}
+
+.top-shape-container {
+  position: relative;
+  width: 100%;
+}
+
+.top-shape-container img {
+  position: absolute;
+  right: 0px;
+  top: -200px;
+  width: 40%;
+  height: auto;
+  z-index: -1;
+}
+
+.bottom-shape {
+  position: absolute;
+  left: 0px;
+  bottom: -55vh;
+  width: 40%;
+  height: auto;
+  z-index: -1;
+}
+
+.scott {
+  position: absolute;
+  left: 15px;
+  bottom: -5vh;
+  height: 80%;
+  width: auto;
+}
+
+.main-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 35vh;
+}
+
+.main-container h1 {
+  font-size: 4.5em;
+  font-weight: lighter;
+}
+
+.propositions-container {
+  height: 45vh;
+  position: relative;
+  width: 100vw;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2fr 1fr 3fr 1fr;
+      grid-template-columns: 2fr 1fr 3fr 1fr;
+  -ms-grid-rows: 1fr 6fr;
+      grid-template-rows: 1fr 6fr;
+  text-align: center;
+  background-color: rgba(196, 196, 196, 0.2);
+  z-index: -1;
+}
+
+.propositions-container h1 {
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 1;
+  grid-column: 3/4;
+  padding-top: 3vh;
+}
+
+.propositions-container .propositions {
+  height: 95%;
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  z-index: -1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 1;
+  grid-column: 3/4;
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2/3;
+}
+
+.genres-contaienr {
+  height: 50vh;
+  background-color: #5F745E;
+  text-align: center;
+  padding-top: 10vh;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: white;
+  font-family: 'Rufina', serif;
+}
+
+body {
+  background-color: #344130;
+}
+/*# sourceMappingURL=styles.css.map */

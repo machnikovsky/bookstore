@@ -1,0 +1,25 @@
+nav {
+    width: 90%;
+    margin: 0px auto;
+    display: flex;
+    justify-content: space-between;
+    font-size: 2em;
+    height: 20vh;
+
+    ul {
+        display: flex;
+        justify-content: space-evenly;
+        flex: 4;
+        list-style: none;
+        padding-top: 30px;
+    }
+
+    #logo-container {
+        flex: 3;
+        padding-top: 5px;
+    }
+}
+
+.black {
+    color: black;
+}
