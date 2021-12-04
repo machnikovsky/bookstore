@@ -7,7 +7,9 @@ DROP SEQUENCE IF EXISTS author_author_id_seq;
 --changeset cinemania:8
 CREATE TABLE author (
        author_id serial PRIMARY KEY,
-       author_name VARCHAR(50) NOT NULL
+       first_name varchar(15) NOT NULL,
+       last_name varchar(15),
+       country varchar(15)
 );
 --rollback drop table author;
 
