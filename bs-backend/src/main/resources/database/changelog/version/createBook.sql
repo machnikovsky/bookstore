@@ -21,3 +21,19 @@ CREATE TABLE book (
 INSERT INTO book(book_name) values ('book_one');
 INSERT INTO book(book_name) values ('book_two');
 INSERT INTO book(book_name) values ('book_three');
+
+--many to many
+CREATE TABLE author_book(
+    author_id serial,
+    book_id serial
+);
+
+CREATE TABLE campaign_issue(
+    campaign_id serial,
+    issue_id serial
+);
+
+CREATE TABLE discount_issue(
+    discount_id serial,
+    issue_id serial
+);
