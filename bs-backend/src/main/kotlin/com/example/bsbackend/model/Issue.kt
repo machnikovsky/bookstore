@@ -10,6 +10,7 @@ data class Issue(
     @Column(name = "publication_year") val publicationYear: Int,
     @Column(name = "number_of_pages") val numberOfPages: Int,
     @Column(name = "cover_type") @Enumerated(EnumType.STRING) val coverType: CoverType,
+    @Column(name = "book_type") @Enumerated(EnumType.STRING) val bookType: BookType,
     @Column(name = "price") val price: Float,
     @Column(name = "image_url") val imageUrl: String,
     @Column(name = "publishing_house_id") val publishingHouseId: Int,
