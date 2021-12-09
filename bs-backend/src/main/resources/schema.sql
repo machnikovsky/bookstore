@@ -36,6 +36,7 @@ DROP SEQUENCE IF EXISTS issue_order_issue_order_id_seq;
 
 -- DROPPING ENUMS
 DROP TYPE IF EXISTS cover_type;
+DROP TYPE IF EXISTS book_type;
 DROP TYPE IF EXISTS role;
 DROP TYPE IF EXISTS genre;
 DROP TYPE IF EXISTS gender;
@@ -46,6 +47,7 @@ DROP TYPE IF EXISTS shipment_status;
 
 -- CREATING ENUMS
 CREATE TYPE cover_type AS ENUM ('hardcover', 'paperback', 'softwrap');
+CREATE TYPE book_type AS ENUM ('book', 'ebook', 'audiobook');
 CREATE TYPE role AS ENUM ('USER', 'WORKER', 'ADMIN');
 CREATE TYPE genre AS ENUM ('HORROR', 'CONTEMPORARY', 'THRILLER', 'SCIFI', 
     'FANTASY', 'ADVENTURE', 'ROMANCE', 'MYSTERY', 'FICTION', 'NONFICTION', 'CHILDRENS');
@@ -71,8 +73,9 @@ CREATE TABLE issue (
    issue_id serial PRIMARY KEY,
    language varchar(30) NOT NULL,
    publication_year integer NOT NULL,
-   number_of_pages integer NOT NULL,
-   cover_type cover_type NOT NULL,
+   number_of_pages integer,
+   cover_type cover_type,
+   book_type book_type NOT NULL,
    price float(2) NOT NULL,
    image_url varchar(255) NOT NULL,
    publishing_house_id integer REFERENCES publishing_house(publishing_house_id),
