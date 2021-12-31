@@ -12,11 +12,13 @@ import java.time.Instant
 @Service
 class UserService(
     val userRepository: UserRepository,
-    val passwordEncoder: PasswordEncoder) {
+    val passwordEncoder: PasswordEncoder
+) {
 
     val modelMapper: ModelMapper = ModelMapper()
 
     fun getAllUsers(): List<User> = userRepository.findAll()
+
     fun registerUser(userRegistrationDto: UserRegistrationDto): User? {
         val convertedUser = modelMapper.map(userRegistrationDto, User::class.java)
         convertedUser.password = passwordEncoder.encode(userRegistrationDto.password)
