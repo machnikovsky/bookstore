@@ -4,7 +4,6 @@ import com.example.bsbackend.domains.user.model.Role
 import com.example.bsbackend.domains.user.model.User
 import com.example.bsbackend.domains.user.repository.UserRepository
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.boot.runApplication
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.crypto.password.PasswordEncoder
