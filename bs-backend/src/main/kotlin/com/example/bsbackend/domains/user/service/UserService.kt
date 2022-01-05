@@ -7,7 +7,10 @@ import com.example.bsbackend.domains.user.repository.UserRepository
 import org.modelmapper.ModelMapper
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
+import java.sql.Date
+import java.sql.Timestamp
 import java.time.Instant
+import java.time.LocalDate
 
 @Service
 class UserService(
@@ -23,7 +26,7 @@ class UserService(
         val convertedUser = modelMapper.map(userRegistrationDto, User::class.java)
         convertedUser.password = passwordEncoder.encode(userRegistrationDto.password)
         convertedUser.roles = mutableSetOf(Role.USER)
-        convertedUser.creationDate = Instant.now()
+        convertedUser.creationDate = Date.valueOf(LocalDate.now())
 
         return userRepository.save(convertedUser)
     }

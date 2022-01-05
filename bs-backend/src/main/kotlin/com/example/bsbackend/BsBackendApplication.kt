@@ -1,5 +1,7 @@
 package com.example.bsbackend
 
+import com.example.bsbackend.domains.user.model.Gender
+import com.example.bsbackend.domains.user.model.Person
 import com.example.bsbackend.domains.user.model.Role
 import com.example.bsbackend.domains.user.model.User
 import com.example.bsbackend.domains.user.repository.UserRepository
@@ -8,7 +10,9 @@ import org.springframework.boot.runApplication
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
+import java.sql.Date
 import java.time.Instant
+import java.time.LocalDate
 
 @SpringBootApplication
 @EnableWebSecurity
@@ -19,41 +23,57 @@ fun main(args: Array<String>) {
 }
 
 @Component
-class ApplicationStart(val userRepository: UserRepository,
-                       val passwordEncoder: PasswordEncoder) {
+class ApplicationStart(
+    val userRepository: UserRepository,
+    val passwordEncoder: PasswordEncoder
+) {
     fun addAdminsToDb() {
+        val personAdmin = Person(
+            firstName = "Weronika",
+            lastName = "Abc",
+            phoneNumber = "1234",
+            gender = Gender.FEMALE
+        )
+
+        val personWorker = Person(
+            firstName = "Kuba",
+            lastName = "Abc",
+            phoneNumber = "1234",
+            gender = Gender.MALE
+        )
+
+        val personUser = Person(
+            firstName = "Rudolf",
+            lastName = "Abc",
+            phoneNumber = "1234",
+            gender = Gender.OTHER
+        )
+
         val admin = User(
-            1L,
-            "admin",
-            "admin@gmail.com",
-            passwordEncoder.encode("admin"),
-            "first",
-            "last",
-            "123456789",
-            Instant.now(),
-            mutableSetOf(Role.ADMIN)
+            username = "admin",
+            password = passwordEncoder.encode("admin"),
+            email = "admin@gmail.com",
+            creationDate = Date.valueOf(LocalDate.now()),
+            roles = mutableSetOf(Role.ADMIN),
+            person = personAdmin
         )
+
         val user = User(
-            2L,
-            "user",
-            "user@gmail.com",
-            passwordEncoder.encode("user"),
-            "first",
-            "last",
-            "123456789",
-            Instant.now(),
-            mutableSetOf(Role.USER)
+            username = "user",
+            password = passwordEncoder.encode("user"),
+            email = "user@gmail.com",
+            creationDate = Date.valueOf(LocalDate.now()),
+            roles = mutableSetOf(Role.USER),
+            person = personUser
         )
+
         val worker = User(
-            3L,
-            "worker",
-            "worker@gmail.com",
-            passwordEncoder.encode("worker"),
-            "first",
-            "last",
-            "123456789",
-            Instant.now(),
-            mutableSetOf(Role.WORKER)
+            username = "worker",
+            password = passwordEncoder.encode("worker"),
+            email = "worker@gmail.com",
+            creationDate = Date.valueOf(LocalDate.now()),
+            roles = mutableSetOf(Role.WORKER),
+            person = personWorker
         )
 
         userRepository.saveAll(listOf(admin, user, worker))

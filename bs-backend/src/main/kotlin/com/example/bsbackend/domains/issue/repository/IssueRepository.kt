@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface IssueRepository : JpaRepository<Issue, Int> {
-    fun findAll(id: Long): Issue?
 
 }

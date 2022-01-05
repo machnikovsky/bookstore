@@ -27,7 +27,7 @@ class WebSecurityConfiguration(
         http
             .csrf().disable()
             .authorizeRequests()
-            .antMatchers("/book/**", "/user/register").permitAll()
+            .antMatchers("/book/**", "/issue/**", "/user/register").permitAll()
             .antMatchers("/user/admin").hasRole("ADMIN")
             .antMatchers("/user/worker").hasRole("WORKER")
             .anyRequest().authenticated()
