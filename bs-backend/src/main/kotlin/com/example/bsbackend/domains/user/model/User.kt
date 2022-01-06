@@ -1,9 +1,6 @@
 package com.example.bsbackend.domains.user.model
 
 import java.sql.Date
-import java.sql.Timestamp
-import java.time.Instant
-import java.time.LocalDate
 import javax.persistence.*
 
 @Entity(name = "account")
