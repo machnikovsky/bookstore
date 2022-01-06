@@ -1,11 +1,11 @@
 package com.example.bsbackend.domains.author.repository
 
-import com.example.bsbackend.domains.payment.model.Payment
+import com.example.bsbackend.domains.author.model.Author
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 
 @Repository
-interface AuthorRepository : JpaRepository<Payment, Int>
+interface AuthorRepository : JpaRepository<Author, Int>
 
 
