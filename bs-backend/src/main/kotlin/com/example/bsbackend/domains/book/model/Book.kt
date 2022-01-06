@@ -1,4 +1,4 @@
-package com.example.bsbackend.domains.issue.model
+package com.example.bsbackend.domains.book.model
 
 import javax.persistence.*
 
