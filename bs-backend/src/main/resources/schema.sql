@@ -14,6 +14,7 @@ DROP TABLE IF EXISTS "order";
 DROP TABLE IF EXISTS payment;
 DROP TABLE IF EXISTS shipment;
 DROP TABLE IF EXISTS rating;
+DROP TABLE IF EXISTS account_roles;
 DROP TABLE IF EXISTS account;
 DROP TABLE IF EXISTS person;
 DROP TABLE IF EXISTS book;
@@ -98,7 +99,6 @@ CREATE TABLE person (
     person_id serial PRIMARY KEY,
     first_name varchar(25) NOT NULL,
     last_name varchar(25) NOT NULL,
-    date_of_birth date,
     phone_number varchar(11) NOT NULL,
     gender gender NOT NULL
 );
@@ -109,8 +109,12 @@ CREATE TABLE account (
     password varchar(25) NOT NULL,
     email varchar(25) NOT NULL,
     creation_date date NOT NULL,
-    role role NOT NULL,
     person_id integer REFERENCES person(person_id)
+);
+
+CREATE TABLE account_roles (
+    account_account_id integer REFERENCES account(account_id),
+    roles varchar(20)
 );
 
 CREATE TABLE author (

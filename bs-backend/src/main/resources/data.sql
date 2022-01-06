@@ -3,13 +3,13 @@ INSERT INTO bookstore(bookstore_id, address) values (2, 'Kraków');
 INSERT INTO bookstore(bookstore_id, address) values (3, 'Wrocław');
 INSERT INTO bookstore(bookstore_id, address) values (4, 'Poznań');
 
-INSERT INTO person(person_id, first_name, last_name, date_of_birth, phone_number, gender) VALUES (1, 'John', 'Admin', '1990-05-14', '123123123', 'MALE');
-INSERT INTO person(person_id, first_name, last_name, date_of_birth, phone_number, gender) VALUES (2, 'Joanna', 'Worker', '1975-04-11', '456456456', 'FEMALE');
-INSERT INTO person(person_id, first_name, last_name, date_of_birth, phone_number, gender) VALUES (3, 'Jake', 'User', '2001-01-24', '789789789', 'MALE');
+INSERT INTO person(person_id, first_name, last_name, phone_number, gender) VALUES (1, 'John', 'Admin', '123123123', 'MALE');
+INSERT INTO person(person_id, first_name, last_name, phone_number, gender) VALUES (2, 'Joanna', 'Worker', '456456456', 'FEMALE');
+INSERT INTO person(person_id, first_name, last_name, phone_number, gender) VALUES (3, 'Jake', 'User', '789789789', 'MALE');
 
-INSERT INTO account(account_id, login, password, email, creation_date, role, person_id) VALUES (1, 'admin', 'admin', 'admin@gmail.com', current_date, 'ADMIN', 1);
-INSERT INTO account(account_id, login, password, email, creation_date, role, person_id) VALUES (2, 'worker', 'worker', 'worker@gmail.com', current_date, 'WORKER', 2);
-INSERT INTO account(account_id, login, password, email, creation_date, role, person_id) VALUES (3, 'user', 'user', 'user@gmail.com', current_date, 'USER', 3);
+INSERT INTO account(account_id, login, password, email, creation_date, person_id) VALUES (1, 'admin', 'admin', 'admin@gmail.com', current_date, 1);
+INSERT INTO account(account_id, login, password, email, creation_date, person_id) VALUES (2, 'worker', 'worker', 'worker@gmail.com', current_date, 2);
+INSERT INTO account(account_id, login, password, email, creation_date, person_id) VALUES (3, 'user', 'user', 'user@gmail.com', current_date, 3);
 
 INSERT INTO author(author_id, first_name, last_name, country) VALUES (1, 'John', 'Steinbeck', 'Stany Zjednoczone');
 INSERT INTO author(author_id, first_name, last_name, country) VALUES (2, 'Carlos Ruiz', 'Zafon', 'Hiszpania');
