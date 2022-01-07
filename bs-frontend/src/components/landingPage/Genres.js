@@ -3,7 +3,7 @@ const Genres = () => {
             <div className="genres-container">
                 <div >
                     <h2>
-                    There will be genres... one day...
+                        Czego szukasz?
                     </h2>
                 </div>
                 <div className="genres">

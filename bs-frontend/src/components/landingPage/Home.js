@@ -2,6 +2,7 @@ import BottomShape from '../../components/BottomShape';
 import Main from '../../components/landingPage/Main';
 import Propositions from '../../components/landingPage/Propositions';
 import Genres from '../../components/landingPage/Genres';
+import More from './More';
 
 
 const Home = () => {
@@ -15,6 +16,9 @@ const Home = () => {
         </div>
         <div >
             <Genres />
+        </div>
+        <div>
+            <More />
         </div>
     </div>
     );

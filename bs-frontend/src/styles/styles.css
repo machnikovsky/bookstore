@@ -6,7 +6,7 @@
 }
 
 nav {
-  width: 90%;
+  width: 95%;
   margin: 0px auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -41,6 +41,10 @@ nav #logo-container {
 
 .black {
   color: black;
+}
+
+.beige {
+  color: #ffe9c2;
 }
 
 .top-shape-container {
@@ -227,5 +231,9 @@ nav #logo-container {
 
 body {
   background-color: #344130;
+}
+
+a {
+  text-decoration: none;
 }
 /*# sourceMappingURL=styles.css.map */
