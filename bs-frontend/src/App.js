@@ -16,7 +16,6 @@ const App = () => {
   return (
     <Router>
     <div>
-      <div className="top">
         <TopShape />
         <Navbar />
         <Routes>
@@ -26,7 +25,6 @@ const App = () => {
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
         </Routes>
-      </div>
     </div>
     </Router>
   );

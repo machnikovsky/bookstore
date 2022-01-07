@@ -1,22 +1,58 @@
 .genres-container {
-    height: 50vh;
     background-color: #5F745E;
+    position: relative;
     text-align: center;
     padding-top: 10vh;
-}
+    height: 55vh;
 
-.genres-header {
-    position: absolute;
-    left: 5vw;
-    top: -10vh;
-    background-color: rgba($beige, 0.8);
-    height: 12vh;
-    width: 30vw;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    h2 {
-        color: black;
+    .genres {
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        align-items: center;
+        justify-items: center;
+
+        .genre {
+            width: 60%;
+            height: 65%;
+            display: flex;
+            justify-content: center;            
+            align-items: center;
+            font-size: 0.8em;
+            position: relative;
+        }
+
+        .genre::after {
+            content: "";
+            opacity: 0.5;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            z-index: -1; 
+            overflow: hidden;
+            border-radius: 10px;
+            background-position: center;
+        }
+
+
+    }
+
+
+    .genres-header {
+        position: absolute;
+        left: 5vw;
+        top: -10vh;
+        height: 12vh;
+        width: 30vw;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        h2 {
+            color: black;
+        }
     }
 }
