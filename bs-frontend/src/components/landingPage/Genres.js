@@ -1,32 +1,52 @@
+
 const Genres = () => {
     return (
-            <div className="genres-container">
-                <div >
-                    <h2>
-                        Czego szukasz?
-                    </h2>
-                </div>
-                <div className="genres">
-                    <h2>
-                    Akcja                
-                    </h2>
-                    <h2>
-                    Romans
-                    </h2>
-                    <h2>
-                    Thriller                    
-                    </h2>
-                    <h2>
-                    Fantastyka                    
-                    </h2>
-                    <h2>
-                    Komedia                    
-                    </h2>
-                    <h2>
-                    Horror                    
-                    </h2>
+    <div className="genres-container">
+        <div className="genres-header">
+            <h2>
+                Czego szukasz?
+            </h2>
+        </div>
+
+        <div className="genres">
+            <div className="genre">
+                <div className="genres-header">
+                <h1>Literatora obyczajowa</h1>
                 </div>
             </div>
+
+            <div className="genre">
+                <div className="genres-header">
+                    <h1>Romans</h1>
+                </div>
+            </div>
+
+            <div className="genre">
+                <div className="genres-header">
+                    <h1>Reportaz</h1>
+                </div>
+            </div>
+
+            <div className="genre">                
+                <div className="genres-header">
+                    <h1>Fantastyka</h1>
+                </div>
+            </div>
+
+            <div className="genre">
+                <div className="genres-header">
+                    <h1>Kryminał</h1>
+                </div>
+            </div>
+
+            <div className="genre">
+                <div className="genres-header">
+                    <h1>Horror</h1>
+                </div>
+            </div>
+
+        </div>
+    </div>
     );
 }
 

@@ -4,10 +4,11 @@ import search from '../../assets/icons/search-icon.png';
 const More = () => {
     return (
             <div className="more-container">
-                <Link to="/search">
+                <Link to="/books">
                     <div className="button-content-container">
-                        <h1>Znajdź więcej</h1>
-                        <img src={ search } alt="search" />
+
+                            <h1>Znajdź więcej</h1>
+                            <img src={ search } alt="search" />
                     </div>
                 </Link> 
             </div>
