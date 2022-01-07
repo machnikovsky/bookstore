@@ -1,6 +1,22 @@
-.genres-contaienr {
+.genres-container {
     height: 50vh;
     background-color: #5F745E;
     text-align: center;
     padding-top: 10vh;
+}
+
+.genres-header {
+    position: absolute;
+    left: 5vw;
+    top: -10vh;
+    background-color: rgba($beige, 0.8);
+    height: 12vh;
+    width: 30vw;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h2 {
+        color: black;
+    }
 }
