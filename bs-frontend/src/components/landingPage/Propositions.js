@@ -1,6 +1,6 @@
-import book_one from '../assets/books/book-1.png';
-import book_two from '../assets/books/book-2.png';
-import book_three from '../assets/books/book-3.png';
+import book_one from '../../assets/books/book-1.png';
+import book_two from '../../assets/books/book-2.png';
+import book_three from '../../assets/books/book-3.png';
 
 const Propositions = () => {
     return (

@@ -6,7 +6,7 @@
 }
 
 nav {
-  width: 90%;
+  width: 95%;
   margin: 0px auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -41,6 +41,10 @@ nav #logo-container {
 
 .black {
   color: black;
+}
+
+.beige {
+  color: #ffe9c2;
 }
 
 .top-shape-container {
@@ -142,11 +146,94 @@ nav #logo-container {
   grid-row: 2/3;
 }
 
-.genres-contaienr {
-  height: 50vh;
+.genres-container {
   background-color: #5F745E;
+  position: relative;
   text-align: center;
-  padding-top: 10vh;
+  height: 55vh;
+}
+
+.genres-container .genres {
+  height: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-rows: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
+  padding: 2%;
+}
+
+.genres-container .genres .genre {
+  width: 60%;
+  height: 65%;
+  opacity: 0.5;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 0.8em;
+  position: relative;
+  background-color: #fafdcd;
+  z-index: 1;
+}
+
+.genres-container .genres .genre .genres-header {
+  position: absolute;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.genres-container .genres .genre .genres-header h1 {
+  color: black;
+  z-index: 2;
+}
+
+.more-container {
+  height: 15vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.more-container .button-content-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.more-container .button-content-container image {
+  display: block;
 }
 
 * {
@@ -160,5 +247,9 @@ nav #logo-container {
 
 body {
   background-color: #344130;
+}
+
+a {
+  text-decoration: none;
 }
 /*# sourceMappingURL=styles.css.map */
