@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Rufina&display=swap');
 
+$dark-purple-background: #2C0E37;
+$light-purple-background: #C4C4C4;
+$light-purple-transparent-background: rgba(#C4C4C4, 0.2);
+$beige: #DAA89B;
+$dark-beige: #a9957b;
+$yellow: rgb(252, 241, 207);
+
+
 @import "top";
 @import "navbar";
 @import "shape-top";
@@ -8,7 +16,9 @@
 @import "propositions";
 @import "genres";
 @import "more";
-
+@import "register";
+@import "login";
+@import "profile";
 
 * {
     margin: 0;

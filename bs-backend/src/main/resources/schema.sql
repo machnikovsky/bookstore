@@ -40,7 +40,7 @@ DROP TYPE IF EXISTS cover_type;
 DROP TYPE IF EXISTS book_type;
 DROP TYPE IF EXISTS role;
 DROP TYPE IF EXISTS genre;
-DROP TYPE IF EXISTS gender;
+DROP TYPE IF EXISTS gender CASCADE;
 DROP TYPE IF EXISTS payment_status;
 DROP TYPE IF EXISTS shipment_status;
 
@@ -55,6 +55,10 @@ CREATE TYPE genre AS ENUM ('HORROR', 'CONTEMPORARY', 'THRILLER', 'SCIFI',
 CREATE TYPE gender AS ENUM ('FEMALE', 'MALE', 'OTHER');
 CREATE TYPE payment_status AS ENUM ('ACCEPTED', 'REJECTED');
 CREATE TYPE shipment_status AS ENUM ('ACCEPTED', 'SHIPPED', 'DELIVERED');
+
+CREATE CAST (character varying as gender) WITH INOUT AS IMPLICIT;
+
+
 
 -- CREATING TABLES
 CREATE TABLE book (
@@ -106,7 +110,7 @@ CREATE TABLE person (
 CREATE TABLE account (
     account_id serial PRIMARY KEY,
     login varchar(25) NOT NULL,
-    password varchar(25) NOT NULL,
+    password varchar(60) NOT NULL,
     email varchar(25) NOT NULL,
     creation_date date NOT NULL,
     person_id integer REFERENCES person(person_id)

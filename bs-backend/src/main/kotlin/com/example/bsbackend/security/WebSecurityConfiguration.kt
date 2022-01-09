@@ -25,9 +25,11 @@ class WebSecurityConfiguration(
 
     override fun configure(http: HttpSecurity) {
         http
+            .cors().and()
             .csrf().disable()
             .authorizeRequests()
-            .antMatchers("/book/**", "/issue/**", "/user/register").permitAll()
+            .antMatchers("/book/**", "/issue/**", "/user/register", "/auth/**").permitAll()
+            .antMatchers("/user/info/**").hasAnyRole("USER", "WORKER", "ADMIN")
             .antMatchers("/user/admin").hasRole("ADMIN")
             .antMatchers("/user/worker").hasRole("WORKER")
             .anyRequest().authenticated()

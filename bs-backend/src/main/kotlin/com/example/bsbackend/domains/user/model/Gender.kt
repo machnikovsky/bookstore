@@ -1,5 +1,5 @@
 package com.example.bsbackend.domains.user.model
 
-enum class Gender(val gender: String) {
-    FEMALE("FEMALE"), MALE("MALE"), OTHER("OTHER")
+enum class Gender {
+    FEMALE, MALE, OTHER
 }
