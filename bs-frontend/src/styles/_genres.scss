@@ -3,6 +3,8 @@
     position: relative;
     text-align: center;
     height: 55vh;
+    padding: 2vh 0;
+
 
 
     .genres {
@@ -17,14 +19,13 @@
         .genre {
             width: 60%;
             height: 65%;
-            opacity: 0.5;
             border-radius: 10px;
             display: flex;
             justify-content: center;            
             align-items: center;
-            font-size: 0.8em;
+            font-size: 0.7em;
             position: relative;
-            background-color: #fafdcd;
+            background-color: $yellow;
             z-index:1; 
 
 

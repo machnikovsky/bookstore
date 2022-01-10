@@ -109,6 +109,7 @@ nav #logo-container {
   position: relative;
   text-align: center;
   height: 55vh;
+  padding: 2vh 0;
 }
 .genres-container .genres {
   height: 100%;
@@ -122,14 +123,13 @@ nav #logo-container {
 .genres-container .genres .genre {
   width: 60%;
   height: 65%;
-  opacity: 0.5;
   border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 0.8em;
+  font-size: 0.7em;
   position: relative;
-  background-color: #fafdcd;
+  background-color: #fcf1cf;
   z-index: 1;
 }
 .genres-container .genres .genre .genres-header {
@@ -190,7 +190,7 @@ nav #logo-container {
 }
 
 .register input {
-  background-color: #DAA89B;
+  background-color: #fff;
   border: none;
   border-radius: 5px;
   height: 5vh;
@@ -242,7 +242,7 @@ nav #logo-container {
 }
 
 .login input {
-  background-color: #DAA89B;
+  background-color: #fff;
   border: none;
   border-radius: 5px;
   height: 5vh;

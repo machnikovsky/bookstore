@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 const Genres = () => {
     return (
     <div className="genres-container">
-        <div className="genres-header">
-            <h2>
+        <div className="genres-header-div">
+            <h1>
                 Czego szukasz?
-            </h2>
+            </h1>
         </div>
 
         <div className="genres">
