@@ -26,4 +26,8 @@ class UserController(val userService: UserService) {
 
     @GetMapping("/worker")
     fun getWorkerPanel(): ResponseEntity<String> = ResponseEntity.ok("This is a worker panel.")
+
+    @GetMapping("/info/{username}")
+    fun getUserInfo(@PathVariable("username") username: String): ResponseEntity<Any> =
+        userService.getUserInfo(username)
 }
