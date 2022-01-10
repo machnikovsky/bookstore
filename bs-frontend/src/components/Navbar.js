@@ -31,12 +31,12 @@ const Navbar = () => {
                     user ?
                         <>
                             <Link to="/profile"><li className="yellow">{user}</li></Link>
-                            <Link to="/logout" onClick={handleLogout}><li className="beige">Wyloguj</li></Link>
+                            <Link to="/logout" onClick={handleLogout}><li className="black">Wyloguj</li></Link>
                         </>
                         :
                         <>
-                            <Link to="/register"><li className="yellow">Zarejestruj</li></Link>
-                            <Link to="/login"><li className="beige">Zaloguj</li></Link>
+                            <Link to="/login"><li className="bleige">Zaloguj</li></Link>
+                            <Link to="/register"><li className="black">Zarejestruj</li></Link>
                         </>
                 }
                 <Link  to="/cart"><li className="icon"><img src={cart} alt="cart" /></li></Link>
