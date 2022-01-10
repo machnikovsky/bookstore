@@ -2,7 +2,7 @@
 const Genres = () => {
     return (
     <div className="genres-container">
-        <div className="genres-header">
+        <div className="genres-header-div">
             <h1>
                 Czego szukasz?
             </h1>
