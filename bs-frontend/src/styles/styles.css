@@ -8,34 +8,20 @@
 nav {
   width: 95%;
   margin: 0px auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
   font-size: 2em;
   height: 20vh;
 }
-
 nav ul {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-flex: 4;
-      -ms-flex: 4;
-          flex: 4;
+  justify-content: space-evenly;
+  flex: 4;
   list-style: none;
   padding-top: 30px;
 }
-
 nav #logo-container {
-  -webkit-box-flex: 3;
-      -ms-flex: 3;
-          flex: 3;
+  flex: 3;
   padding-top: 5px;
 }
 
@@ -51,7 +37,6 @@ nav #logo-container {
   position: relative;
   width: 100%;
 }
-
 .top-shape-container img {
   position: absolute;
   right: 0px;
@@ -79,18 +64,11 @@ nav #logo-container {
 }
 
 .main-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   height: 35vh;
 }
-
 .main-container h1 {
   font-size: 4.5em;
   font-weight: lighter;
@@ -100,24 +78,17 @@ nav #logo-container {
   height: 45vh;
   position: relative;
   width: 100vw;
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 2fr 1fr 3fr 1fr;
-      grid-template-columns: 2fr 1fr 3fr 1fr;
-  -ms-grid-rows: 1fr 6fr;
-      grid-template-rows: 1fr 6fr;
+  grid-template-columns: 2fr 1fr 3fr 1fr;
+  grid-template-rows: 1fr 6fr;
   text-align: center;
   background-color: rgba(196, 196, 196, 0.2);
   z-index: -1;
 }
-
 .propositions-container h1 {
-  -ms-grid-column: 3;
-  -ms-grid-column-span: 1;
   grid-column: 3/4;
   padding-top: 3vh;
 }
-
 .propositions-container .propositions {
   height: 95%;
   width: 100%;
@@ -125,24 +96,11 @@ nav #logo-container {
   bottom: 0px;
   left: 0px;
   z-index: -1;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-grid-column: 3;
-  -ms-grid-column-span: 1;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
   grid-column: 3/4;
-  -ms-grid-row: 2;
-  -ms-grid-row-span: 1;
   grid-row: 2/3;
 }
 
@@ -153,55 +111,34 @@ nav #logo-container {
   height: 55vh;
   padding: 2vh 0;
 }
-
 .genres-container .genres {
   height: 100%;
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr;
-  -ms-grid-rows: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
   justify-items: center;
   padding: 2%;
 }
-
 .genres-container .genres .genre {
   width: 60%;
   height: 65%;
   border-radius: 10px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   font-size: 0.7em;
   position: relative;
   background-color: #fcf1cf;
   z-index: 1;
 }
-
 .genres-container .genres .genre .genres-header {
   position: absolute;
   border-radius: 10px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
 }
-
 .genres-container .genres .genre .genres-header h1 {
   color: black;
   z-index: 2;
@@ -209,29 +146,15 @@ nav #logo-container {
 
 .more-container {
   height: 15vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
 }
-
 .more-container .button-content-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
 }
-
 .more-container .button-content-container image {
   display: block;
 }
@@ -262,8 +185,7 @@ nav #logo-container {
   padding: 6px 10px;
   margin: 10px 0;
   border: 1px solid #ddd;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   display: block;
 }
 
@@ -315,8 +237,7 @@ nav #logo-container {
   padding: 6px 10px;
   margin: 10px 0;
   border: 1px solid #ddd;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   display: block;
 }
 
@@ -345,96 +266,59 @@ nav #logo-container {
 .profile-container {
   text-align: center;
   margin: 0 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   position: relative;
   z-index: 1;
 }
-
 .profile-container .nav-and-content {
   background-color: rgba(196, 196, 196, 0.2);
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  justify-content: space-around;
   margin-top: 5vh;
   min-height: 70vh;
 }
-
 .profile-container .nav-and-content .profile-nav {
-  -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
+  flex: 2;
   background-color: #C4C4C4;
   border-bottom-right-radius: 40px;
   border-top-right-radius: 40px;
   height: 70vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  flex-direction: column;
+  justify-content: space-around;
   overflow: hidden;
 }
-
 .profile-container .nav-and-content .profile-nav .option {
   outline: none;
   border: none;
   background: none;
   height: 100%;
-  -webkit-transition-duration: 0.5s;
-          transition-duration: 0.5s;
+  transition-duration: 0.5s;
   color: #4b0747;
   font-size: 1.4em;
   font-weight: bold;
 }
-
 .profile-container .nav-and-content .profile-nav .option:hover {
-  -webkit-transition: 1s;
   transition: 1s;
   background-color: black;
   color: #eba0e6;
 }
-
 .profile-container .nav-and-content .single-option {
-  -webkit-box-flex: 8;
-      -ms-flex: 8;
-          flex: 8;
+  flex: 8;
   margin-top: 2vh;
 }
-
 .profile-container .nav-and-content .friends {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  justify-content: space-around;
 }
-
 .profile-container .nav-and-content .friends h2 {
   margin: 0 5vh;
 }
-
 .profile-container .nav-and-content .friends .friends-list {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
-
 .profile-container .nav-and-content .friends .friends-list button {
   background: rgba(187, 187, 187, 0.4);
   border: none;
@@ -442,36 +326,21 @@ nav #logo-container {
   border-radius: 10px;
   margin: 10px 0;
 }
-
 .profile-container .nav-and-content .friends .friends-list button .single-friend {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   height: 5vh;
   width: 100%;
 }
-
 .profile-container .nav-and-content .friends .add-friend form {
   margin-top: 3vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
-
 .profile-container .nav-and-content .friends .add-friend label {
   margin: 1vh;
 }
-
 .profile-container .nav-and-content .friends .add-friend input {
   color: #eeeeee;
   background: rgba(187, 187, 187, 0.2);
@@ -481,21 +350,15 @@ nav #logo-container {
   padding: 1vh;
   margin-bottom: 5vh;
 }
-
 .profile-container .nav-and-content .friends .add-friend .queried-friend {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr;
-      grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   justify-items: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   background: rgba(153, 153, 153, 0.6);
   height: 5vh;
   margin: 10px 0;
 }
-
 .profile-container .nav-and-content .friends .add-friend .queried-friend .friend-to-add-button {
   width: 50%;
   height: 80%;
@@ -504,68 +367,40 @@ nav #logo-container {
   cursor: pointer;
   color: #ccc;
 }
-
 .profile-container .nav-and-content .info-list {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-direction: column;
+  justify-content: center;
   height: 100%;
   width: 50%;
   margin: 0 auto;
   text-align: left;
 }
-
 .profile-container .nav-and-content .info-list .single-info {
   font-size: 1.4em;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
   margin-top: 5vh;
 }
-
 .profile-container .nav-and-content .info-list .single-info p {
   display: inline;
   color: gray;
 }
-
 .profile-container .nav-and-content .stats-list {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-direction: column;
+  justify-content: center;
   height: 90%;
   width: 50%;
   margin: 0 auto;
   text-align: left;
 }
-
 .profile-container .nav-and-content .stats-list .single-stat {
   font-size: 1.4em;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
   margin-top: 5vh;
 }
-
 .profile-container .nav-and-content .stats-list .single-stat p {
   display: inline;
   color: gray;
@@ -574,10 +409,9 @@ nav #logo-container {
 * {
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   color: white;
-  font-family: 'Rufina', serif;
+  font-family: "Rufina", serif;
 }
 
 body {
@@ -587,4 +421,5 @@ body {
 a {
   text-decoration: none;
 }
+
 /*# sourceMappingURL=styles.css.map */

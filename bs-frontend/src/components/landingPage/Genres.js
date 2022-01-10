@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 
 const Genres = () => {
     return (
@@ -9,42 +10,12 @@ const Genres = () => {
         </div>
 
         <div className="genres">
-            <div className="genre">
-                <div className="genres-header">
-                <h1>Literatora obyczajowa</h1>
-                </div>
-            </div>
-
-            <div className="genre">
-                <div className="genres-header">
-                    <h1>Romans</h1>
-                </div>
-            </div>
-
-            <div className="genre">
-                <div className="genres-header">
-                    <h1>Reportaz</h1>
-                </div>
-            </div>
-
-            <div className="genre">                
-                <div className="genres-header">
-                    <h1>Fantastyka</h1>
-                </div>
-            </div>
-
-            <div className="genre">
-                <div className="genres-header">
-                    <h1>Kryminał</h1>
-                </div>
-            </div>
-
-            <div className="genre">
-                <div className="genres-header">
-                    <h1>Horror</h1>
-                </div>
-            </div>
-
+            <Link to="/books" className="genre"><li className="genres-header"><h1>Literatora obyczajowa</h1></li></Link>
+            <Link to="/books" className="genre"><li className="genres-header"><h1>Romans</h1></li></Link>
+            <Link to="/books" className="genre"><li className="genres-header"><h1>Reportaz</h1></li></Link>
+            <Link to="/books" className="genre"><li className="genres-header"><h1>Fantastyka</h1></li></Link>
+            <Link to="/books" className="genre"><li className="genres-header"><h1>Kryminał</h1></li></Link>
+            <Link to="/books" className="genre"><li className="genres-header"><h1>Horror</h1></li></Link>
         </div>
     </div>
     );
