@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository
 @Repository
 interface IssueRepository : JpaRepository<Issue, Int> {
     fun findIssueByIssueId(issueId: Int): Issue?
-    fun findFirstByBookId(bookId: Int): Issue?
-    fun findAllByBookId(bookId: Int): List<Issue>
+    fun findFirstByBookBookId(bookId: Int): Issue?
+    fun findAllByBookBookId(bookId: Int): List<Issue>
 }

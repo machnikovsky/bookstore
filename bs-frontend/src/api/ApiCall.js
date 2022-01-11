@@ -13,6 +13,14 @@ const getFirstIssuesOfBooksByQuery = (query) => {
 };
 
 
+const getSingleIssue = (id) => {
+    return axios.get(API_URL + `book/${id}/issue`, {});
+};
+
+
+
+
+
 
 const getTrending = () => {
   return axios.get(API_URL + "movie/trending", {});
@@ -30,9 +38,7 @@ const getQueriedList = (query, page) => {
   return axios.get(API_URL + `movie/query/${query}?page=${page}`, {})
 }
 
-const getSinglePicture = (id, type) => {
-  return axios.get(API_URL + `${type}/${id}`, {});
-};
+
 
 const getUserInfo = (username) => {
   return axios.get(API_URL + `user/info/${username}`, { headers: authHeader() });
@@ -104,13 +110,13 @@ const getRecentPictures = (type, id) => {
 const ApiCall = {
     getFirstIssuesOfAllBooks,
     getFirstIssuesOfBooksByQuery,
+    getSingleIssue,
 
 
     getTrending,
     getGenres,
     getFilteredList,
     getQueriedList,
-    getSinglePicture,
     getUserInfo,
     addToWatched,
     getWatchedMovies,

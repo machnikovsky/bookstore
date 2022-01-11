@@ -10,6 +10,7 @@ import About from './components/About';
 import useLocalStorage from "./hooks/useLocalStorage";
 import UserContext from './auth/UserContext';
 import Search from "./components/search/Search";
+import SingleBook from "./components/books/SingleBook";
 
 const App = () => {
 
@@ -24,6 +25,7 @@ const App = () => {
                 <Routes>
                     <Route exact path="/" element={<Home/>}/>
                     <Route exact path="/books" element={<Search />}/>
+                    <Route exact path="/book/:id" element={<SingleBook />}/>
                     <Route exact path="/about" element={<About/>}/>
                     <Route exact path="/login" element={<Login/>}/>
                     <Route exact path="/register" element={<Register/>}/>

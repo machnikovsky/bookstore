@@ -497,16 +497,19 @@ nav #logo-container {
   margin: 0 10vw;
 }
 .book-list .single-book {
-  height: 65vh;
+  height: 70vh;
   background: rgba(196, 196, 196, 0.4);
   width: 90%;
   margin: 1vh auto;
   position: relative;
 }
 .book-list .single-book h2 {
-  height: 12vh;
+  height: 10vh;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.book-list .single-book .book-author {
+  color: rgba(221, 221, 221, 0.8);
 }
 .book-list .single-book .poster-container {
   margin: 2vh auto;
@@ -532,6 +535,179 @@ nav #logo-container {
 }
 .book-list .single-book .book-price-container h3 {
   font-size: 2em;
+}
+
+.single-movie-page-container .poster-and-info-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
+  width: 100vw;
+}
+.single-movie-page-container .poster-and-info-container .top-movie-background {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  opacity: 0.1;
+  mask-image: linear-gradient(to top, transparent 0%, black 20%, black 80%, transparent 100%);
+}
+.single-movie-page-container .poster-and-info-container .top-movie-background img {
+  min-width: 100vw;
+  height: auto;
+  object-fit: contain;
+}
+.single-movie-page-container .poster-and-info-container .poster-container {
+  margin: 2vh auto;
+  height: 50vh;
+  width: auto;
+  position: relative;
+  z-index: 1;
+}
+.single-movie-page-container .poster-and-info-container .poster-container .poster {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(5px 5px 5px #222);
+}
+.single-movie-page-container .poster-and-info-container .movie-info {
+  width: 60vw;
+  margin: 0 auto;
+}
+.single-movie-page-container .poster-and-info-container .movie-info .movie-title {
+  text-align: center;
+  font-size: 2.7em;
+  font-weight: bold;
+}
+.single-movie-page-container .poster-and-info-container .movie-info .overview {
+  margin-top: 5vh;
+}
+.single-movie-page-container .poster-and-info-container .movie-info .add-to-watched {
+  display: block;
+  margin: 12vh auto 0vh auto;
+  font-size: 1.3em;
+  font-weight: 600;
+  color: black;
+  background-color: blanchedalmond;
+  padding: 20px;
+  border-radius: 3vh;
+  min-width: 15vw;
+}
+.single-movie-page-container .poster-and-info-container .movie-info .movie-stats {
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+  padding: 2% 10%;
+  border-bottom: #DAA89B solid 2px;
+}
+.single-movie-page-container .poster-and-info-container .movie-info .movie-stats .stat {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.single-movie-page-container .poster-and-info-container .movie-info .movie-stats .stat img {
+  height: 30px;
+  width: 30px;
+  object-fit: contain;
+  display: flex;
+  align-items: center;
+}
+.single-movie-page-container .poster-and-info-container .movie-info .movie-stats .stat .value {
+  font-size: 1.3em;
+  display: flex;
+  align-items: center;
+}
+.single-movie-page-container .watched p {
+  font-size: 1.4em;
+  padding: 20px;
+}
+.single-movie-page-container .watched .review-output {
+  background: rgba(187, 187, 187, 0.3);
+  padding: 10%;
+}
+.single-movie-page-container .add-form, .single-movie-page-container .watched {
+  text-align: center;
+  margin: 0 auto;
+  width: 30%;
+}
+.single-movie-page-container .add-form form, .single-movie-page-container .watched form {
+  display: flex;
+  flex-direction: column;
+}
+.single-movie-page-container .add-form label, .single-movie-page-container .watched label {
+  text-align: center;
+  padding: 15px 0 5px 0;
+}
+.single-movie-page-container .add-form textarea, .single-movie-page-container .watched textarea {
+  margin: 10px;
+  background: rgba(204, 204, 204, 0.5);
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  padding: 5px;
+}
+.single-movie-page-container .add-form .review-input, .single-movie-page-container .watched .review-input {
+  height: 20vh;
+  width: 100%;
+  margin: 0 auto;
+}
+.single-movie-page-container .add-form .add-review-button, .single-movie-page-container .watched .add-review-button {
+  color: darkolivegreen;
+  margin: 2vh;
+  width: 20%;
+  font-size: 1.3em;
+  font-weight: 800;
+  margin-inline: auto;
+  height: 4vh;
+}
+.single-movie-page-container .add-form .stars, .single-movie-page-container .watched .stars {
+  display: flex;
+  width: 70%;
+  margin-inline: auto;
+  justify-content: space-evenly;
+}
+.single-movie-page-container .add-form .stars .star img, .single-movie-page-container .watched .stars .star img {
+  height: 20px;
+  width: 20px;
+  object-fit: contain;
+}
+.single-movie-page-container .add-form .stars .star button, .single-movie-page-container .watched .stars .star button {
+  background: none;
+  border: none;
+}
+.single-movie-page-container .reviews {
+  width: 60vw;
+  margin: 0 auto;
+}
+.single-movie-page-container .reviews h2 {
+  text-align: center;
+  padding: 5vh 0;
+}
+.single-movie-page-container .reviews .review {
+  background-color: rgba(196, 196, 196, 0.2);
+  margin: 1vh 0;
+  padding: 2vh 3vw;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+  align-items: center;
+}
+.single-movie-page-container .reviews .review .review-part {
+  padding: 0 2vw;
+  min-width: 8vw;
+}
+.single-movie-page-container .reviews .review .review-part .score, .single-movie-page-container .reviews .review .review-part .username {
+  text-align: center;
+}
+.single-movie-page-container .reviews .review .review-part img {
+  height: 40px;
+  width: 40px;
+  object-fit: contain;
+  display: flex;
+  align-items: center;
+  margin-inline: auto;
 }
 
 * {

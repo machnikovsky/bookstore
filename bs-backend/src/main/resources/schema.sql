@@ -36,13 +36,13 @@ DROP SEQUENCE IF EXISTS shipment_shipment_id_seq;
 DROP SEQUENCE IF EXISTS issue_order_issue_order_id_seq;
 
 -- DROPPING ENUMS
-DROP TYPE IF EXISTS cover_type;
-DROP TYPE IF EXISTS book_type;
-DROP TYPE IF EXISTS role;
-DROP TYPE IF EXISTS genre;
+DROP TYPE IF EXISTS cover_type CASCADE;
+DROP TYPE IF EXISTS book_type CASCADE;
+DROP TYPE IF EXISTS role CASCADE;
+DROP TYPE IF EXISTS genre CASCADE;
 DROP TYPE IF EXISTS gender CASCADE;
-DROP TYPE IF EXISTS payment_status;
-DROP TYPE IF EXISTS shipment_status;
+DROP TYPE IF EXISTS payment_status CASCADE;
+DROP TYPE IF EXISTS shipment_status CASCADE;
 
 
 
@@ -56,7 +56,13 @@ CREATE TYPE gender AS ENUM ('FEMALE', 'MALE', 'OTHER');
 CREATE TYPE payment_status AS ENUM ('ACCEPTED', 'REJECTED');
 CREATE TYPE shipment_status AS ENUM ('ACCEPTED', 'SHIPPED', 'DELIVERED');
 
+CREATE CAST (character varying as cover_type) WITH INOUT AS IMPLICIT;
+CREATE CAST (character varying as book_type) WITH INOUT AS IMPLICIT;
+CREATE CAST (character varying as role) WITH INOUT AS IMPLICIT;
+CREATE CAST (character varying as genre) WITH INOUT AS IMPLICIT;
 CREATE CAST (character varying as gender) WITH INOUT AS IMPLICIT;
+CREATE CAST (character varying as payment_status) WITH INOUT AS IMPLICIT;
+CREATE CAST (character varying as shipment_status) WITH INOUT AS IMPLICIT;
 
 
 
@@ -64,6 +70,7 @@ CREATE CAST (character varying as gender) WITH INOUT AS IMPLICIT;
 CREATE TABLE book (
     book_id serial PRIMARY KEY,
     title varchar(50) NOT NULL,
+    description varchar(2000) NOT NULL,
     genre genre NOT NULL,
     original_publication_year integer NOT NULL
 );
@@ -83,6 +90,7 @@ CREATE TABLE issue (
    book_type book_type NOT NULL,
    price float(2) NOT NULL,
    image_url varchar(255) NOT NULL,
+   background_url varchar(255) NOT NULL,
    publishing_house_id integer REFERENCES publishing_house(publishing_house_id),
    book_id integer REFERENCES book(book_id)
 );

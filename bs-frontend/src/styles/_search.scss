@@ -103,16 +103,20 @@
 
 
   .single-book {
-    height: 65vh;
+    height: 70vh;
     background: rgba($light-purple-background, 0.4);
     width: 90%;
     margin: 1vh auto;
     position: relative;
 
     h2 {
-      height: 12vh;
+      height: 10vh;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+
+    .book-author {
+      color: rgba(#ddd, 0.8);
     }
 
     .poster-container {

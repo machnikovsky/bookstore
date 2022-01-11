@@ -23,6 +23,7 @@ const Search = () => {
 
     // useEffect(() => {
     //     SearchUtil.getAndSetQueriedListWithNewPage(query, bookList, setBookList, page);
+    // TODO: Implement loading new page on click
     // }, [page])
 
 

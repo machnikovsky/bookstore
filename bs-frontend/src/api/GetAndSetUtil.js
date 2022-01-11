@@ -22,6 +22,19 @@ const getAndSetQueriedListWithNewQuery = (query, set) => {
         });
 }
 
+const getAndSetSingleIssue =  (id, set) => {
+    ApiCall.getSingleIssue(id)
+        .then(res => {
+            set(res.data);
+        })
+        .catch(e => {
+            console.log('Error getting single book: ', e);
+            set(null);
+        });
+}
+
+
+
 
 
 
@@ -94,19 +107,7 @@ const getAndSetQueriedListWithNewPage = (query, pictureList, setPictureList, pag
 
 
 
-const getAndSetSinglePicture =  (id, setMovie, type) => {
-    ApiCall.getSinglePicture(id, type)
-    .then(res => {
-        return res.data;
-     })
-    .then(data => {
-        setMovie(data);
-    })
-    .catch(e => {
-        console.log('Error: ', e);
-        setMovie(null);
-    });
-}
+
 
 const getAndSetReviews = (id, set, type) => {
     ApiCall.getReviews(id, type)
@@ -225,13 +226,12 @@ const getAndSetRecentPictures = (id, setMovies, setTvs) => {
 const SearchUtil = {
     getAndSetAllIssues,
     getAndSetQueriedListWithNewQuery,
-
+    getAndSetSingleIssue,
 
     getAndSetGenres,
     getAndSetFilteredListWithNewPage,
     getAndSetFilteredListWithNewFilterOrType,
     getAndSetQueriedListWithNewPage,
-    getAndSetSinglePicture,
     getAndSetReviews,
     getAndSetTrending,
     getAndSetRecommendations,

@@ -1,26 +1,25 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import ApiCall from '../../api/ApiCall';
+import GetAndSetUtil from '../../api/GetAndSetUtil';
 import star from '../../assets/icons/star.png';
+import page_icon from '../../assets/icons/page_icon.png';
 import user_icon from '../../assets/icons/user.png';
 import date from '../../assets/icons/date.png';
-import type from '../../assets/icons/type.png';
-import s from '../../assets/icons/s.png';
-
-
+import type_icon from '../../assets/icons/type.png';
 import not_found from '../../assets/other/404-image-not-found.jpg';
-import UserContext from '../UserContext';
-import GetAndSetUtil from '../../api/GetAndSetUtil';
+import UserContext from '../../auth/UserContext';
 import * as Scroll from 'react-scroll';
 import Stars from './Stars';
 
-const SingleTvShow = () => {
-    
+
+const SingleBook = ({type}) => {
+
     const { id } = useParams();
     const {user, setUser} = useContext(UserContext);
     const [reviews, setReviews] = useState([]);
-    const [tv, setTv] = useState(null);
-    const [isWatched, setIsWatched] = useState(false);
+    const [book, setBook] = useState(null);
+    const [isRead, setIsRead] = useState(false);
     const [userInfo, setUserInfo] = useState(null);
     const [buttonText, setButtonText] = useState('Dodaj do obejrzanych');
     const [showForm, setShowForm] = useState(false);
@@ -30,18 +29,24 @@ const SingleTvShow = () => {
     const scroll = Scroll.animateScroll;
     const navigate = useNavigate();
 
+
+
     useEffect(() => {
 
-        GetAndSetUtil.getAndSetSinglePicture(id, setTv, 'tv');
-        GetAndSetUtil.getAndSetReviews(id, setReviews, 'tv');
-        GetAndSetUtil.getAndSetWatched('tv', user, id, setIsWatched)
-            .then(watched => {
-                if (watched) {
-                    GetAndSetUtil.getAndSetScoreAndReview('tv', user, id, setScore, setReview);
-                }
-            })
 
-        if (id) {
+        GetAndSetUtil.getAndSetSingleIssue(id, setBook);
+
+
+        // GetAndSetUtil.getAndSetReviews(id, setReviews, 'book');
+        // GetAndSetUtil.getAndSetWatched('book', user, id, setIsRead)
+        //     .then(watched => {
+        //         if (watched) {
+        //             GetAndSetUtil.getAndSetScoreAndReview('book', user, id, setScore, setReview);
+        //         }
+        //     })
+
+
+        if (user) {
             ApiCall.getUserInfo(user)
             .then(res => {
                 return res.data;
@@ -58,7 +63,7 @@ const SingleTvShow = () => {
     }, [])
 
     useEffect(() => {
-        GetAndSetUtil.getAndSetReviews(id, setReviews, 'tv');
+        GetAndSetUtil.getAndSetReviews(id, setReviews, 'book');
     }, [addedReview])
 
     const handleAddToWatchedButton = (e) => {
@@ -69,7 +74,7 @@ const SingleTvShow = () => {
             setShowForm(false);
         } else {
             scroll.scrollTo(500);
-            setButtonText('Anuluj');
+            setButtonText('Anuluj')
             setShowForm(true);
         }
     }
@@ -78,7 +83,7 @@ const SingleTvShow = () => {
         e.preventDefault();
         let watchedMovieReview = {
             'username': user,
-            'tvId': id
+            'movieId': id
         }
 
         if (score !== 0) {
@@ -89,85 +94,73 @@ const SingleTvShow = () => {
             watchedMovieReview['review'] = review;
         }
 
-        await ApiCall.addToWatched(watchedMovieReview, 'tv');
+        await ApiCall.addToWatched(watchedMovieReview, 'book');
         setAddedReview(addedReview + 1);
-        setIsWatched(true);
+        setIsRead(true);
         scroll.scrollToBottom();
-
     }
-
-
-    const getProperSeasonForm = (number) => {
-        if (number < 2) {
-            return number + ' sezon';
-        } else if (number < 5) {
-            return number + ' sezony';
-        } else {
-            return number + ' sezonów';
-        }
-    }
-
+    
 
     return (
         <>
-            {tv &&
+            {book &&
                 <div className="single-movie-page-container">
                     <div className="poster-and-info-container">
                         <div className="top-movie-background">
                             <img 
-                                src={ `https://image.tmdb.org/t/p/original/${tv.backdrop_path}` } 
+                                src={ book.background_url }
                                 className="background"
                                 alt="movie"/> 
                         </div>
                         
                         <div className="poster-container">
                             <img 
-                            src={ `https://image.tmdb.org/t/p/original/${tv.poster_path}` } 
+                            src={ book.image_url }
                             onError={(event) => event.target.setAttribute("src", not_found)} 
                             className="poster" 
                             alt="movie"/>
                         </div>
                         <div className="movie-info">
-                            <div className="movie-title">{ tv.name }</div>
+                            <div className="movie-title">{ book.title }</div>
                                 <div className="movie-stats">
                                     <div className="stat">
                                             <img src={ star } alt="movie"/>
-                                        <div className="value">{ tv.vote_average}</div>
+                                        <div className="value">{ book.mean_score}</div>
                                     </div>
                                     <div className="stat">
-                                        <img src={ s } alt="movie"/>
-                                        <div className="value"> { getProperSeasonForm(tv.number_of_seasons) }</div>
+                                        <img src={ page_icon } alt="movie"/>
+                                        <div className="value">{ book.number_of_pages} stron</div>
                                     </div>
                                     <div className="stat">
                                         <img src={ date } alt="movie"/>
-                                        <div className="value">{ tv.first_air_date.substring(0, 4)}</div>
+                                        <div className="value">{ book.original_publication_year }</div>
                                     </div>
                                     <div className="stat">
-                                        <img src={ type } alt="movie"/>
-                                        <div className="value">{ tv.genres[0].name}</div>
+                                        <img src={ type_icon } alt="movie"/>
+                                        <div className="value">{ book.genre }</div>
                                     </div>
                                 </div>
-                                <div className="overview">{ tv.overview }</div>
-                                { user && !isWatched && <button className="add-to-watched" onClick={handleAddToWatchedButton}>{buttonText}</button> }
+                                <div className="overview">{ book.description }</div>
+                                { user && !isRead && <button className="add-to-watched" onClick={handleAddToWatchedButton}>{buttonText}</button> }
                                 
                         </div>
                     </div>
-                    {showForm && !isWatched &&
-                        <div className="add-form">
-                            <form>
-                                <label>Twoja ocena:</label>
-                                <Stars setScore={setScore} onlyDisplay={false}/>
-                                <label>Recenzja:</label>
-                                <textarea 
-                                    className="review-input"
-                                    value={review}
-                                    onChange={e => setReview(e.target.value)}
-                                />
-                                <button className="add-review-button" onClick={handleAddToWatched}> Dodaj </button>
-                            </form>
-                        </div>
+                    {showForm && !isRead &&
+                            <div className="add-form">
+                                <form>
+                                    <label>Twoja ocena:</label>
+                                    <Stars setScore={setScore} onlyDisplay={false}/>
+                                    <label>Recenzja:</label>
+                                    <textarea
+                                        className="review-input"
+                                        value={review}
+                                        onChange={e => setReview(e.target.value)}
+                                    />
+                                    <button className="add-review-button" onClick={handleAddToWatched}> Dodaj </button>
+                                </form>
+                            </div>
                     }
-                    {isWatched &&
+                    {isRead &&
                         <div className="watched">
                             <p>Obejrzałeś już ten film.</p>
                             <p>Twoja ocena:</p>
@@ -217,4 +210,4 @@ const SingleTvShow = () => {
     )
 }
 
-export default SingleTvShow
+export default SingleBook
