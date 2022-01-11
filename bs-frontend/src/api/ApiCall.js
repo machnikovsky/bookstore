@@ -3,6 +3,17 @@ import authHeader from "../auth/AuthHeader";
 
 const API_URL = "http://localhost:8080/";
 
+
+const getFirstIssuesOfAllBooks = () => {
+    return axios.get(API_URL + "issue/all/first", {});
+};
+
+const getFirstIssuesOfBooksByQuery = (query) => {
+    return axios.get(API_URL + `issue/query/${query}`, {});
+};
+
+
+
 const getTrending = () => {
   return axios.get(API_URL + "movie/trending", {});
 };
@@ -91,6 +102,10 @@ const getRecentPictures = (type, id) => {
 
 
 const ApiCall = {
+    getFirstIssuesOfAllBooks,
+    getFirstIssuesOfBooksByQuery,
+
+
     getTrending,
     getGenres,
     getFilteredList,

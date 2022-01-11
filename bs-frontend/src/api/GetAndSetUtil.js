@@ -1,5 +1,32 @@
 import ApiCall from "./ApiCall";
 
+const getAndSetAllIssues = (set) => {
+    ApiCall.getFirstIssuesOfAllBooks()
+        .then(res => {
+            set(res.data);
+        })
+        .catch(e => {
+            console.log('Error getting all issues: ', e.message)
+            set(null);
+        });
+}
+
+const getAndSetQueriedListWithNewQuery = (query, set) => {
+    ApiCall.getFirstIssuesOfBooksByQuery(query)
+        .then(res => {
+            set(res.data);
+        })
+        .catch(e => {
+            console.log('Error getting book list by query: ', e.message);
+            set(null);
+        });
+}
+
+
+
+
+
+
 const getAndSetGenres = (setGenres, type) => {
     return ApiCall.getGenres(type)
     .then(res => {
@@ -64,18 +91,7 @@ const getAndSetQueriedListWithNewPage = (query, pictureList, setPictureList, pag
     });
 }
 
-const getAndSetQueriedListWithNewQuery = async (query, setPictureList) => {
-    ApiCall.getQueriedList(query, 1)
-    .then(res => {
-        return res.data;
-     })
-    .then(data => {
-        setPictureList(data);
-    })
-    .catch(e => {
-        setPictureList(null);
-    });
-}
+
 
 
 const getAndSetSinglePicture =  (id, setMovie, type) => {
@@ -207,11 +223,14 @@ const getAndSetRecentPictures = (id, setMovies, setTvs) => {
 
 
 const SearchUtil = {
+    getAndSetAllIssues,
+    getAndSetQueriedListWithNewQuery,
+
+
     getAndSetGenres,
     getAndSetFilteredListWithNewPage,
     getAndSetFilteredListWithNewFilterOrType,
     getAndSetQueriedListWithNewPage,
-    getAndSetQueriedListWithNewQuery,
     getAndSetSinglePicture,
     getAndSetReviews,
     getAndSetTrending,

@@ -1,6 +1,6 @@
 package com.example.bsbackend.domains.rating.model
 
-import com.example.bsbackend.domains.book.model.Book
+import com.example.bsbackend.domains.book.model.entity.Book
 import com.example.bsbackend.domains.user.model.User
 import javax.persistence.*
 

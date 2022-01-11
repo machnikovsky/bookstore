@@ -1,4 +1,4 @@
-package com.example.bsbackend.domains.book.model
+package com.example.bsbackend.domains.book.model.entity
 
 enum class Genre(val genre: String) {
     HORROR("HORROR"), CONTEMPORARY("CONTEMPORARY"), THRILLER("THRILLER"),
