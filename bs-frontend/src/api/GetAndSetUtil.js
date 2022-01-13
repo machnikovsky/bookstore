@@ -55,22 +55,8 @@ const getAndSetPropositions = (set) => {
         });
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const getAndSetGenres = (setGenres, type) => {
-    return ApiCall.getGenres(type)
+const getAndSetGenres = (setGenres) => {
+    ApiCall.getGenres()
         .then(res => {
             return res.data;
         })
@@ -79,10 +65,38 @@ const getAndSetGenres = (setGenres, type) => {
             return data;
         })
         .catch(e => {
-            console.log(e)
+            console.log('Error retrieving genres: ', e.message);
             setGenres(null);
         });
 }
+
+const getAndSetFilteredList = (filters, set) => {
+    ApiCall.getFilteredList(filters, 1)
+        .then(res => {
+            return res.data;
+        })
+        .then(data => {
+            set(data);
+        })
+        .catch(e => {
+            console.log(e);
+            set(null);
+        });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const getAndSetFilteredListWithNewPage = (filters, pictureList, setPictureList, page, type) => {
     ApiCall.getFilteredList(filters, page, type)
@@ -102,19 +116,6 @@ const getAndSetFilteredListWithNewPage = (filters, pictureList, setPictureList, 
         });
 }
 
-const getAndSetFilteredListWithNewFilterOrType = (filters, setPictureList, type) => {
-    ApiCall.getFilteredList(filters, 1, type)
-        .then(res => {
-            return res.data;
-        })
-        .then(data => {
-            setPictureList(data);
-        })
-        .catch(e => {
-            console.log(e);
-            setPictureList(null);
-        });
-}
 
 const getAndSetQueriedListWithNewPage = (query, pictureList, setPictureList, page) => {
     ApiCall.getQueriedList(query, page)
@@ -216,12 +217,13 @@ const SearchUtil = {
     getAndSetReviews,
     getAndSetPropositions,
     getAndSetIsRead,
-
-
-
     getAndSetGenres,
+    getAndSetFilteredList,
+
+
+
+
     getAndSetFilteredListWithNewPage,
-    getAndSetFilteredListWithNewFilterOrType,
     getAndSetQueriedListWithNewPage,
     getAndSetTrending,
     getAndSetScoreAndReview,

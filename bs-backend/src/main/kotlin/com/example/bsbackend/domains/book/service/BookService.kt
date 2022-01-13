@@ -2,6 +2,7 @@ package com.example.bsbackend.domains.book.service
 
 import com.example.bsbackend.domains.book.model.dto.BookInfoDTO
 import com.example.bsbackend.domains.book.model.entity.Book
+import com.example.bsbackend.domains.book.model.entity.Genre
 import com.example.bsbackend.domains.book.repository.BookRepository
 import org.modelmapper.ModelMapper
 import org.springframework.http.HttpStatus.NOT_FOUND
@@ -27,4 +28,9 @@ class BookService(
 
     private fun mapBookToDTO(book: Book): BookInfoDTO =
         modelMapper.map(book, BookInfoDTO::class.java)
+
+    fun getGenres(): ResponseEntity<Any> =
+        Genre.values()
+            .map { it.genre }
+            .let { ResponseEntity.ok(it) }
 }

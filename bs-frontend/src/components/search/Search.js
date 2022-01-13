@@ -2,28 +2,61 @@ import { useState, useEffect } from "react";
 import BookList from "../books/BookList";
 import SearchBar from "./SearchBar";
 import SearchUtil from '../../api/GetAndSetUtil';
+import SearchFilter from "./SearchFilter";
+import {useLocation} from "react-router-dom";
+import GetAndSetUtil from "../../api/GetAndSetUtil";
 
 const Search = () => {
 
     const [bookList, setBookList] = useState([]);
-    const [query, setQuery] = useState('a');
-    const [page, setPage] = useState(1);
+    const [genresAvailable, setGenresAvailable] = useState([]);
 
+    const [query, setQuery] = useState('');
+    const [page, setPage] = useState(1);
+    const [genres, setGenres] = useState([]);
+    const [sortBy, setSortBy] = useState('');
+    const [firstRender, setFirstRender] = useState(true);
+    const [type, setType] = useState('book');
+
+    const location = useLocation()
+    const genre = location.state?.genre
 
     useEffect(() => {
-        SearchUtil.getAndSetAllIssues(setBookList);
-        console.log('Book list :', bookList);
+        if (genre) {
+            setGenres([genre])
+            GetAndSetUtil.getAndSetFilteredList(getFilters(), setBookList);
+        } else {
+            SearchUtil.getAndSetAllIssues(setBookList);
+        }
+        GetAndSetUtil.getAndSetGenres(setGenresAvailable);
+        setFirstRender(false);
     }, [])
 
-
     useEffect(() => {
-        SearchUtil.getAndSetQueriedListWithNewQuery(query, setBookList);
+        SearchUtil.getAndSetFilteredList(getFilters(), setBookList);
+    }, [query, genres, sortBy, type])
 
-    }, [query])
+    const getFilters = () => {
+        let filters = {};
+        if (query !== '') {
+            filters['query'] = query;
+        }
+        if (genres.length > 0) {
+            filters['genres'] = genres;
+        }
+        if (sortBy !== '') {
+            filters['sort_by'] = sortBy;
+        }
+        if (type !== '') {
+            filters['type'] = type;
+        }
+        return filters;
+    }
+
 
     // useEffect(() => {
     //     SearchUtil.getAndSetQueriedListWithNewPage(query, bookList, setBookList, page);
-    // TODO: Implement loading new page on click
+    //     //TODO: Implement loading new page on click
     // }, [page])
 
 
@@ -32,6 +65,16 @@ const Search = () => {
         <div className="books-container">
             <div className="search-container">
                 <SearchBar setQuery={setQuery}/>
+                {
+                    genres &&
+                    <SearchFilter
+                        genresAvailable={genresAvailable}
+                        genres={genres} setGenres={setGenres}
+                        sortBy={sortBy} setSortBy={setSortBy}
+                        type={type} setType={setType}
+                    />
+                }
+
             </div>
             <BookList bookList={bookList}/>
             <button className="more-button" onClick={() => setPage(page + 1)}>Więcej</button>

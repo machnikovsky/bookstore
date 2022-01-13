@@ -32,4 +32,8 @@ class BookController(
     @GetMapping("/recommended/first")
     fun getFirstIssuesOfRecommendedBooks(): ResponseEntity<Any> =
         issueService.getFirstIssuesOfRecommendedBooks()
+
+    @GetMapping("/genres")
+    fun getGenres(): ResponseEntity<Any> =
+        bookService.getGenres()
 }

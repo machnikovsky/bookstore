@@ -1,5 +1,7 @@
 package com.example.bsbackend.domains.issue.service
 
+import com.example.bsbackend.domains.book.model.dto.FilterDTO
+import com.example.bsbackend.domains.book.model.dto.getGenres
 import com.example.bsbackend.domains.book.model.entity.Book
 import com.example.bsbackend.domains.book.repository.BookRepository
 import com.example.bsbackend.domains.issue.model.dto.IssueInfoDTO
@@ -42,19 +44,35 @@ class IssueService(
 
 
     fun getFirstIssuesOfAllBooks(): ResponseEntity<Any> =
-        getDtoOfBooksFirstIssues(bookRepository.findAll())
+        bookRepository.findAll()
+            .getDtoOfBooksFirstIssues()
             .let { ResponseEntity.ok(it) }
 
     fun getFirstIssuesOfBooksByQuery(query: String): ResponseEntity<Any> =
-        getDtoOfBooksFirstIssues(
-            bookRepository.findByTitleContainingIgnoreCaseOrAuthorsFirstNameContainingIgnoreCaseOrAuthorsLastNameContainingIgnoreCase(
-                query,
-                query,
-                query
-            )
+        bookRepository.findByTitleContainingIgnoreCaseOrAuthorsFirstNameContainingIgnoreCaseOrAuthorsLastNameContainingIgnoreCase(
+            query,
+            query,
+            query
         )
+            .getDtoOfBooksFirstIssues()
             .let { ResponseEntity.ok(it) }
 
+    fun getFirstIssuesOfBooksWithFilter(filters: FilterDTO): ResponseEntity<Any> =
+        getBooksListBasedOnQuery(filters.query)
+            .filter { filters.getGenres()?.contains(it.genre) ?: true }
+            .getDtoOfBooksFirstIssues()
+            .let { ResponseEntity.ok(it) }
+
+    private fun getBooksListBasedOnQuery(query: String?): List<Book> =
+        if (query != null) {
+            bookRepository.findByTitleContainingIgnoreCaseOrAuthorsFirstNameContainingIgnoreCaseOrAuthorsLastNameContainingIgnoreCase(
+                query ?: "",
+                query ?: "",
+                query ?: ""
+            )
+        } else {
+            bookRepository.findAll()
+        }
 
     private fun mapIssueToDTO(issue: Issue): IssueInfoDTO? {
         val issueInfoDTO: IssueInfoDTO = modelMapper.map(issue, IssueInfoDTO::class.java)
@@ -82,15 +100,14 @@ class IssueService(
     }
 
     fun getFirstIssuesOfRecommendedBooks(): ResponseEntity<Any> =
-        getDtoOfBooksFirstIssues(bookRepository.findFirst3ByOrderByBookId())
+        bookRepository.findFirst3ByOrderByBookId()
+            .getDtoOfBooksFirstIssues()
             .let { ResponseEntity.ok(it) }
 
-    private fun getDtoOfBooksFirstIssues(books: List<Book>): List<IssueInfoDTO?> =
-        books.map { getDtoOfBookFirstIssue(it.bookId) }
+    private fun List<Book>.getDtoOfBooksFirstIssues(): List<IssueInfoDTO?> =
+        this.map { getDtoOfBookFirstIssue(it.bookId) }
 
     private fun getDtoOfBookFirstIssue(bookId: Int): IssueInfoDTO? =
         issueRepository.findFirstByBookBookId(bookId)
             ?.let { mapIssueToDTO(it) }
-
-
 }

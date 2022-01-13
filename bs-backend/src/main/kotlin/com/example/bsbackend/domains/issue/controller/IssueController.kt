@@ -1,5 +1,6 @@
 package com.example.bsbackend.domains.issue.controller
 
+import com.example.bsbackend.domains.book.model.dto.FilterDTO
 import com.example.bsbackend.domains.issue.service.IssueService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -24,4 +25,8 @@ class IssueController(val issueService: IssueService) {
     @GetMapping("/query/{query}")
     fun getFirstIssuesOfBooksByQuery(@PathVariable("query") query: String): ResponseEntity<Any> =
         issueService.getFirstIssuesOfBooksByQuery(query)
+
+    @PostMapping("/filter")
+    fun getFirstIssuesOfBooksWithFilter(@RequestBody filters: FilterDTO): ResponseEntity<Any> =
+        issueService.getFirstIssuesOfBooksWithFilter(filters)
 }
