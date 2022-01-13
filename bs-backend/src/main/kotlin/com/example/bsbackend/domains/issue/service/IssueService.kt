@@ -11,7 +11,6 @@ import org.modelmapper.ModelMapper
 import org.springframework.http.HttpStatus.NOT_FOUND
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
-import kotlin.math.roundToLong
 
 @Service
 class IssueService(
@@ -82,11 +81,16 @@ class IssueService(
             }
     }
 
-    private fun getDtoOfBooksFirstIssues(books: List<Book>) =
+    fun getFirstIssuesOfRecommendedBooks(): ResponseEntity<Any> =
+        getDtoOfBooksFirstIssues(bookRepository.findFirst3ByOrderByBookId())
+            .let { ResponseEntity.ok(it) }
+
+    private fun getDtoOfBooksFirstIssues(books: List<Book>): List<IssueInfoDTO?> =
         books.map { getDtoOfBookFirstIssue(it.bookId) }
 
     private fun getDtoOfBookFirstIssue(bookId: Int): IssueInfoDTO? =
         issueRepository.findFirstByBookBookId(bookId)
             ?.let { mapIssueToDTO(it) }
+
 
 }

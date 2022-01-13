@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import {Link, useNavigate, useParams} from 'react-router-dom';
 import ApiCall from '../../api/ApiCall';
 import GetAndSetUtil from '../../api/GetAndSetUtil';
 import star from '../../assets/icons/star.png';
@@ -21,7 +21,7 @@ const SingleBook = ({type}) => {
     const [book, setBook] = useState(null);
     const [isRead, setIsRead] = useState(false);
     const [userInfo, setUserInfo] = useState(null);
-    const [buttonText, setButtonText] = useState('Dodaj do obejrzanych');
+    const [buttonText, setButtonText] = useState('Oceń książkę');
     const [showForm, setShowForm] = useState(false);
     const [score, setScore] = useState(null);
     const [review, setReview] = useState(null);
@@ -35,15 +35,15 @@ const SingleBook = ({type}) => {
 
 
         GetAndSetUtil.getAndSetSingleIssue(id, setBook);
+        GetAndSetUtil.getAndSetReviews(id, setReviews);
 
 
-        // GetAndSetUtil.getAndSetReviews(id, setReviews, 'book');
-        // GetAndSetUtil.getAndSetWatched('book', user, id, setIsRead)
-        //     .then(watched => {
-        //         if (watched) {
-        //             GetAndSetUtil.getAndSetScoreAndReview('book', user, id, setScore, setReview);
-        //         }
-        //     })
+        GetAndSetUtil.getAndSetIsRead(id, setIsRead)
+            .then(watched => {
+                if (watched) {
+                    GetAndSetUtil.getAndSetScoreAndReview(id, setScore, setReview);
+                }
+            })
 
 
         if (user) {
@@ -63,14 +63,14 @@ const SingleBook = ({type}) => {
     }, [])
 
     useEffect(() => {
-        GetAndSetUtil.getAndSetReviews(id, setReviews, 'book');
+        GetAndSetUtil.getAndSetReviews(id, setReviews);
     }, [addedReview])
 
-    const handleAddToWatchedButton = (e) => {
+    const handleShowReviewFormButton = (e) => {
         e.preventDefault();
         if (showForm) {
             scroll.scrollToTop();
-            setButtonText('Dodaj do obejrzanych')
+            setButtonText('Oceń książkę')
             setShowForm(false);
         } else {
             scroll.scrollTo(500);
@@ -81,23 +81,49 @@ const SingleBook = ({type}) => {
 
     const handleAddToWatched = async (e) => {
         e.preventDefault();
-        let watchedMovieReview = {
+        let bookRating = {
             'username': user,
-            'movieId': id
+            'book_id': id
         }
 
         if (score !== 0) {
-            watchedMovieReview['score'] = score;
+            bookRating['score'] = score;
         }
 
         if (review !== '') {
-            watchedMovieReview['review'] = review;
+            bookRating['review'] = review;
         }
 
-        await ApiCall.addToWatched(watchedMovieReview, 'book');
+        console.log("Trying to add this one: ", JSON.stringify(bookRating))
+
+        await ApiCall.addRating(bookRating)
+            .then((res) => {
+                return res.data;
+            })
+            .then((data) => {
+                const recievedRating = {
+                    'username': data.username,
+                    'book_id': data.book_id,
+                    'review': review,
+                    'score': score
+                }
+                console.log("RATING: ", recievedRating);
+                let slice = reviews.slice();
+                slice.push(recievedRating)
+                setReviews(slice);
+            })
+            .catch((err) => {
+                console.log("Error: ", err.response);
+            });
+
         setAddedReview(addedReview + 1);
         setIsRead(true);
         scroll.scrollToBottom();
+    }
+
+    const handleAddToCart = async (e) => {
+        e.preventDefault();
+        //TODO: Implement adding to cart logic
     }
     
 
@@ -141,8 +167,11 @@ const SingleBook = ({type}) => {
                                     </div>
                                 </div>
                                 <div className="overview">{ book.description }</div>
-                                { user && !isRead && <button className="add-to-watched" onClick={handleAddToWatchedButton}>{buttonText}</button> }
-                                
+                                <div className="single-book-buttons">
+                                    { user && !isRead && <button className="single-book-button" onClick={handleShowReviewFormButton}>{buttonText}</button> }
+                                    { user && <button className="single-book-button" onClick={handleAddToCart}>Dodaj do koszyka</button> }
+                                </div>
+
                         </div>
                     </div>
                     {showForm && !isRead &&
@@ -189,8 +218,10 @@ const SingleBook = ({type}) => {
                             reviews.map((val, idx) => (
                                 <div className="review" key={idx}>
                                     <div className="review-part">
+                                        <Link to={`/user/${val.user_id}`}>
                                         <img src={ user_icon } alt="user"/>
-                                        <div className="username">{val.user.username}</div>
+                                        <div className="username">{val.username}</div>
+                                        </Link>
                                     </div>
                                     <div className="review-part">{val.review} </div>
                                     <div className="review-part">

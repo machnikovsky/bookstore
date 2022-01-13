@@ -3,6 +3,7 @@ import TopShape from './components/TopShape';
 import Navbar from './components/Navbar';
 import Home from './components/landingPage/Home';
 import Login from './components/user/LogIn';
+import Logout from './components/user/Logout';
 import Register from './components/user/Register';
 import MyProfile from './components/user/myProfile/MyProfile';
 import './styles/styles.css'
@@ -26,9 +27,10 @@ const App = () => {
                     <Route exact path="/" element={<Home/>}/>
                     <Route exact path="/books" element={<Search />}/>
                     <Route exact path="/book/:id" element={<SingleBook />}/>
-                    <Route exact path="/about" element={<About/>}/>
-                    <Route exact path="/login" element={<Login/>}/>
-                    <Route exact path="/register" element={<Register/>}/>
+                    <Route exact path="/about" element={<About />}/>
+                    <Route exact path="/login" element={<Login />}/>
+                    <Route exact path="/logout" element={<Logout />}/>
+                    <Route exact path="/register" element={<Register />}/>
                     <Route exact path="/profile" element={<MyProfile />} />
                 </Routes>
             </UserContext.Provider>

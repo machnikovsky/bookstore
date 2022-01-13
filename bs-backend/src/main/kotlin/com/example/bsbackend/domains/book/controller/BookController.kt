@@ -28,4 +28,8 @@ class BookController(
     @GetMapping("/{bookId}/issue/all")
     fun getAllIssuesOfBook(@PathVariable("bookId") bookId: Int): ResponseEntity<Any> =
         issueService.getAllIssuesForBook(bookId)
+
+    @GetMapping("/recommended/first")
+    fun getFirstIssuesOfRecommendedBooks(): ResponseEntity<Any> =
+        issueService.getFirstIssuesOfRecommendedBooks()
 }

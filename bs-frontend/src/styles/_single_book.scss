@@ -51,7 +51,11 @@
         margin-top: 5vh;
       }
 
-      .add-to-watched {
+      .single-book-buttons {
+        display: flex;
+      }
+
+      .single-book-button {
         display: block;
         margin: 12vh auto 0vh auto;
         font-size: 1.3em;
@@ -110,7 +114,7 @@
 
   .add-form, .watched {
     text-align: center;
-    margin: 0 auto;
+    margin: 5vh auto;
     width: 30%;
     form {
       display: flex;

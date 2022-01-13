@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Rufina&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=Rufina&display=swap");
 .top {
   height: 100vh;
   position: relative;
@@ -7,7 +7,7 @@
 
 nav {
   width: 95%;
-  margin: 0px auto;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   font-size: 2em;
@@ -70,7 +70,7 @@ nav #logo-container {
   height: 35vh;
 }
 .main-container h1 {
-  font-size: 4.5em;
+  font-size: 4rem;
   font-weight: lighter;
 }
 
@@ -83,7 +83,7 @@ nav #logo-container {
   grid-template-rows: 1fr 6fr;
   text-align: center;
   background-color: rgba(196, 196, 196, 0.2);
-  z-index: -1;
+  z-index: 0;
 }
 .propositions-container h1 {
   grid-column: 3/4;
@@ -102,6 +102,14 @@ nav #logo-container {
   align-items: center;
   grid-column: 3/4;
   grid-row: 2/3;
+}
+.propositions-container .propositions .proposition {
+  width: max(4rem, 10vw);
+  height: auto;
+}
+.propositions-container .propositions .proposition img {
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .genres-container {
@@ -159,49 +167,51 @@ nav #logo-container {
   display: block;
 }
 
-.register {
-  max-width: 800px;
-  margin: 20vh auto;
-  padding: 10%;
+.login, .register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   text-align: center;
   position: relative;
   background-color: rgba(196, 196, 196, 0.2);
 }
-
-.register label {
+.login form, .register form {
+  width: 50%;
+}
+.login label, .register label {
   text-align: left;
   display: block;
   color: #DAA89B;
 }
-
-.register h1 {
+.login h1, .register h1 {
   font-size: 2em;
   color: #DAA89B;
   margin-bottom: 30px;
 }
-
-.register input, .register textarea, .register select {
+.login input, .login textarea, .login select, .register input, .register textarea, .register select {
   width: 100%;
   padding: 6px 10px;
   margin: 10px 0;
   border: 1px solid #ddd;
   box-sizing: border-box;
   display: block;
+  color: rgba(34, 34, 34, 0.9);
 }
-
-.register input {
+.login input, .register input {
   background-color: #fff;
   border: none;
   border-radius: 5px;
   height: 5vh;
   margin: 5vh auto;
 }
-
-.register input:focus {
+.login input:focus, .register input:focus {
   outline: none;
 }
-
-.register button {
+.login input::placeholder, .register input::placeholder {
+  color: rgba(153, 153, 153, 0.9);
+}
+.login button, .register button {
   background: #DAA89B;
   color: #fff;
   border: 0;
@@ -209,58 +219,47 @@ nav #logo-container {
   border-radius: 8px;
   cursor: pointer;
   width: 6vw;
+}
+.login .error-message, .register .error-message {
+  color: #d26666;
+  font-size: 1.2em;
+  font-family: Lato, serif;
+  margin: 4vh auto;
 }
 
 .login {
-  max-width: 800px;
-  margin: 20vh auto;
-  padding: 10%;
+  width: 50vw;
+  height: 70vh;
+}
+
+.register {
+  width: 50vw;
+  margin-bottom: 10vw;
+  padding: 3vh 0;
+}
+.register .gender {
+  font-size: 1.3em;
+}
+.register .radio-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+.register .radio-container .radio {
+  width: 33%;
+}
+.register .radio-container .radio label {
   text-align: center;
-  position: relative;
-  background-color: rgba(196, 196, 196, 0.2);
+  font-family: Lato, serif;
+  margin-bottom: 4vh;
 }
-
-.login label {
-  text-align: left;
-  display: block;
-  color: #DAA89B;
-}
-
-.login h1 {
-  font-size: 2em;
-  color: #DAA89B;
-  margin-bottom: 30px;
-}
-
-.login input, .login textarea, .login select {
-  width: 100%;
-  padding: 6px 10px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  box-sizing: border-box;
-  display: block;
-}
-
-.login input {
-  background-color: #fff;
-  border: none;
-  border-radius: 5px;
-  height: 5vh;
-  margin: 5vh auto;
-}
-
-.login input:focus {
-  outline: none;
-}
-
-.login button {
-  background: #DAA89B;
-  color: #fff;
+.register .radio-container .radio input {
   border: 0;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: pointer;
-  width: 6vw;
+  height: 1.7em;
+  margin-bottom: 1vh;
+}
+
+.logout {
+  height: 50vh;
 }
 
 .profile-container {
@@ -584,7 +583,10 @@ nav #logo-container {
 .single-movie-page-container .poster-and-info-container .movie-info .overview {
   margin-top: 5vh;
 }
-.single-movie-page-container .poster-and-info-container .movie-info .add-to-watched {
+.single-movie-page-container .poster-and-info-container .movie-info .single-book-buttons {
+  display: flex;
+}
+.single-movie-page-container .poster-and-info-container .movie-info .single-book-button {
   display: block;
   margin: 12vh auto 0vh auto;
   font-size: 1.3em;
@@ -629,7 +631,7 @@ nav #logo-container {
 }
 .single-movie-page-container .add-form, .single-movie-page-container .watched {
   text-align: center;
-  margin: 0 auto;
+  margin: 5vh auto;
   width: 30%;
 }
 .single-movie-page-container .add-form form, .single-movie-page-container .watched form {
@@ -724,6 +726,12 @@ body {
 
 a {
   text-decoration: none;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=styles.css.map */

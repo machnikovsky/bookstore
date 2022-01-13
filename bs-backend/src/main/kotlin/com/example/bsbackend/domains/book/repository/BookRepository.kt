@@ -12,4 +12,5 @@ interface BookRepository : JpaRepository<Book, Int> {
         firstName: String,
         lastName: String,
     ): List<Book>
+    fun findFirst3ByOrderByBookId(): List<Book>
 }

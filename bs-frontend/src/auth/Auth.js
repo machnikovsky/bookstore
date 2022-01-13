@@ -37,6 +37,7 @@ const login = (username, password) => {
     })
     .catch((e) => {
       console.log('[Auth.js, Login] Got error: ', e.response.data);
+      return null;
     });
 };
 

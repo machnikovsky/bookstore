@@ -15,12 +15,6 @@ class UserController(val userService: UserService) {
     @GetMapping("/all")
     fun getAllUsers(): ResponseEntity<List<User>> = ResponseEntity.ok(userService.getAllUsers())
 
-    @PostMapping("/register")
-    fun registerUser(@RequestBody userRegistrationDto: UserRegistrationDto): ResponseEntity<User> {
-        println(userRegistrationDto.toString())
-        return ResponseEntity.ok(userService.registerUser(userRegistrationDto))
-    }
-
     @GetMapping("/admin")
     fun getAdminPanel(): ResponseEntity<String> = ResponseEntity.ok("This is an admin panel.")
 

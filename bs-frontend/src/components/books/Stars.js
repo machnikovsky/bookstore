@@ -19,7 +19,7 @@ const Stars = ({setScore, onlyDisplay, watchedScore}) => {
     return (
         <div className="stars">
             {[...Array(10)].map((_, idx) => (
-                <div className="star">
+                <div className="star" key={ idx }>
                     {(onlyDisplay ? idx < watchedScore : idx < stars) ?
                         onlyDisplay ? <img src={ filled_star } alt="movie"/> : <button onClick={(e) => handleButton(e, idx + 1)}><img src={ filled_star } alt="movie"/></button> :
                         onlyDisplay ? <img src={ empty_star } alt="movie"/>  : <button onClick={(e) => handleButton(e, idx + 1)}><img src={ empty_star } alt="movie"/></button>

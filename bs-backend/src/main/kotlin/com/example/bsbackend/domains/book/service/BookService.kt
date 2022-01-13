@@ -24,6 +24,7 @@ class BookService(
             ?.let { ResponseEntity.ok(it) }
             ?: ResponseEntity.status(NOT_FOUND).body("Book with id $bookId was not found.")
 
+
     private fun mapBookToDTO(book: Book): BookInfoDTO =
         modelMapper.map(book, BookInfoDTO::class.java)
 }

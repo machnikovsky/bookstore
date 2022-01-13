@@ -1,11 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Rufina&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Rufina&display=swap');
 $dark-purple-background: #2C0E37;
 $light-purple-background: #C4C4C4;
 $light-purple-transparent-background: rgba(#C4C4C4, 0.2);
 $beige: #DAA89B;
 $dark-beige: #a9957b;
 $yellow: rgb(252, 241, 207);
+$dark-grey: rgba(#222, 0.9);
+$light-grey: rgba(#999, 0.9);
+$red: #d26666;
 
 
 @import "top";
@@ -16,8 +18,7 @@ $yellow: rgb(252, 241, 207);
 @import "propositions";
 @import "genres";
 @import "more";
-@import "register";
-@import "login";
+@import "login_register_logout";
 @import "profile";
 @import "search";
 @import "single_book";
@@ -36,4 +37,10 @@ body {
 
 a {
     text-decoration: none;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

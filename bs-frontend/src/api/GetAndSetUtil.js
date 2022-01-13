@@ -22,13 +22,35 @@ const getAndSetQueriedListWithNewQuery = (query, set) => {
         });
 }
 
-const getAndSetSingleIssue =  (id, set) => {
+const getAndSetSingleIssue = (id, set) => {
     ApiCall.getSingleIssue(id)
         .then(res => {
             set(res.data);
         })
         .catch(e => {
             console.log('Error getting single book: ', e);
+            set(null);
+        });
+}
+
+const getAndSetReviews = (id, set) => {
+    ApiCall.getReviews(id)
+        .then(res => {
+            set(res.data)
+        })
+        .catch(e => {
+            console.log('Error: ', e);
+            set(null);
+        });
+}
+
+const getAndSetPropositions = (set) => {
+    ApiCall.getAndSetPropositions()
+        .then(res => {
+            set(res.data);
+        })
+        .catch(e => {
+            console.log('Error: ', e);
             set(null);
         });
 }
@@ -40,123 +62,97 @@ const getAndSetSingleIssue =  (id, set) => {
 
 
 
+
+
+
+
+
+
+
 const getAndSetGenres = (setGenres, type) => {
     return ApiCall.getGenres(type)
-    .then(res => {
-        return res.data;
-    })
-    .then(data => {
-        setGenres(data);
-        return data;
-    })
-    .catch(e => {
-        console.log(e)
-        setGenres(null);
-    });
+        .then(res => {
+            return res.data;
+        })
+        .then(data => {
+            setGenres(data);
+            return data;
+        })
+        .catch(e => {
+            console.log(e)
+            setGenres(null);
+        });
 }
 
 const getAndSetFilteredListWithNewPage = (filters, pictureList, setPictureList, page, type) => {
     ApiCall.getFilteredList(filters, page, type)
-    .then(res => {
-        return res.data;
-    })
-    .then(data => {
-        if (Array.isArray(pictureList) && pictureList.length) {
-            setPictureList(pictureList.concat(data));
-        } else {
-            setPictureList(data);
-        }
-    })
-    .catch(e => {
-        console.log(e);
-        setPictureList(null);
-    });
+        .then(res => {
+            return res.data;
+        })
+        .then(data => {
+            if (Array.isArray(pictureList) && pictureList.length) {
+                setPictureList(pictureList.concat(data));
+            } else {
+                setPictureList(data);
+            }
+        })
+        .catch(e => {
+            console.log(e);
+            setPictureList(null);
+        });
 }
 
 const getAndSetFilteredListWithNewFilterOrType = (filters, setPictureList, type) => {
     ApiCall.getFilteredList(filters, 1, type)
-    .then(res => {
-        return res.data;
-    })
-    .then(data => {
-        setPictureList(data);
-    })
-    .catch(e => {
-        console.log(e);
-        setPictureList(null);
-    });
+        .then(res => {
+            return res.data;
+        })
+        .then(data => {
+            setPictureList(data);
+        })
+        .catch(e => {
+            console.log(e);
+            setPictureList(null);
+        });
 }
 
 const getAndSetQueriedListWithNewPage = (query, pictureList, setPictureList, page) => {
     ApiCall.getQueriedList(query, page)
-    .then(res => {
+        .then(res => {
             return res.data;
-     })
-    .then(data => {
-        if (Array.isArray(pictureList) && pictureList.length) {
-            setPictureList(pictureList.concat(data));
-        } else {
-            setPictureList(data);
-        }
-    })
-    .catch(e => {
-        setPictureList(null);
-    });
+        })
+        .then(data => {
+            if (Array.isArray(pictureList) && pictureList.length) {
+                setPictureList(pictureList.concat(data));
+            } else {
+                setPictureList(data);
+            }
+        })
+        .catch(e => {
+            setPictureList(null);
+        });
 }
-
-
-
-
-
-
-const getAndSetReviews = (id, set, type) => {
-    ApiCall.getReviews(id, type)
-    .then(res => {
-        return res.data;
-     })
-    .then(data => {
-        set(data);
-    })
-    .catch(e => {
-        console.log('Error: ', e);
-        set(null);
-    });
-}
-
 
 
 const getAndSetTrending = (set, setSize) => {
     ApiCall.getTrending()
-    .then(res => {
+        .then(res => {
             return res.data;
-     })
-    .then(data => {
-        set(data);
-        setSize(data.length);
-    })
-    .catch(e => {
-        console.log(e.message);
-    });
+        })
+        .then(data => {
+            set(data);
+            setSize(data.length);
+        })
+        .catch(e => {
+            console.log(e.message);
+        });
 }
 
 
-const getAndSetRecommendations = (id, set, setSize) => {
-    ApiCall.getRecommendedPictures(id)
-    .then(res => {
-        return res.data;
-     })
-    .then(data => {
-        set(data);
-        setSize(data.length);
-    })
-    .catch(e => {
-        console.log('Error: ', e);
-        set(null);
-    });
-}
 
-const getAndSetWatched = (type, username, picture_id, set) => {
-    return ApiCall.getIsWatched(type, username, picture_id)
+
+const getAndSetIsRead = (book_id, set) => {
+    return ApiCall.getIsRead(book_id)
         .then(res => {
             return res.data;
         })
@@ -167,32 +163,22 @@ const getAndSetWatched = (type, username, picture_id, set) => {
         .catch(e => {
             console.log('Error: ', e);
             set(false);
+            return false;
         });
 }
 
-const getAndSetScoreAndReview = (type, user, id, setScore, setReview) => {
-    ApiCall.getScore(type, user, id)
+const getAndSetScoreAndReview = (id, setScore, setReview) => {
+    ApiCall.getUserRating(id)
         .then(res => {
             return res.data;
         })
         .then(data => {
-            setScore(data);
+            setScore(data.score);
+            setReview(data.review);
         })
         .catch(e => {
             console.log('Error: ', e);
             setScore(null);
-        });
-
-    ApiCall.getReview(type, user, id)
-        .then(res => {
-            return res.data;
-        })
-        .then(data => {
-            setReview(data);
-        })
-        .catch(e => {
-            console.log('Error: ', e);
-            setReview(null);
         });
 }
 
@@ -227,15 +213,17 @@ const SearchUtil = {
     getAndSetAllIssues,
     getAndSetQueriedListWithNewQuery,
     getAndSetSingleIssue,
+    getAndSetReviews,
+    getAndSetPropositions,
+    getAndSetIsRead,
+
+
 
     getAndSetGenres,
     getAndSetFilteredListWithNewPage,
     getAndSetFilteredListWithNewFilterOrType,
     getAndSetQueriedListWithNewPage,
-    getAndSetReviews,
     getAndSetTrending,
-    getAndSetRecommendations,
-    getAndSetWatched,
     getAndSetScoreAndReview,
     getAndSetRecentPictures
 };
