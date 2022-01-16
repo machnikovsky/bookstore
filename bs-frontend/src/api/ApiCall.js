@@ -31,9 +31,16 @@ const getUserRating = (id) => {
 
 const getFilteredList = (filters, page) => {
     //TODO: implement page logic
-    console.log("Sending request with filters: ", filters);
     return axios.post(API_URL + `issue/filter`, filters, {})
 }
+
+const getIsIssueAvailable = (issueId) => {
+    return axios.get(API_URL + `issue/${issueId}/available`, { headers: authHeader() })
+}
+
+const getUserInfo = (username) => {
+    return axios.get(API_URL + `user/info/${username}`, { headers: authHeader() });
+};
 
 
 
@@ -57,10 +64,6 @@ const getGenres = () => {
 const getQueriedList = (query, page) => {
   return axios.get(API_URL + `movie/query/${query}?page=${page}`, {})
 }
-
-const getUserInfo = (username) => {
-  return axios.get(API_URL + `user/info/${username}`, { headers: authHeader() });
-};
 
 const getWatchedMovies = (username) => {
   return axios.get(API_URL + `watched/movie/all/${username}`, {});
@@ -120,13 +123,14 @@ const ApiCall = {
     getUserRating,
     getGenres,
     getFilteredList,
+    getIsIssueAvailable,
+    getUserInfo,
 
 
 
 
     getTrending,
     getQueriedList,
-    getUserInfo,
     getWatchedMovies,
     addTvShowToWatched,
     getWatchedTvShows,

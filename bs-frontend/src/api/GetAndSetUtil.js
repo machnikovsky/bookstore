@@ -74,6 +74,34 @@ const getAndSetFilteredList = (filters, set) => {
         });
 }
 
+const getAndSetIsIssueAvailable = (issueId, set) => {
+    ApiCall.getIsIssueAvailable(issueId)
+        .then(res => {
+            return res.data;
+        })
+        .then(data => {
+            set(data);
+            console.log("!!", data);
+        })
+        .catch(e => {
+            console.log(e);
+            set(null);
+        });
+}
+
+const getAndSetUserRoles = (username, setRoles) => {
+    ApiCall.getUserInfo(username)
+        .then(res => {
+            return res.data;
+        })
+        .then(data => {
+            setRoles(data.roles);
+        })
+        .catch(e => {
+            console.log(e);
+            setRoles([]);
+        });
+}
 
 
 
@@ -208,8 +236,8 @@ const SearchUtil = {
     getAndSetIsRead,
     getAndSetGenres,
     getAndSetFilteredList,
-
-
+    getAndSetIsIssueAvailable,
+    getAndSetUserRoles,
 
 
     getAndSetFilteredListWithNewPage,

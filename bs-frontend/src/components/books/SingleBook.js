@@ -26,6 +26,8 @@ const SingleBook = ({type}) => {
     const [score, setScore] = useState(null);
     const [review, setReview] = useState(null);
     const [addedReview, setAddedReview] = useState(0);
+    const [isAvailable, setIsAvailable] = useState(false);
+    const [roles, setRoles] = useState([]);
     const scroll = Scroll.animateScroll;
     const navigate = useNavigate();
 
@@ -36,6 +38,8 @@ const SingleBook = ({type}) => {
 
         GetAndSetUtil.getAndSetSingleIssue(issueId, setBook);
         GetAndSetUtil.getAndSetReviews(bookId, setReviews);
+        GetAndSetUtil.getAndSetIsIssueAvailable(issueId, setIsAvailable);
+        GetAndSetUtil.getAndSetUserRoles(user, setRoles);
 
 
         GetAndSetUtil.getAndSetIsRead(bookId, setIsRead)
@@ -168,8 +172,13 @@ const SingleBook = ({type}) => {
                                 </div>
                                 <div className="overview">{ book.description }</div>
                                 <div className="single-book-buttons">
-                                    { user && !isRead && <button className="single-book-button" onClick={handleShowReviewFormButton}>{buttonText}</button> }
-                                    { user && <button className="single-book-button" onClick={handleAddToCart}>Dodaj do koszyka</button> }
+                                    { user && roles.includes('USER') && !isRead && <button className="single-book-button" onClick={handleShowReviewFormButton}>{buttonText}</button> }
+                                    { user && roles.includes('USER') && <button className="single-book-button" onClick={handleAddToCart}>Dodaj do koszyka</button> }
+                                    { user && roles.includes('WORKER') && ( isAvailable ?
+                                        <button className="single-book-button green-bg">Sprzedaj stacjonarnie</button> :
+                                        <button className="single-book-button red-bg">Niedostępne</button> )
+                                    }
+                                    { user && roles.includes('WORKER') && <button className="single-book-button">Zamów</button> }
                                 </div>
 
                         </div>

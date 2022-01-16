@@ -10,9 +10,13 @@ import com.example.bsbackend.domains.issue.model.entity.Issue
 import com.example.bsbackend.domains.issue.repository.IssueRepository
 import com.example.bsbackend.domains.rating.model.mapToDTO
 import com.example.bsbackend.domains.rating.repository.RatingRepository
+import com.example.bsbackend.domains.user.model.User
+import com.example.bsbackend.domains.user.repository.UserRepository
 import org.modelmapper.ModelMapper
+import org.springframework.http.HttpStatus.BAD_REQUEST
 import org.springframework.http.HttpStatus.NOT_FOUND
 import org.springframework.http.ResponseEntity
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
 
 @Service
@@ -21,6 +25,7 @@ class IssueService(
     private val bookRepository: BookRepository,
     private val ratingRepository: RatingRepository,
     private val assortmentRepository: AssortmentRepository,
+    private val userRepository: UserRepository,
     private val modelMapper: ModelMapper
 ) {
     fun getSingleIssue(issueId: Int): ResponseEntity<Any> =
@@ -70,9 +75,12 @@ class IssueService(
             .getSorted(filters)
             .let { ResponseEntity.ok(it) }
 
-    fun checkIfIssueIsAvailableStationary(issueId: Int): ResponseEntity<Any> {
-        TODO("Not yet implemented")
-    }
+    fun checkIfIssueIsAvailableInBookstore(issueId: Int): ResponseEntity<Any> =
+        getCurrentUser()
+            ?.bookstore
+            ?.let { assortmentRepository.existsByBookstoreAndIssueIssueId(it, issueId) }
+            ?.let { ResponseEntity.ok(it) }
+            ?: ResponseEntity.status(BAD_REQUEST).body("Error getting information about issue availability.")
 
     fun sellIssueStationary(issueId: Int): ResponseEntity<Any> {
         TODO("Not yet implemented")
@@ -135,5 +143,9 @@ class IssueService(
             ?.first()
             ?.let { mapIssueToDTO(it) }
 
+    private fun getCurrentUser(): User? =
+        userRepository.findByUsernameIgnoreCase(getCurrentUserUsername())
 
+    private fun getCurrentUserUsername(): String? =
+        SecurityContextHolder.getContext().authentication.name
 }

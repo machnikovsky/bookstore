@@ -1,5 +1,7 @@
 package com.example.bsbackend
 
+import com.example.bsbackend.domains.assortment.model.Assortment
+import com.example.bsbackend.domains.assortment.repository.AssortmentRepository
 import com.example.bsbackend.domains.author.model.Author
 import com.example.bsbackend.domains.author.repository.AuthorRepository
 import com.example.bsbackend.domains.book.model.entity.Book
@@ -48,6 +50,7 @@ class ApplicationStart(
     val bookRepository: BookRepository,
     val ratingRepository: RatingRepository,
     val issueRepository: IssueRepository,
+    val assortmentRepository: AssortmentRepository,
     val publishingHouseRepository: PublishingHouseRepository,
     val passwordEncoder: PasswordEncoder
 ) {
@@ -162,6 +165,14 @@ class ApplicationStart(
             book = book
         )
         issueRepository.save(issue)
+
+        val assortment = Assortment(
+            count = 5,
+            bookstore = bookstore,
+            issue = issue
+        )
+
+        assortmentRepository.save(assortment);
 
     }
 }
