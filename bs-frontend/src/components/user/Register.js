@@ -10,96 +10,109 @@ const Register = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
-    const [gender, setGender] = useState('');
+    const [gender, setGender] = useState('MALE');
+    const [showError, setShowError] = useState(false);
     const navigate = useNavigate();
 
 
 
-    const handleSubmit = (e) => {
+    const handleRegister = async (e) => {
         e.preventDefault();
-        Auth.register(username, email, password, firstName, lastName, phoneNumber, gender);
-        navigate('/');
+        const registerResult = await Auth.register(username, email, password, firstName, lastName, phoneNumber, gender);
+
+        if (registerResult) {
+            navigate('/');
+        } else {
+            setShowError(true);
+        }
     }
 
 
     return (
-        <div className="register">
-            <h1>Zarejestruj</h1>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    placeholder="Nazwa uzytkownika"
-                    required
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
-                <input
-                    type="text"
-                    placeholder="Email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                <input
-                    type="password"
-                    placeholder="Haslo"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <input
-                    type="text"
-                    placeholder="Imie"
-                    required
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                />
-                <input
-                    type="text"
-                    placeholder="Nazwisko"
-                    required
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                />
-                <input
-                    type="text"
-                    placeholder="Numer telefonu"
-                    required
-                    value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                />
-                <div className="radio">
-                    <label>
-                        <input type="radio"
-                               value="MALE"
-                               checked={gender === 'MALE'}
-                               onChange={e => setGender(e.target.value)}
-                        />
-                        Mężczyzna
-                    </label>
-                </div>
-                <div className="radio">
-                    <label>
-                        <input type="radio"
-                               value="FEMALE"
-                               checked={gender === 'FEMALE'}
-                               onChange={e => setGender(e.target.value)}
-                        />
-                        Kobieta
-                    </label>
-                </div>
-                <div className="radio">
-                    <label>
-                        <input type="radio"
-                               value="OTHER"
-                               checked={gender === 'OTHER'}
-                               onChange={e => setGender(e.target.value)}
-                        />
-                        Inna
-                    </label>
-                </div>
-                <button>Zarejestruj</button>
-            </form>
+        <div className="center">
+            <div className="register">
+                <h1>Zarejestruj</h1>
+                <form onSubmit={handleRegister}>
+                    <input
+                        type="text"
+                        placeholder="Nazwa uzytkownika"
+                        required
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        placeholder="Email"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <input
+                        type="password"
+                        placeholder="Haslo"
+                        required
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        placeholder="Imie"
+                        required
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        placeholder="Nazwisko"
+                        required
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        placeholder="Numer telefonu"
+                        required
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                    />
+                    <div class="gender">Płeć</div>
+                    <div className="radio-container">
+
+                        <div className="radio">
+                            <label>
+                                <input type="radio"
+                                       value="MALE"
+                                       checked={gender === 'MALE'}
+                                       onChange={e => setGender(e.target.value)}
+                                />
+                                Mężczyzna
+                            </label>
+                        </div>
+                        <div className="radio">
+                            <label>
+                                <input type="radio"
+                                       value="FEMALE"
+                                       checked={gender === 'FEMALE'}
+                                       onChange={e => setGender(e.target.value)}
+                                />
+                                Kobieta
+                            </label>
+                        </div>
+                        <div className="radio">
+                            <label>
+                                <input type="radio"
+                                       value="OTHER"
+                                       checked={gender === 'OTHER'}
+                                       onChange={e => setGender(e.target.value)}
+                                />
+                                Inna
+                            </label>
+                        </div>
+                    </div>
+                    { showError && <div className="error-message">Niepoprawne dane.</div> }
+                    <button>Zarejestruj</button>
+                </form>
+            </div>
         </div>
     );
 }

@@ -1,5 +1,18 @@
 package com.example.bsbackend
 
+import com.example.bsbackend.domains.author.model.Author
+import com.example.bsbackend.domains.author.repository.AuthorRepository
+import com.example.bsbackend.domains.book.model.entity.Book
+import com.example.bsbackend.domains.book.model.entity.Genre
+import com.example.bsbackend.domains.book.repository.BookRepository
+import com.example.bsbackend.domains.issue.model.enum.BookType
+import com.example.bsbackend.domains.issue.model.entity.CoverType
+import com.example.bsbackend.domains.issue.model.entity.Issue
+import com.example.bsbackend.domains.issue.repository.IssueRepository
+import com.example.bsbackend.domains.publishingHouse.model.PublishingHouse
+import com.example.bsbackend.domains.publishingHouse.repository.PublishingHouseRepository
+import com.example.bsbackend.domains.rating.model.Rating
+import com.example.bsbackend.domains.rating.repository.RatingRepository
 import com.example.bsbackend.domains.user.model.Gender
 import com.example.bsbackend.domains.user.model.Person
 import com.example.bsbackend.domains.user.model.Role
@@ -28,6 +41,11 @@ fun main(args: Array<String>) {
 class ApplicationStart(
     val userRepository: UserRepository,
     val personRepository: PersonRepository,
+    val authorRepository: AuthorRepository,
+    val bookRepository: BookRepository,
+    val ratingRepository: RatingRepository,
+    val issueRepository: IssueRepository,
+    val publishingHouseRepository: PublishingHouseRepository,
     val passwordEncoder: PasswordEncoder
 ) {
     @EventListener(ApplicationReadyEvent::class)
@@ -83,5 +101,55 @@ class ApplicationStart(
             person = personWorker
         )
         userRepository.saveAll(listOf(admin, user, worker))
+
+        val author = Author(
+            firstName = "Miguel",
+            lastName = "de Cervantes",
+            country = "Hiszpania",
+            books = mutableListOf()
+        )
+        authorRepository.save(author)
+        val book = Book(
+            title = "Don Kichot",
+            description = "Miguel de Cervantes Saavedra swoim „Don Kichotem” położył podwaliny pod nowoczesną powieść. Przygody oszalałego od czytania książek szlachcica i jego giermka od z górą czterystu lat bawią i wzruszają kolejne pokolenia czytelników. Dzięki nowemu polskiemu przekładowi dzieło zostało odświeżone, więc współczesny miłośnik literatury będzie mógł cieszyć się tą historią jak nigdy przedtem. Wspaniały przekład wspaniałego dzieła. Okazuje się, że mimo swego sędziwego wieku „Don Kichot” to książka interesująca, wciągająca i pouczająca, a przede wszystkim śmieszna, jak informuje sam autor na kartach swojej powieści. Do tej pory trudno było tę śmieszność dostrzec. Dopiero teraz w pełni możemy docenić humor i doskonałe pióro wielkiego Hiszpana.",
+            genre = Genre.ADVENTURE,
+            originalPublicationYear = 1605,
+            authors = listOf(author)
+        )
+        bookRepository.save(book)
+        val authorFromDb = authorRepository.getById(author.authorId)
+        authorFromDb.books = mutableListOf(book)
+        authorRepository.save(authorFromDb)
+        
+
+        val rating = Rating(
+            score = 5,
+            review = "Srednia ksiazka!",
+            book = book,
+            user = user
+        )
+
+        ratingRepository.save(rating);
+
+        val publishingHouse = PublishingHouse(
+            name = "Mag",
+            foundationYear = 1995
+        )
+        publishingHouseRepository.save(publishingHouse)
+
+        val issue = Issue(
+            language = "Polski",
+            publicationYear = 2004,
+            numberOfPages = 1044,
+            coverType = CoverType.HARDCOVER,
+            bookType = BookType.BOOK,
+            price = 74.99f,
+            imageUrl = "https://s.lubimyczytac.pl/upload/books/221000/221953/564966-352x500.jpg",
+            backgroundUrl = "https://ocdn.eu/pulscms-transforms/1/_jKktkuTURBXy9mNDYwNGU5MS0zYjNmLTQ4Y2QtYmU0Ny1mMzZkNDhjNDc4Y2YuanBlZ5GTBc0EsM0CpA",
+            publishingHouse = publishingHouse,
+            book = book
+        )
+        issueRepository.save(issue)
+
     }
 }

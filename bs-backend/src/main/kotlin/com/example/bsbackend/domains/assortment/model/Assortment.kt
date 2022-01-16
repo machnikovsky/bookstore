@@ -1,7 +1,7 @@
 package com.example.bsbackend.domains.assortment.model
 
 import com.example.bsbackend.domains.bookstore.model.Bookstore
-import com.example.bsbackend.domains.issue.model.Issue
+import com.example.bsbackend.domains.issue.model.entity.Issue
 import javax.persistence.*
 
 @Entity(name = "assortment")

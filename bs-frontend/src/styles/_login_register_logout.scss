@@ -1,0 +1,108 @@
+.login, .register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  position: relative;
+  background-color: $light-purple-transparent-background;
+
+  form {
+    width: 50%;
+  }
+
+  label {
+    text-align: left;
+    display: block;
+    color: $beige;
+  }
+
+  h1 {
+    font-size: 2em;
+    color: $beige;
+    margin-bottom: 30px;
+  }
+
+  input, textarea, select {
+    width: 100%;
+    padding: 6px 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    display: block;
+    color: $dark-grey;
+  }
+
+  input {
+    background-color: #fff;
+    border: none;
+    border-radius: 5px;
+    height: 5vh;
+    margin: 5vh auto;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  input::placeholder {
+    color: $light-grey;
+  }
+
+  button {
+    background: $beige;
+    color: #fff;
+    border: 0;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 6vw;
+  }
+
+  .error-message {
+    color: $red;
+    font-size: 1.2em;
+    font-family: Lato, serif;
+    margin: 4vh auto;
+
+  }
+
+}
+
+.login {
+  width: 50vw;
+  height: 70vh;
+}
+
+.register {
+  width: 50vw;
+  margin-bottom: 10vw;
+  padding: 3vh 0;
+
+  .gender {
+    font-size: 1.3em;
+  }
+
+  .radio-container {
+    display: flex;
+    justify-content: space-evenly;
+    .radio {
+      width: 33%;
+      label {
+        text-align: center;
+        font-family: Lato, serif;
+        margin-bottom: 4vh;
+
+      }
+      input {
+        border: 0;
+        height: 1.7em;
+        margin-bottom: 1vh;
+      }
+    }
+  }
+}
+
+.logout {
+  height: 50vh;
+}

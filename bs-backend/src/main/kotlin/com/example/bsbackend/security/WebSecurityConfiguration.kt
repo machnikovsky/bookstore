@@ -29,7 +29,8 @@ class WebSecurityConfiguration(
             .csrf().disable()
             .authorizeRequests()
             .antMatchers("/book/**", "/issue/**", "/user/register", "/auth/**").permitAll()
-            .antMatchers("/user/info/**").hasAnyRole("USER", "WORKER", "ADMIN")
+            .antMatchers("/rating/**").permitAll()
+            .antMatchers("/user/info/**", "/rating/add").hasAnyRole("USER", "WORKER", "ADMIN")
             .antMatchers("/user/admin").hasRole("ADMIN")
             .antMatchers("/user/worker").hasRole("WORKER")
             .anyRequest().authenticated()
@@ -63,4 +64,6 @@ class WebSecurityConfiguration(
     override fun authenticationManagerBean(): AuthenticationManager {
         return super.authenticationManagerBean()
     }
+
+
 }

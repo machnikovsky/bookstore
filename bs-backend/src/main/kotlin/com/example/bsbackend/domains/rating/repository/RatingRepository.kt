@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository
 
 
 @Repository
-interface RatingRepository : JpaRepository<Rating, Int>
+interface RatingRepository : JpaRepository<Rating, Int> {
+    fun findAllByBookBookId(bookId: Int): List<Rating>
+    fun findAllByUserUsernameAndBookBookId(username: String, bookId: Int): List<Rating>
+    fun findByUserUsernameAndBookBookId(username: String, bookId: Int): Rating
+}

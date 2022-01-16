@@ -24,3 +24,7 @@ yarn-error.log*
 
 # idea
 .idea/*
+
+# sass
+*.css
+*.css.map
