@@ -1,5 +1,6 @@
 package com.example.bsbackend.domains.user.model
 
+import com.example.bsbackend.domains.bookstore.model.Bookstore
 import java.sql.Date
 import javax.persistence.*
 
@@ -16,5 +17,7 @@ data class User(
     @Column(name = "creation_date") var creationDate: Date,
     @ElementCollection(fetch = FetchType.EAGER) @Enumerated(value = EnumType.STRING) var roles: MutableSet<Role>,
     @OneToOne
-    @JoinColumn(name = "person_id", referencedColumnName = "person_id") var person: Person
+    @JoinColumn(name = "person_id", referencedColumnName = "person_id") var person: Person,
+    @OneToOne
+    @JoinColumn(name = "bookstore_id", referencedColumnName = "bookstore_id") var bookstore: Bookstore
 )

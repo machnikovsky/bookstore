@@ -1,23 +1,23 @@
 -- DROPPING TABLES
-DROP TABLE IF EXISTS assortment;
-DROP TABLE IF EXISTS issue_order;
-DROP TABLE IF EXISTS campaign_issue;
-DROP TABLE IF EXISTS author_book;
-DROP TABLE IF EXISTS discount_issue;
-DROP TABLE IF EXISTS bookstore;
-DROP TABLE IF EXISTS issue;
-DROP TABLE IF EXISTS publishing_house;
-DROP TABLE IF EXISTS campaign;
-DROP TABLE IF EXISTS discount;
-DROP TABLE IF EXISTS author;
-DROP TABLE IF EXISTS "order";
-DROP TABLE IF EXISTS payment;
-DROP TABLE IF EXISTS shipment;
-DROP TABLE IF EXISTS rating;
+DROP TABLE IF EXISTS assortment CASCADE;
+DROP TABLE IF EXISTS issue_order CASCADE;
+DROP TABLE IF EXISTS campaign_issue CASCADE;
+DROP TABLE IF EXISTS author_book CASCADE;
+DROP TABLE IF EXISTS discount_issue CASCADE;
+DROP TABLE IF EXISTS issue CASCADE;
+DROP TABLE IF EXISTS publishing_house CASCADE;
+DROP TABLE IF EXISTS campaign CASCADE;
+DROP TABLE IF EXISTS discount CASCADE;
+DROP TABLE IF EXISTS author CASCADE;
+DROP TABLE IF EXISTS "order" CASCADE;
+DROP TABLE IF EXISTS payment CASCADE;
+DROP TABLE IF EXISTS shipment CASCADE;
+DROP TABLE IF EXISTS rating CASCADE;
 DROP TABLE IF EXISTS account_roles;
-DROP TABLE IF EXISTS account;
-DROP TABLE IF EXISTS person;
-DROP TABLE IF EXISTS book;
+DROP TABLE IF EXISTS account CASCADE;
+DROP TABLE IF EXISTS bookstore CASCADE;
+DROP TABLE IF EXISTS person CASCADE;
+DROP TABLE IF EXISTS book CASCADE;
 
 -- DROPPING SEQUENCES
 DROP SEQUENCE IF EXISTS issue_issue_id_seq;
@@ -121,7 +121,8 @@ CREATE TABLE account (
     password varchar(60) NOT NULL,
     email varchar(25) NOT NULL,
     creation_date date NOT NULL,
-    person_id integer REFERENCES person(person_id)
+    person_id integer REFERENCES person(person_id),
+    bookstore_id integer REFERENCES bookstore(bookstore_id)
 );
 
 CREATE TABLE account_roles (

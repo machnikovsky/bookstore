@@ -1,5 +1,6 @@
 package com.example.bsbackend.domains.issue.service
 
+import com.example.bsbackend.domains.assortment.repository.AssortmentRepository
 import com.example.bsbackend.domains.book.model.dto.*
 import com.example.bsbackend.domains.book.model.entity.Book
 import com.example.bsbackend.domains.book.repository.BookRepository
@@ -19,6 +20,7 @@ class IssueService(
     private val issueRepository: IssueRepository,
     private val bookRepository: BookRepository,
     private val ratingRepository: RatingRepository,
+    private val assortmentRepository: AssortmentRepository,
     private val modelMapper: ModelMapper
 ) {
     fun getSingleIssue(issueId: Int): ResponseEntity<Any> =
@@ -68,6 +70,13 @@ class IssueService(
             .getSorted(filters)
             .let { ResponseEntity.ok(it) }
 
+    fun checkIfIssueIsAvailableStationary(issueId: Int): ResponseEntity<Any> {
+        TODO("Not yet implemented")
+    }
+
+    fun sellIssueStationary(issueId: Int): ResponseEntity<Any> {
+        TODO("Not yet implemented")
+    }
 
 
 
@@ -125,4 +134,6 @@ class IssueService(
             ?.takeIf { it.isNotEmpty() }
             ?.first()
             ?.let { mapIssueToDTO(it) }
+
+
 }
