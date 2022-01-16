@@ -16,7 +16,7 @@ const Propositions = () => {
                 <div className="propositions">
                 {
                     propositions && propositions.map((val, idx) => (
-                        <Link to={`/book/${val.issue_id}`} className="proposition" key={ idx }>
+                        <Link to={`/book/${val.book_id}/issue/${val.issue_id}`} className="proposition" key={ idx }>
                             <img src={val.image_url} alt="book" />
                         </Link>
                     ))

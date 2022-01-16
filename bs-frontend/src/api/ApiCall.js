@@ -31,6 +31,7 @@ const getUserRating = (id) => {
 
 const getFilteredList = (filters, page) => {
     //TODO: implement page logic
+    console.log("Sending request with filters: ", filters);
     return axios.post(API_URL + `issue/filter`, filters, {})
 }
 

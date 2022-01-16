@@ -6,8 +6,8 @@ const SortBy = ({sortBy, setSortBy}) => {
     const vote_average_asc = `vote_average.asc`;
     const price_desc = `price.desc`;
     const price_asc = `price.asc`;
-    const release_desc = `release_date.desc`;
-    const release_asc = `release_date.asc`;
+    const release_desc = `published_date.desc`;
+    const release_asc = `published_date.asc`;
     
     const sort_param = `sort_by`;
 

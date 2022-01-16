@@ -45,18 +45,18 @@ const getAndSetPropositions = (set) => {
         });
 }
 
-const getAndSetGenres = (setGenres) => {
+const getAndSetGenres = (setGenresAvailable) => {
     ApiCall.getGenres()
         .then(res => {
             return res.data;
         })
         .then(data => {
-            setGenres(data);
+            setGenresAvailable(data);
             return data;
         })
         .catch(e => {
             console.log('Error retrieving genres: ', e.message);
-            setGenres(null);
+            setGenresAvailable(null);
         });
 }
 

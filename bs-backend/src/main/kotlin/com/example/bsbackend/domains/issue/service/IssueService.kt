@@ -1,8 +1,6 @@
 package com.example.bsbackend.domains.issue.service
 
-import com.example.bsbackend.domains.book.model.dto.FilterDTO
-import com.example.bsbackend.domains.book.model.dto.getGenres
-import com.example.bsbackend.domains.book.model.dto.getType
+import com.example.bsbackend.domains.book.model.dto.*
 import com.example.bsbackend.domains.book.model.entity.Book
 import com.example.bsbackend.domains.book.repository.BookRepository
 import com.example.bsbackend.domains.issue.model.dto.IssueInfoDTO
@@ -67,6 +65,7 @@ class IssueService(
         getBooksListBasedOnQuery(filters.query)
             .filter { filters.getGenres()?.contains(it.genre) ?: true }
             .getDtoOfBooksFirstIssuesWithType(filters.getType())
+            .getSorted(filters)
             .let { ResponseEntity.ok(it) }
 
 

@@ -1,5 +1,4 @@
 .books-container {
-  width: 100vw;
 
   .search-container {
     padding: 10vh 15vw 12vh 15vw;
@@ -105,7 +104,7 @@
 
 
   .single-book {
-    height: 70vh;
+    height: 75vh;
     background: rgba($light-purple-background, 0.4);
     width: 90%;
     margin: 1vh auto;
@@ -130,16 +129,32 @@
       }
 
     }
-    .book-price-container {
+    .book-price-score-container {
       position: absolute;
       bottom: 0;
       left: 0;
       background: rgba($color: $light-purple-background, $alpha: 0.8);
-      height: 20%;
+      height: 10%;
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+
+      .book {
+        display: flex;
+        font-size: 0.6em;
+        .image-container {
+          height: 5vh;
+          width: 5vh;
+          img {
+            max-width: 100%;
+            max-height: 100%;
+            margin: auto;
+            display: block;
+          }
+        }
+      }
+
       .price-container, h3 {
         margin: 0 2vh;
       }

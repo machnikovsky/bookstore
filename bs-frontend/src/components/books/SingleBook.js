@@ -15,7 +15,7 @@ import Stars from './Stars';
 
 const SingleBook = ({type}) => {
 
-    const { id } = useParams();
+    const { bookId, issueId } = useParams();
     const {user, setUser} = useContext(UserContext);
     const [reviews, setReviews] = useState([]);
     const [book, setBook] = useState(null);
@@ -34,14 +34,14 @@ const SingleBook = ({type}) => {
     useEffect(() => {
 
 
-        GetAndSetUtil.getAndSetSingleIssue(id, setBook);
-        GetAndSetUtil.getAndSetReviews(id, setReviews);
+        GetAndSetUtil.getAndSetSingleIssue(issueId, setBook);
+        GetAndSetUtil.getAndSetReviews(bookId, setReviews);
 
 
-        GetAndSetUtil.getAndSetIsRead(id, setIsRead)
+        GetAndSetUtil.getAndSetIsRead(bookId, setIsRead)
             .then(watched => {
                 if (watched) {
-                    GetAndSetUtil.getAndSetScoreAndReview(id, setScore, setReview);
+                    GetAndSetUtil.getAndSetScoreAndReview(bookId, setScore, setReview);
                 }
             })
 
@@ -63,7 +63,7 @@ const SingleBook = ({type}) => {
     }, [])
 
     useEffect(() => {
-        GetAndSetUtil.getAndSetReviews(id, setReviews);
+        GetAndSetUtil.getAndSetReviews(bookId, setReviews);
     }, [addedReview])
 
     const handleShowReviewFormButton = (e) => {
@@ -83,7 +83,7 @@ const SingleBook = ({type}) => {
         e.preventDefault();
         let bookRating = {
             'username': user,
-            'book_id': id
+            'book_id': bookId
         }
 
         if (score !== 0) {
@@ -191,7 +191,7 @@ const SingleBook = ({type}) => {
                     }
                     {isRead &&
                         <div className="watched">
-                            <p>Obejrzałeś już ten film.</p>
+                            <p>Przeczytałeś już te książkę.</p>
                             <p>Twoja ocena:</p>
                             {score > 0 ?
                                 <Stars

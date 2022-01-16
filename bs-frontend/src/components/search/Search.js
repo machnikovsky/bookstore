@@ -22,13 +22,13 @@ const Search = () => {
     const genre = location.state?.genre
 
     useEffect(() => {
+        GetAndSetUtil.getAndSetGenres(setGenresAvailable);
+
         if (genre) {
-            setGenres([genre])
-            GetAndSetUtil.getAndSetFilteredList(getFilters(), setBookList);
+            setGenres([genre]);
         } else {
             SearchUtil.getAndSetAllIssues(setBookList);
         }
-        GetAndSetUtil.getAndSetGenres(setGenresAvailable);
         setFirstRender(false);
     }, [])
 

@@ -122,27 +122,14 @@ class ApplicationStart(
         authorRepository.save(authorFromDb)
         
 
-        val ratingOne = Rating(
+        val rating = Rating(
             score = 5,
             review = "Srednia ksiazka!",
             book = book,
             user = user
         )
 
-        val ratingTwo = Rating(
-            score = 7,
-            review = "Bardzo dobra ksiazka!",
-            book = book,
-            user = user
-        )
-
-        val ratingThree = Rating(
-            score = 8,
-            review = "Bardzo bardzo dobra ksiazka!",
-            book = book,
-            user = user
-        )
-        ratingRepository.saveAll(listOf(ratingOne, ratingTwo, ratingThree));
+        ratingRepository.save(rating);
 
         val publishingHouse = PublishingHouse(
             name = "Mag",
