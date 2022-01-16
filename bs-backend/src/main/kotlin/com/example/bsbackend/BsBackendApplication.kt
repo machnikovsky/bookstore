@@ -5,7 +5,7 @@ import com.example.bsbackend.domains.author.repository.AuthorRepository
 import com.example.bsbackend.domains.book.model.entity.Book
 import com.example.bsbackend.domains.book.model.entity.Genre
 import com.example.bsbackend.domains.book.repository.BookRepository
-import com.example.bsbackend.domains.issue.model.entity.BookType
+import com.example.bsbackend.domains.issue.model.enum.BookType
 import com.example.bsbackend.domains.issue.model.entity.CoverType
 import com.example.bsbackend.domains.issue.model.entity.Issue
 import com.example.bsbackend.domains.issue.repository.IssueRepository
@@ -154,8 +154,8 @@ class ApplicationStart(
             language = "Polski",
             publicationYear = 2004,
             numberOfPages = 1044,
-            coverType = CoverType.hardcover,
-            bookType = BookType.book,
+            coverType = CoverType.HARDCOVER,
+            bookType = BookType.BOOK,
             price = 74.99f,
             imageUrl = "https://s.lubimyczytac.pl/upload/books/221000/221953/564966-352x500.jpg",
             backgroundUrl = "https://ocdn.eu/pulscms-transforms/1/_jKktkuTURBXy9mNDYwNGU5MS0zYjNmLTQ4Y2QtYmU0Ny1mMzZkNDhjNDc4Y2YuanBlZ5GTBc0EsM0CpA",

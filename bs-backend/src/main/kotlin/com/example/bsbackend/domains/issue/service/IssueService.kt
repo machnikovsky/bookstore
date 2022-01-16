@@ -2,9 +2,11 @@ package com.example.bsbackend.domains.issue.service
 
 import com.example.bsbackend.domains.book.model.dto.FilterDTO
 import com.example.bsbackend.domains.book.model.dto.getGenres
+import com.example.bsbackend.domains.book.model.dto.getType
 import com.example.bsbackend.domains.book.model.entity.Book
 import com.example.bsbackend.domains.book.repository.BookRepository
 import com.example.bsbackend.domains.issue.model.dto.IssueInfoDTO
+import com.example.bsbackend.domains.issue.model.enum.BookType
 import com.example.bsbackend.domains.issue.model.entity.Issue
 import com.example.bsbackend.domains.issue.repository.IssueRepository
 import com.example.bsbackend.domains.rating.model.mapToDTO
@@ -42,6 +44,10 @@ class IssueService(
             .map { mapIssueToDTO(it) }
             .let { ResponseEntity.ok(it) }
 
+    fun getFirstIssuesOfRecommendedBooks(): ResponseEntity<Any> =
+        bookRepository.findFirst3ByOrderByBookId()
+            .getDtoOfBooksFirstIssues()
+            .let { ResponseEntity.ok(it) }
 
     fun getFirstIssuesOfAllBooks(): ResponseEntity<Any> =
         bookRepository.findAll()
@@ -60,15 +66,18 @@ class IssueService(
     fun getFirstIssuesOfBooksWithFilter(filters: FilterDTO): ResponseEntity<Any> =
         getBooksListBasedOnQuery(filters.query)
             .filter { filters.getGenres()?.contains(it.genre) ?: true }
-            .getDtoOfBooksFirstIssues()
+            .getDtoOfBooksFirstIssuesWithType(filters.getType())
             .let { ResponseEntity.ok(it) }
+
+
+
 
     private fun getBooksListBasedOnQuery(query: String?): List<Book> =
         if (query != null) {
             bookRepository.findByTitleContainingIgnoreCaseOrAuthorsFirstNameContainingIgnoreCaseOrAuthorsLastNameContainingIgnoreCase(
-                query ?: "",
-                query ?: "",
-                query ?: ""
+                query,
+                query,
+                query
             )
         } else {
             bookRepository.findAll()
@@ -99,15 +108,22 @@ class IssueService(
             }
     }
 
-    fun getFirstIssuesOfRecommendedBooks(): ResponseEntity<Any> =
-        bookRepository.findFirst3ByOrderByBookId()
-            .getDtoOfBooksFirstIssues()
-            .let { ResponseEntity.ok(it) }
-
     private fun List<Book>.getDtoOfBooksFirstIssues(): List<IssueInfoDTO?> =
         this.map { getDtoOfBookFirstIssue(it.bookId) }
 
     private fun getDtoOfBookFirstIssue(bookId: Int): IssueInfoDTO? =
         issueRepository.findFirstByBookBookId(bookId)
+            ?.let { mapIssueToDTO(it) }
+
+    private fun List<Book>.getDtoOfBooksFirstIssuesWithType(bookType: BookType?): List<IssueInfoDTO?> =
+        if (bookType != null)
+            this.mapNotNull { getDtoOfBookFirstIssueWithType(it.bookId, bookType) }
+        else
+            this.map { getDtoOfBookFirstIssue(it.bookId) }
+
+    private fun getDtoOfBookFirstIssueWithType(bookId: Int, bookType: BookType): IssueInfoDTO? =
+        issueRepository.findFirstByBookBookIdAndBookType(bookId, bookType)
+            ?.takeIf { it.isNotEmpty() }
+            ?.first()
             ?.let { mapIssueToDTO(it) }
 }

@@ -28,17 +28,17 @@ INSERT INTO publishing_house(publishing_house_id, name, foundation_year) VALUES 
 INSERT INTO publishing_house(publishing_house_id, name, foundation_year) VALUES (6, 'Rebis', 1990);
 
 INSERT INTO issue(issue_id, language, publication_year, number_of_pages, cover_type, book_type, price, image_url, background_url,  publishing_house_id, book_id) VALUES
-(1, 'Polski', 2004, 786, 'hardcover', 'book', 44.99, 'https://s.lubimyczytac.pl/upload/books/119000/119566/568271-352x500.jpg', 'https://static3.redcart.pl/templates/images/thumb/25861/1500/1500/pl/0/templates/images/products/25861/ba26c3e4e8d988d358d466cf3553c503.jpg', 1, 1);
+(1, 'Polski', 2004, 786, 'HARDCOVER', 'BOOK', 44.99, 'https://s.lubimyczytac.pl/upload/books/119000/119566/568271-352x500.jpg', 'https://static3.redcart.pl/templates/images/thumb/25861/1500/1500/pl/0/templates/images/products/25861/ba26c3e4e8d988d358d466cf3553c503.jpg', 1, 1);
 INSERT INTO issue(issue_id, language, publication_year, number_of_pages, cover_type, book_type, price, image_url, background_url, publishing_house_id, book_id) VALUES
-(2, 'Polski', 2012, 794, null, 'ebook', 34.99, 'https://s.lubimyczytac.pl/upload/books/4862000/4862497/690137-352x500.jpg', 'https://static3.redcart.pl/templates/images/thumb/25861/1500/1500/pl/0/templates/images/products/25861/ba26c3e4e8d988d358d466cf3553c503.jpg',  2, 1);
+(2, 'Polski', 2012, 794, null, 'EBOOK', 34.99, 'https://s.lubimyczytac.pl/upload/books/4862000/4862497/690137-352x500.jpg', 'https://static3.redcart.pl/templates/images/thumb/25861/1500/1500/pl/0/templates/images/products/25861/ba26c3e4e8d988d358d466cf3553c503.jpg',  2, 1);
 INSERT INTO issue(issue_id, language, publication_year, number_of_pages, cover_type, book_type, price, image_url, background_url, publishing_house_id, book_id) VALUES
-(3, 'Angielski', 1993, 745, 'softwrap', 'book', 30.99, 'https://s.lubimyczytac.pl/upload/books/193000/193706/186213-352x500.jpg', 'https://static3.redcart.pl/templates/images/thumb/25861/1500/1500/pl/0/templates/images/products/25861/ba26c3e4e8d988d358d466cf3553c503.jpg',  3, 1);
+(3, 'Angielski', 1993, 745, 'SOFTWRAP', 'BOOK', 30.99, 'https://s.lubimyczytac.pl/upload/books/193000/193706/186213-352x500.jpg', 'https://static3.redcart.pl/templates/images/thumb/25861/1500/1500/pl/0/templates/images/products/25861/ba26c3e4e8d988d358d466cf3553c503.jpg',  3, 1);
 INSERT INTO issue(issue_id, language, publication_year, number_of_pages, cover_type, book_type, price, image_url, background_url, publishing_house_id, book_id) VALUES
-(4, 'Polski', 2004, 786, 'hardcover', 'book', 44.99, 'https://s.lubimyczytac.pl/upload/books/4802000/4802748/589833-352x500.jpg', 'https://i.pinimg.com/originals/a0/4b/51/a04b517464647a684cfa070eb89167ec.jpg', 6, 2);
+(4, 'Polski', 2004, 786, 'HARDCOVER', 'AUDIOBOOK', 44.99, 'https://s.lubimyczytac.pl/upload/books/4802000/4802748/589833-352x500.jpg', 'https://i.pinimg.com/originals/a0/4b/51/a04b517464647a684cfa070eb89167ec.jpg', 6, 2);
 INSERT INTO issue(issue_id, language, publication_year, number_of_pages, cover_type, book_type, price, image_url, background_url, publishing_house_id, book_id) VALUES
-(5, 'Angielski', 2012, 794, 'paperback', 'book', 34.99, 'https://s.lubimyczytac.pl/upload/books/205000/205004/222513-352x500.jpg', 'http://2.bp.blogspot.com/-Mid8eKGJh1k/VpwB_uuI2oI/AAAAAAAAHb8/Rfe8TnW1tX4/s1600/norwegian%2Bwood.JPG', 4, 3);
+(5, 'Angielski', 2012, 794, 'PAPERBACK', 'BOOK', 34.99, 'https://s.lubimyczytac.pl/upload/books/205000/205004/222513-352x500.jpg', 'http://2.bp.blogspot.com/-Mid8eKGJh1k/VpwB_uuI2oI/AAAAAAAAHb8/Rfe8TnW1tX4/s1600/norwegian%2Bwood.JPG', 4, 3);
 INSERT INTO issue(issue_id, language, publication_year, number_of_pages, cover_type, book_type, price, image_url, background_url, publishing_house_id, book_id) VALUES
-(6, 'Polski', 1993, null, null, 'audiobook', 30.99, 'https://s.lubimyczytac.pl/upload/books/4806000/4806427/596553-352x500.jpg', 'https://i.pinimg.com/originals/a0/4b/51/a04b517464647a684cfa070eb89167ec.jpg',1, 2);
+(6, 'Polski', 1993, null, null, 'BOOK', 30.99, 'https://s.lubimyczytac.pl/upload/books/4806000/4806427/596553-352x500.jpg', 'https://i.pinimg.com/originals/a0/4b/51/a04b517464647a684cfa070eb89167ec.jpg',1, 2);
 
 INSERT INTO assortment(assortment_id, count, bookstore_id, issue_id) VALUES (1, 300, 1, 1);
 INSERT INTO assortment(assortment_id, count, bookstore_id, issue_id) VALUES (2, 200, 1, 2);

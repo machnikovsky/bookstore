@@ -15,7 +15,7 @@ const SortBy = ({sortBy, setSortBy}) => {
         if (sortBy !== value) {
             setSortBy(value);
         } else {
-            setSortBy(null);
+            setSortBy('');
         }
     }
 

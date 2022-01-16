@@ -1,6 +1,8 @@
 package com.example.bsbackend.domains.issue.model.entity
 
 import com.example.bsbackend.domains.book.model.entity.Book
+import com.example.bsbackend.domains.issue.model.enum.BookType
+import com.example.bsbackend.domains.issue.model.enum.BookTypeConverter
 import com.example.bsbackend.domains.publishingHouse.model.PublishingHouse
 import javax.persistence.*
 
@@ -16,7 +18,7 @@ data class Issue(
     @Column(name = "publication_year") var publicationYear: Int,
     @Column(name = "number_of_pages") var numberOfPages: Int?,
     @Column(name = "cover_type") @Enumerated(EnumType.STRING) var coverType: CoverType?,
-    @Column(name = "book_type") @Enumerated(EnumType.STRING) var bookType: BookType,
+    @Column(name = "book_type") @Convert(converter = BookTypeConverter::class) var bookType: BookType,
     @Column(name = "price") var price: Float,
     @Column(name = "image_url") var imageUrl: String,
     @Column(name = "background_url") var backgroundUrl: String,

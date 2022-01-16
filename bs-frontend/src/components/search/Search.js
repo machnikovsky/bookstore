@@ -16,7 +16,7 @@ const Search = () => {
     const [genres, setGenres] = useState([]);
     const [sortBy, setSortBy] = useState('');
     const [firstRender, setFirstRender] = useState(true);
-    const [type, setType] = useState('book');
+    const [type, setType] = useState('');
 
     const location = useLocation()
     const genre = location.state?.genre
@@ -33,7 +33,9 @@ const Search = () => {
     }, [])
 
     useEffect(() => {
-        SearchUtil.getAndSetFilteredList(getFilters(), setBookList);
+        if (!firstRender) {
+            SearchUtil.getAndSetFilteredList(getFilters(), setBookList);
+        }
     }, [query, genres, sortBy, type])
 
     const getFilters = () => {
@@ -50,6 +52,7 @@ const Search = () => {
         if (type !== '') {
             filters['type'] = type;
         }
+        console.log("Filters: ", filters);
         return filters;
     }
 

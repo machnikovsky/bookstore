@@ -4,20 +4,10 @@ const getAndSetAllIssues = (set) => {
     ApiCall.getFirstIssuesOfAllBooks()
         .then(res => {
             set(res.data);
+            console.log("RES DATA: ", res.data);
         })
         .catch(e => {
             console.log('Error getting all issues: ', e.message)
-            set(null);
-        });
-}
-
-const getAndSetQueriedListWithNewQuery = (query, set) => {
-    ApiCall.getFirstIssuesOfBooksByQuery(query)
-        .then(res => {
-            set(res.data);
-        })
-        .catch(e => {
-            console.log('Error getting book list by query: ', e.message);
             set(null);
         });
 }
@@ -212,7 +202,6 @@ const getAndSetRecentPictures = (id, setMovies, setTvs) => {
 
 const SearchUtil = {
     getAndSetAllIssues,
-    getAndSetQueriedListWithNewQuery,
     getAndSetSingleIssue,
     getAndSetReviews,
     getAndSetPropositions,

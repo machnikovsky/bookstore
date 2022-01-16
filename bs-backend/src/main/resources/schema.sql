@@ -47,8 +47,8 @@ DROP TYPE IF EXISTS shipment_status CASCADE;
 
 
 -- CREATING ENUMS
-CREATE TYPE cover_type AS ENUM ('hardcover', 'paperback', 'softwrap');
-CREATE TYPE book_type AS ENUM ('book', 'ebook', 'audiobook');
+CREATE TYPE cover_type AS ENUM ('HARDCOVER', 'PAPERBACK', 'SOFTWRAP');
+CREATE TYPE book_type AS ENUM ('BOOK', 'EBOOK', 'AUDIOBOOK');
 CREATE TYPE role AS ENUM ('USER', 'WORKER', 'ADMIN');
 CREATE TYPE genre AS ENUM ('HORROR', 'CONTEMPORARY', 'THRILLER', 'SCIFI', 
     'FANTASY', 'ADVENTURE', 'ROMANCE', 'MYSTERY', 'FICTION', 'NONFICTION', 'CHILDRENS');

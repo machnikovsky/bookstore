@@ -14,7 +14,7 @@ const getFirstIssuesOfBooksByQuery = (query) => {
 
 
 const getSingleIssue = (id) => {
-    return axios.get(API_URL + `book/${id}/issue`, {});
+    return axios.get(API_URL + `issue/${id}`, {});
 };
 
 const addRating = (dto) => {
