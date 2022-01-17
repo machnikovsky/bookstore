@@ -1,10 +1,14 @@
 package com.example.bsbackend
 
+import com.example.bsbackend.domains.assortment.model.Assortment
+import com.example.bsbackend.domains.assortment.repository.AssortmentRepository
 import com.example.bsbackend.domains.author.model.Author
 import com.example.bsbackend.domains.author.repository.AuthorRepository
 import com.example.bsbackend.domains.book.model.entity.Book
 import com.example.bsbackend.domains.book.model.entity.Genre
 import com.example.bsbackend.domains.book.repository.BookRepository
+import com.example.bsbackend.domains.bookstore.model.Bookstore
+import com.example.bsbackend.domains.bookstore.repository.BookstoreRepository
 import com.example.bsbackend.domains.issue.model.enum.BookType
 import com.example.bsbackend.domains.issue.model.entity.CoverType
 import com.example.bsbackend.domains.issue.model.entity.Issue
@@ -39,17 +43,25 @@ fun main(args: Array<String>) {
 
 @Component
 class ApplicationStart(
+    val bookstoreRepository: BookstoreRepository,
     val userRepository: UserRepository,
     val personRepository: PersonRepository,
     val authorRepository: AuthorRepository,
     val bookRepository: BookRepository,
     val ratingRepository: RatingRepository,
     val issueRepository: IssueRepository,
+    val assortmentRepository: AssortmentRepository,
     val publishingHouseRepository: PublishingHouseRepository,
     val passwordEncoder: PasswordEncoder
 ) {
     @EventListener(ApplicationReadyEvent::class)
     fun addAdminsToDb() {
+
+        val bookstore = Bookstore(
+          address = "Gdańsk"
+        );
+        bookstoreRepository.save(bookstore)
+
         val personAdmin = Person(
             firstName = "Weronika",
             lastName = "Abc",
@@ -80,7 +92,8 @@ class ApplicationStart(
             email = "admin@gmail.com",
             creationDate = Date.valueOf(LocalDate.now()),
             roles = mutableSetOf(Role.ADMIN),
-            person = personAdmin
+            person = personAdmin,
+            bookstore = bookstore
         )
 
         val user = User(
@@ -89,7 +102,8 @@ class ApplicationStart(
             email = "user@gmail.com",
             creationDate = Date.valueOf(LocalDate.now()),
             roles = mutableSetOf(Role.USER),
-            person = personUser
+            person = personUser,
+            bookstore = bookstore
         )
 
         val worker = User(
@@ -98,7 +112,8 @@ class ApplicationStart(
             email = "worker@gmail.com",
             creationDate = Date.valueOf(LocalDate.now()),
             roles = mutableSetOf(Role.WORKER),
-            person = personWorker
+            person = personWorker,
+            bookstore = bookstore
         )
         userRepository.saveAll(listOf(admin, user, worker))
 
@@ -150,6 +165,14 @@ class ApplicationStart(
             book = book
         )
         issueRepository.save(issue)
+
+        val assortment = Assortment(
+            count = 5,
+            bookstore = bookstore,
+            issue = issue
+        )
+
+        assortmentRepository.save(assortment);
 
     }
 }

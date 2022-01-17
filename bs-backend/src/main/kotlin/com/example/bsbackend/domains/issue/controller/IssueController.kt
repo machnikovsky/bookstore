@@ -29,4 +29,17 @@ class IssueController(val issueService: IssueService) {
     @PostMapping("/filter")
     fun getFirstIssuesOfBooksWithFilter(@RequestBody filters: FilterDTO): ResponseEntity<Any> =
         issueService.getFirstIssuesOfBooksWithFilter(filters)
+
+    @GetMapping("/{issueId}/available")
+    fun checkIfIssueIsAvailableInBookstore(@PathVariable("issueId") issueId: Int): ResponseEntity<Any> =
+        issueService.checkIfIssueIsAvailableInBookstore(issueId)
+
+    @PostMapping("/{issueId}/sell")
+    fun sellIssueStationary(@PathVariable("issueId") issueId: Int): ResponseEntity<Any> =
+        issueService.sellIssueStationary(issueId)
+
+    @PostMapping("/{issueId}/order")
+    fun orderAnIssue(@PathVariable("issueId") issueId: Int): ResponseEntity<Any> =
+        issueService.orderAnIssue(issueId)
+
 }

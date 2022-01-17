@@ -4,7 +4,6 @@ const getAndSetAllIssues = (set) => {
     ApiCall.getFirstIssuesOfAllBooks()
         .then(res => {
             set(res.data);
-            console.log("RES DATA: ", res.data);
         })
         .catch(e => {
             console.log('Error getting all issues: ', e.message)
@@ -71,6 +70,61 @@ const getAndSetFilteredList = (filters, set) => {
         .catch(e => {
             console.log(e);
             set(null);
+        });
+}
+
+const getAndSetIsIssueAvailable = (issueId, set) => {
+    ApiCall.getIsIssueAvailable(issueId)
+        .then(res => {
+            return res.data;
+        })
+        .then(data => {
+            set(data);
+        })
+        .catch(e => {
+            console.log(e);
+            set(null);
+        });
+}
+
+const sellBookAndIncrementSold = (issueId, counter, set) => {
+    ApiCall.sellAnIssue(issueId)
+        .then(res => {
+            return res.data;
+        })
+        .then(data => {
+            set(counter + 1);
+        })
+        .catch(e => {
+            console.log(e);
+        });
+}
+
+const orderBookAndIncrementOrdered = (issueId, counter, set) => {
+    ApiCall.orderAnIssue(issueId)
+        .then(res => {
+            return res.data;
+        })
+        .then(data => {
+            set(counter + 1);
+        })
+        .catch(e => {
+            console.log(e);
+        });
+}
+
+
+const getAndSetUserRoles = (username, setRoles) => {
+    ApiCall.getUserInfo(username)
+        .then(res => {
+            return res.data;
+        })
+        .then(data => {
+            setRoles(data.roles);
+        })
+        .catch(e => {
+            console.log(e);
+            setRoles([]);
         });
 }
 
@@ -208,8 +262,10 @@ const SearchUtil = {
     getAndSetIsRead,
     getAndSetGenres,
     getAndSetFilteredList,
-
-
+    getAndSetIsIssueAvailable,
+    sellBookAndIncrementSold,
+    orderBookAndIncrementOrdered,
+    getAndSetUserRoles,
 
 
     getAndSetFilteredListWithNewPage,
