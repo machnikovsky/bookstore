@@ -142,6 +142,8 @@
 
       .book {
         display: flex;
+        align-items: center;
+
         font-size: 0.6em;
         .image-container {
           height: 5vh;
