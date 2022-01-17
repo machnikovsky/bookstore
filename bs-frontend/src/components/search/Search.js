@@ -52,7 +52,6 @@ const Search = () => {
         if (type !== '') {
             filters['type'] = type;
         }
-        console.log("Filters: ", filters);
         return filters;
     }
 

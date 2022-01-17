@@ -27,6 +27,8 @@ const SingleBook = ({type}) => {
     const [review, setReview] = useState(null);
     const [addedReview, setAddedReview] = useState(0);
     const [isAvailable, setIsAvailable] = useState(false);
+    const [sold, setSold] = useState(0);
+    const [ordered, setOrdered] = useState(0);
     const [roles, setRoles] = useState([]);
     const scroll = Scroll.animateScroll;
     const navigate = useNavigate();
@@ -38,7 +40,6 @@ const SingleBook = ({type}) => {
 
         GetAndSetUtil.getAndSetSingleIssue(issueId, setBook);
         GetAndSetUtil.getAndSetReviews(bookId, setReviews);
-        GetAndSetUtil.getAndSetIsIssueAvailable(issueId, setIsAvailable);
         GetAndSetUtil.getAndSetUserRoles(user, setRoles);
 
 
@@ -70,6 +71,11 @@ const SingleBook = ({type}) => {
         GetAndSetUtil.getAndSetReviews(bookId, setReviews);
     }, [addedReview])
 
+    useEffect(() => {
+        GetAndSetUtil.getAndSetIsIssueAvailable(issueId, setIsAvailable);
+    }, [sold, ordered])
+
+
     const handleShowReviewFormButton = (e) => {
         e.preventDefault();
         if (showForm) {
@@ -98,8 +104,6 @@ const SingleBook = ({type}) => {
             bookRating['review'] = review;
         }
 
-        console.log("Trying to add this one: ", JSON.stringify(bookRating))
-
         await ApiCall.addRating(bookRating)
             .then((res) => {
                 return res.data;
@@ -111,7 +115,6 @@ const SingleBook = ({type}) => {
                     'review': review,
                     'score': score
                 }
-                console.log("RATING: ", recievedRating);
                 let slice = reviews.slice();
                 slice.push(recievedRating)
                 setReviews(slice);
@@ -128,6 +131,16 @@ const SingleBook = ({type}) => {
     const handleAddToCart = async (e) => {
         e.preventDefault();
         //TODO: Implement adding to cart logic
+    }
+
+    const handleSellStationary = (e) => {
+        e.preventDefault();
+        GetAndSetUtil.sellBookAndIncrementSold(issueId, sold, setSold);
+    }
+
+    const handleOrderIssue = (e) => {
+        e.preventDefault();
+        GetAndSetUtil.orderBookAndIncrementOrdered(issueId, ordered, setOrdered);
     }
     
 
@@ -175,10 +188,10 @@ const SingleBook = ({type}) => {
                                     { user && roles.includes('USER') && !isRead && <button className="single-book-button" onClick={handleShowReviewFormButton}>{buttonText}</button> }
                                     { user && roles.includes('USER') && <button className="single-book-button" onClick={handleAddToCart}>Dodaj do koszyka</button> }
                                     { user && roles.includes('WORKER') && ( isAvailable ?
-                                        <button className="single-book-button green-bg">Sprzedaj stacjonarnie</button> :
+                                        <button className="single-book-button green-bg" onClick={handleSellStationary}>Sprzedaj stacjonarnie</button> :
                                         <button className="single-book-button red-bg">Niedostępne</button> )
                                     }
-                                    { user && roles.includes('WORKER') && <button className="single-book-button">Zamów</button> }
+                                    { user && roles.includes('WORKER') && <button className="single-book-button" onClick={handleOrderIssue}>Zamów</button> }
                                 </div>
 
                         </div>

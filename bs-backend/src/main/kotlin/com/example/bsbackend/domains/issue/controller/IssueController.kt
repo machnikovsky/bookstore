@@ -38,4 +38,8 @@ class IssueController(val issueService: IssueService) {
     fun sellIssueStationary(@PathVariable("issueId") issueId: Int): ResponseEntity<Any> =
         issueService.sellIssueStationary(issueId)
 
+    @PostMapping("/{issueId}/order")
+    fun orderAnIssue(@PathVariable("issueId") issueId: Int): ResponseEntity<Any> =
+        issueService.orderAnIssue(issueId)
+
 }

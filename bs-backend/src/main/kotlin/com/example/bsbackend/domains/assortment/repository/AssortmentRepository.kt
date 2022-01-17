@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository
 @Repository
 interface AssortmentRepository : JpaRepository<Assortment, Int> {
     fun existsByBookstoreAndIssueIssueId(bookstore: Bookstore, issueId: Int): Boolean
+    fun findByBookstoreAndIssueIssueId(bookstore: Bookstore, issueId: Int): Assortment?
 }
 
 

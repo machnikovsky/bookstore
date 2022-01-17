@@ -38,6 +38,15 @@ const getIsIssueAvailable = (issueId) => {
     return axios.get(API_URL + `issue/${issueId}/available`, { headers: authHeader() })
 }
 
+const sellAnIssue = (issueId) => {
+    return axios.post(API_URL + `issue/${issueId}/sell`, {}, { headers: authHeader() })
+}
+
+const orderAnIssue = (issueId) => {
+    return axios.post(API_URL + `issue/${issueId}/order`, {}, { headers: authHeader() })
+}
+
+
 const getUserInfo = (username) => {
     return axios.get(API_URL + `user/info/${username}`, { headers: authHeader() });
 };
@@ -124,6 +133,8 @@ const ApiCall = {
     getGenres,
     getFilteredList,
     getIsIssueAvailable,
+    sellAnIssue,
+    orderAnIssue,
     getUserInfo,
 
 
