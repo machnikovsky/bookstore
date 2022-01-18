@@ -1,4 +1,4 @@
-.single-movie-page-container {
+.single-book-page-container {
   .poster-and-info-container {
     position: relative;
     display: flex;
@@ -7,7 +7,7 @@
 
     height: 75vh;
 
-    .top-movie-background {
+    .top-book-background {
       position: absolute;
       z-index: -1;
       top: 0;
@@ -36,11 +36,11 @@
       }
     }
 
-    .movie-info {
+    .book-info {
       width: 60vw;
       margin: 0 auto;
 
-      .movie-title {
+      .bookie-title {
         text-align: center;
         font-size: 2.7em;
         font-weight: bold;
@@ -67,7 +67,7 @@
 
       }
 
-      .movie-stats {
+      .book-stats {
         display: flex;
         margin: 0 auto;
         justify-content: space-between;
@@ -100,7 +100,7 @@
     }
   }
 
-  .watched {
+  .read {
     p {
       font-size: 1.4em;
       padding: 20px;
@@ -111,7 +111,7 @@
     }
   }
 
-  .add-form, .watched {
+  .add-form, .read {
     text-align: center;
     margin: 5vh auto;
     width: 30%;

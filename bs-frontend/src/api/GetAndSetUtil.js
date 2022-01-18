@@ -191,24 +191,6 @@ const getAndSetFilteredListWithNewPage = (filters, pictureList, setPictureList) 
 }
 
 
-const getAndSetQueriedListWithNewPage = (query, pictureList, setPictureList, page) => {
-    ApiCall.getQueriedList(query, page)
-        .then(res => {
-            return res.data;
-        })
-        .then(data => {
-            if (Array.isArray(pictureList) && pictureList.length) {
-                setPictureList(pictureList.concat(data));
-            } else {
-                setPictureList(data);
-            }
-        })
-        .catch(e => {
-            setPictureList(null);
-        });
-}
-
-
 const getAndSetTrending = (set, setSize) => {
     ApiCall.getTrending()
         .then(res => {
@@ -257,31 +239,6 @@ const getAndSetScoreAndReview = (id, setScore, setReview) => {
         });
 }
 
-const getAndSetRecentPictures = (id, setMovies, setTvs) => {
-    ApiCall.getRecentPictures('movie', id)
-        .then(res => {
-            return res.data;
-        })
-        .then(data => {
-            setMovies(data);
-        })
-        .catch(e => {
-            console.log('Error: ', e);
-            setMovies(null);
-        });
-
-    ApiCall.getRecentPictures('tv', id)
-        .then(res => {
-            return res.data;
-        })
-        .then(data => {
-            setTvs(data);
-        })
-        .catch(e => {
-            console.log('Error: ', e);
-            setTvs(null);
-        });
-}
 
 
 const SearchUtil = {
@@ -298,12 +255,8 @@ const SearchUtil = {
     getAndSetUserRoles,
     getAndSetCart,
     addToCartAndIncrementCart,
-
-    getAndSetFilteredListWithNewPage,
-    getAndSetQueriedListWithNewPage,
-    getAndSetTrending,
     getAndSetScoreAndReview,
-    getAndSetRecentPictures
+    getAndSetTrending
 };
 
 export default SearchUtil;

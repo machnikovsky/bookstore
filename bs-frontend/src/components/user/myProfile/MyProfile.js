@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import ApiCall from '../../../api/ApiCall';
 import UserContext from '../../../auth/UserContext';
-import Friends from './Friends';
 import ProfileNav from './ProfileNav';
 import Stats from './Stats';
 import UserInfo from './UserInfo';
@@ -13,8 +12,7 @@ const MyProfile = () => {
     const {user, setUser} = useContext(UserContext);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [watchedMovies, setWatchedMovies] = useState([]);
-    const [watchedTvShows, setWatchedTvShows] = useState([]);
+    const [readBooks, setReadBooks] = useState([]);
     const [currentView, setCurrentView] = useState('info');
     const navigate = useNavigate();
 
@@ -45,8 +43,7 @@ const MyProfile = () => {
             { firstName && lastName && <h1>Witaj, {capitalize(firstName)} {capitalize(lastName)}!</h1>}
             <div className="nav-and-content">
                 <ProfileNav setCurrentView={setCurrentView} />
-                { currentView === 'books'  && <ReadBooks watchedMovies={watchedMovies}/> }
-                { currentView === 'friends' && <Friends/> }
+                { currentView === 'books'  && <ReadBooks readBooks={readBooks}/> }
                 { currentView === 'info'    && <UserInfo/> }
                 { currentView === 'stats'    && <Stats/> }
             </div>       

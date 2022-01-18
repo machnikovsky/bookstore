@@ -2,7 +2,7 @@ import React from 'react'
 
 const YearFilter = ({filters, setFilters, type}) => {
 
-    const release_date_name = type === "movie" ? "release_date" : "first_air_date";
+    const release_date_name = type === "book" ? "release_date" : "first_air_date";
 
     const addReleaseTimeFilters = (gte, lte) => {
         let copiedMap = new Map(filters);

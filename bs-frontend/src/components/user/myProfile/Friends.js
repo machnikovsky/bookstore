@@ -74,7 +74,7 @@ const Friends = () => {
                 )}
             </div>
             <div className="add-friend">
-                <h2>Dodaj znajomego:</h2>
+                <h2>Dodaj mego:</h2>
                 <form>
                     <label>Podaj jego nazwę:</label>
                     <input 
