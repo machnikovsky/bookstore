@@ -22,6 +22,7 @@ INSERT INTO author(author_id, first_name, last_name, country) VALUES (16, 'Andrz
 INSERT INTO author(author_id, first_name, last_name, country) VALUES (17, 'John', 'Green', 'Stany Zjednoczone');
 INSERT INTO author(author_id, first_name, last_name, country) VALUES (18, 'Eric Emmanuel', 'Schmitt', 'Francja');
 INSERT INTO author(author_id, first_name, last_name, country) VALUES (19, 'J. D.', 'Salinger', 'Stany Zjednoczone');
+INSERT INTO author(author_id, first_name, last_name, country) VALUES (20, 'Miguel', 'de Cervantes', 'Hiszpania');
 
 INSERT INTO book(book_id, title, description, genre, original_publication_year) VALUES (1, 'Na wschód od Edenu', 'Powieść uznawana za najwybitniejsze dzieło Steinbecka opowiada o tragicznym losie rodziny Trasków, która na przełomie XIX i XX wieku osiedliła się w dolinie Salinas. Adam Trask, farmer, samotnie wychowuje dwóch synów – Arona i Kaleba. Chłopcy różnią się od siebie jak woda i ogień, a jedyne co ich łączy, to nieustanna rywalizacja o miłość surowego ojca. Aron jest spokojny i posłuszny, Kal to urodzony buntownik, który żywi wyraźną niechęć do brata i za wszelką cenę chce odnaleźć matkę. Napiętą sytuację między braćmi pogłębia jeszcze miłość do tej samej dziewczyny – Abry. W końcu Kaleb odnajduje matkę, demoniczną Kathy, w domu publicznym i odkrywa, że jest ona zupełnym przeciwieństwem tego, co uosabia ukochany ojciec. Rozdarcie wewnętrzne, konieczność dokonania wyboru i nadmiar napięć doprowadzają do tragedii…
 „Na wschód od Edenu” to jedna z najwybitniejszych i zarazem najpopularniejszych powieści XX wieku. Podczas gdy w warstwie fabularnej jest realistyczną sagą rodziny kalifornijskich ranczerów, jej drugie, głębsze dno można odczytywać jako reinterpretację biblijnej historii o Kainie i Ablu i przypowieść o walce dobra ze złem w człowieku.', 'FICTION', 1952);
@@ -77,6 +78,8 @@ INSERT INTO book(book_id, title, description, genre, original_publication_year) 
 INSERT INTO book(book_id, title, description, genre, original_publication_year) VALUES (23, 'Rok 1984', 'Wielki Brat Patrzy – to właśnie napisy tej treści, w antyutopii Orwella krzyczące z plakatów rozlepionych po całym Londynie, natchnęły twórców telewizyjnego show „Big Brother”. Czyżby wraz z upadkiem komunizmu wielka, oskarżycielska powieść straciła swoją rację bytu, stając się zaledwie inspiracją programu rozrywkowego? Nie. Bo ukazuje świat, który zawsze może powrócić. Świat pustych sklepów, permanentnej wojny, jednej wiary.
 Klaustrofobiczny świat Wielkiego Brata, w którym każda sekunda ludzkiego życia znajduje się pod kontrolą, a dominującym uczuciem jest strach. Świat, w którym ludzie czują się bezradni i samotni, miłość uchodzi za zbrodnię, a takie pojęcie jak „wolność” i „sprawiedliwość” nie istnieją. Na kuli ziemskiej są miejsca, gdzie ten świat wciąż trwa. I zawsze znajdą się cudotwórcy gotowi obiecywać stworzenie nowego, który od wizji Orwella dzieli tylko krok. Niestety, piekło wybrukowane jest dobrymi chęciami. A dwa plus dwa wcale nie musi się równać cztery.','FICTION', 1948);
 INSERT INTO book(book_id, title, description, genre, original_publication_year) VALUES (24, 'Romeo i Julia', 'Matka Julii Kapulet postanawia wydać córkę za Parysa (jest to krewny księcia Werony). Organizuje ona bal, na którym młodzi mają się zapoznać. Zjawia się tam też potomek zwaśnionego z nimi rodu Monteki, Romeo. Romeo i Julia zakochują się w sobie „od pierwszego wejrzenia”. Wkrótce w tajemnicy biorą ze sobą ślub. Jednak los bywa okrutny….','ROMANCE', 1597);
+INSERT INTO book(book_id, title, description, genre, original_publication_year) VALUES (25, 'Don Kichot', 'Miguel de Cervantes Saavedra swoim „Don Kichotem” położył podwaliny pod nowoczesną powieść. Przygody oszalałego od czytania książek szlachcica i jego giermka od z górą czterystu lat bawią i wzruszają kolejne pokolenia czytelników. Dzięki nowemu polskiemu przekładowi dzieło zostało odświeżone, więc współczesny miłośnik literatury będzie mógł cieszyć się tą historią jak nigdy przedtem. Wspaniały przekład wspaniałego dzieła. Okazuje się, że mimo swego sędziwego wieku „Don Kichot” to książka interesująca, wciągająca i pouczająca, a przede wszystkim śmieszna, jak informuje sam autor na kartach swojej powieści. Do tej pory trudno było tę śmieszność dostrzec. Dopiero teraz w pełni możemy docenić humor i doskonałe pióro wielkiego Hiszpana.','ADVENTURE', 1605);
+-- INSERT INTO book(book_id, title, description, genre, original_publication_year) VALUES (26, '', '','', );
 
 INSERT INTO author_book(author_id, book_id) VALUES (1, 1);
 INSERT INTO author_book(author_id, book_id) VALUES (2, 2);
@@ -102,6 +105,7 @@ INSERT INTO author_book(author_id, book_id) VALUES (7, 21);
 INSERT INTO author_book(author_id, book_id) VALUES (7, 22);
 INSERT INTO author_book(author_id, book_id) VALUES (15, 23);
 INSERT INTO author_book(author_id, book_id) VALUES (14, 24);
+INSERT INTO author_book(author_id, book_id) VALUES (20, 25);
 
 INSERT INTO publishing_house(publishing_house_id, name, foundation_year) VALUES (1, 'Albatros', 1990);
 INSERT INTO publishing_house(publishing_house_id, name, foundation_year) VALUES (2, 'Prószyński i S-ka', 1990);
@@ -164,8 +168,10 @@ INSERT INTO issue(issue_id, language, publication_year, number_of_pages, cover_t
 (26, 'Polski', 2014, 360, 'PAPERBACK', 'BOOK', 29.89, 'https://s.lubimyczytac.pl/upload/books/241000/241181/839087-352x500.jpg', 'https://instagalleryapp.com/images/are-we-living-in-an-orwellian-nightmare-did-1984-predict-real-world-surveillance.jpg', 6, 23);
 INSERT INTO issue(issue_id, language, publication_year, number_of_pages, cover_type, book_type, price, image_url, background_url, publishing_house_id, book_id) VALUES
 (27, 'Polski', 2007, 105, 'PAPERBACK', 'BOOK', 33.89, 'https://s.lubimyczytac.pl/upload/books/4900000/4900298/760411-352x500.jpg', 'https://aleklasa.pl/wp-content/uploads/2018/02/Romeo-i-Julia-2-bis.jpg', 2, 24);
+INSERT INTO issue(issue_id, language, publication_year, number_of_pages, cover_type, book_type, price, image_url, background_url, publishing_house_id, book_id) VALUES
+(28, 'Polski', 2004, 1044, 'HARDCOVER', 'BOOK', 74.99, 'https://s.lubimyczytac.pl/upload/books/221000/221953/564966-352x500.jpg', 'https://ocdn.eu/pulscms-transforms/1/_jKktkuTURBXy9mNDYwNGU5MS0zYjNmLTQ4Y2QtYmU0Ny1mMzZkNDhjNDc4Y2YuanBlZ5GTBc0EsM0CpA', 5, 25);
 -- INSERT INTO issue(issue_id, language, publication_year, number_of_pages, cover_type, book_type, price, image_url, background_url, publishing_house_id, book_id) VALUES
--- (20, 'Polski', , , , 'BOOK', , '', '', , );
+-- (29, 'Polski', , , , 'BOOK', , '', '', , );
 
 INSERT INTO assortment(assortment_id, count, bookstore_id, issue_id) VALUES (1, 300, 1, 1);
 INSERT INTO assortment(assortment_id, count, bookstore_id, issue_id) VALUES (2, 200, 1, 2);
@@ -203,3 +209,5 @@ INSERT INTO assortment(assortment_id, count, bookstore_id, issue_id) VALUES (34,
 INSERT INTO assortment(assortment_id, count, bookstore_id, issue_id) VALUES (35, 1, 3, 27);
 INSERT INTO assortment(assortment_id, count, bookstore_id, issue_id) VALUES (36, 16, 4, 20);
 INSERT INTO assortment(assortment_id, count, bookstore_id, issue_id) VALUES (37, 8, 3, 27);
+INSERT INTO assortment(assortment_id, count, bookstore_id, issue_id) VALUES (38, 8, 1, 28);
+INSERT INTO assortment(assortment_id, count, bookstore_id, issue_id) VALUES (39, 4, 2, 28);
