@@ -18,8 +18,8 @@ data class Book(
     @Column(name = "original_publication_year") var originalPublicationYear: Int,
     @ManyToMany
     @JoinTable(name = "author_book",
-        joinColumns = [JoinColumn(name = "author_id")],
-        inverseJoinColumns = [JoinColumn(name = "book_id")]
+        joinColumns = [JoinColumn(name = "book_id")],
+        inverseJoinColumns = [JoinColumn(name = "author_id")]
     )
     var authors: List<Author>,
     @OneToMany
