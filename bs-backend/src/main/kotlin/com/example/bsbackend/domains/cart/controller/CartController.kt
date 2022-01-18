@@ -11,6 +11,10 @@ class CartController(
     private val cartService: CartService
 ) {
 
+    @GetMapping
+    fun getCart(): ResponseEntity<Any> =
+        cartService.getCart()
+
     @PostMapping("/add/{issueId}")
     fun addIssueToCart(@PathVariable("issueId") issueId: Int): ResponseEntity<Any> =
         cartService.addIssueToCart(issueId)

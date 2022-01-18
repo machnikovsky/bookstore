@@ -128,6 +128,23 @@ const getAndSetUserRoles = (username, setRoles) => {
         });
 }
 
+
+const getAndSetCart = (set) => {
+    ApiCall.getCart()
+        .then(res => {
+            return res.data;
+        })
+        .then(data => {
+            console.log("Cart: ", data);
+            set(data);
+        })
+        .catch(e => {
+            set([]);
+            console.log('Error getting cart: ', e.response.data);
+        });
+}
+
+
 const addToCartAndIncrementCart = (issueId, counter, set) => {
     ApiCall.addToCart(issueId)
         .then(res => {
@@ -278,6 +295,7 @@ const SearchUtil = {
     sellBookAndIncrementSold,
     orderBookAndIncrementOrdered,
     getAndSetUserRoles,
+    getAndSetCart,
     addToCartAndIncrementCart,
 
     getAndSetFilteredListWithNewPage,

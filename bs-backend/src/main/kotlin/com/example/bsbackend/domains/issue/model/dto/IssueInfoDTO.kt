@@ -24,3 +24,4 @@ data class IssueInfoDTO(
     @SerializedName("ratings") var ratings: List<RatingDTO> = mutableListOf(),
     @SerializedName("mean_score") var meanScore: String = ""
 )
+

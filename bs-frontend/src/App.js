@@ -12,6 +12,7 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import UserContext from './auth/UserContext';
 import Search from "./components/search/Search";
 import SingleBook from "./components/books/SingleBook";
+import Cart from "./components/Cart";
 
 const App = () => {
 
@@ -32,6 +33,7 @@ const App = () => {
                     <Route exact path="/logout" element={<Logout />}/>
                     <Route exact path="/register" element={<Register />}/>
                     <Route exact path="/profile" element={<MyProfile />} />
+                    <Route exact path="/cart" element={<Cart />} />
                 </Routes>
             </UserContext.Provider>
         </Router>

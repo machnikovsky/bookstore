@@ -8,6 +8,7 @@ import com.example.bsbackend.domains.book.model.dto.getSorted
 import com.example.bsbackend.domains.book.model.dto.getType
 import com.example.bsbackend.domains.book.model.entity.Book
 import com.example.bsbackend.domains.book.repository.BookRepository
+import com.example.bsbackend.domains.cart.model.dto.IssueCartDTO
 import com.example.bsbackend.domains.issue.model.dto.IssueInfoDTO
 import com.example.bsbackend.domains.issue.model.entity.Issue
 import com.example.bsbackend.domains.issue.model.enum.BookType
@@ -156,6 +157,9 @@ class IssueService(
                 )
             }
     }
+
+    fun mapIssueToCartDTO(issue: Issue, count: Int): IssueCartDTO =
+        modelMapper.map(mapIssueToDTO(issue), IssueCartDTO::class.java).copy(count = count)
 
      fun List<Book>.getDtoOfBooksFirstIssues(): List<IssueInfoDTO?> =
         this.map { getDtoOfBookFirstIssue(it.bookId) }
