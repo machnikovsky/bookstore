@@ -9,5 +9,6 @@ data class UserRegistrationDto(
     @SerializedName("firstName") var firstName: String,
     @SerializedName("lastName") var lastName: String,
     @SerializedName("phoneNumber") var phoneNumber: String = "",
-    @SerializedName("gender") var gender: String
+    @SerializedName("gender") var gender: String,
+    @SerializedName("localization") var localization: String,
 )

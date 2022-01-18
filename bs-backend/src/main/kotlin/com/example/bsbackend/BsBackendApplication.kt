@@ -7,11 +7,10 @@ import com.example.bsbackend.domains.author.repository.AuthorRepository
 import com.example.bsbackend.domains.book.model.entity.Book
 import com.example.bsbackend.domains.book.model.entity.Genre
 import com.example.bsbackend.domains.book.repository.BookRepository
-import com.example.bsbackend.domains.bookstore.model.Bookstore
 import com.example.bsbackend.domains.bookstore.repository.BookstoreRepository
-import com.example.bsbackend.domains.issue.model.enum.BookType
 import com.example.bsbackend.domains.issue.model.entity.CoverType
 import com.example.bsbackend.domains.issue.model.entity.Issue
+import com.example.bsbackend.domains.issue.model.enum.BookType
 import com.example.bsbackend.domains.issue.repository.IssueRepository
 import com.example.bsbackend.domains.publishingHouse.model.PublishingHouse
 import com.example.bsbackend.domains.publishingHouse.repository.PublishingHouseRepository
@@ -57,10 +56,7 @@ class ApplicationStart(
     @EventListener(ApplicationReadyEvent::class)
     fun addAdminsToDb() {
 
-        val bookstore = Bookstore(
-          address = "Gdańsk"
-        );
-        bookstoreRepository.save(bookstore)
+        val bookstore = bookstoreRepository.findById(1).get()
 
         val personAdmin = Person(
             firstName = "Weronika",
@@ -130,7 +126,7 @@ class ApplicationStart(
             creationDate = Date.valueOf(LocalDate.now()),
             roles = mutableSetOf(Role.USER),
             person = personBob,
-            bookstore = bookstoreRepository.findById(1).get()
+            bookstore = bookstore
         )
         userRepository.saveAll(listOf(admin, user, worker, bookstoreOneUser))
 
@@ -161,7 +157,7 @@ class ApplicationStart(
             user = user
         )
 
-        ratingRepository.save(rating);
+        ratingRepository.save(rating)
 
         val publishingHouse = PublishingHouse(
             name = "Mag",
@@ -189,7 +185,7 @@ class ApplicationStart(
             issue = issue
         )
 
-        assortmentRepository.save(assortment);
+        assortmentRepository.save(assortment)
 
     }
 }

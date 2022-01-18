@@ -11,6 +11,7 @@ const Register = () => {
     const [lastName, setLastName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [gender, setGender] = useState('MALE');
+    const [localization, setLocalization] = useState('Warszawa');// Kraków, Wrocław, Poznań
     const [showError, setShowError] = useState(false);
     const navigate = useNavigate();
 
@@ -18,7 +19,8 @@ const Register = () => {
 
     const handleRegister = async (e) => {
         e.preventDefault();
-        const registerResult = await Auth.register(username, email, password, firstName, lastName, phoneNumber, gender);
+        const registerResult = await Auth.register(username, email, password,
+            firstName, lastName, phoneNumber, gender, localization);
 
         if (registerResult) {
             navigate('/');
@@ -75,7 +77,7 @@ const Register = () => {
                         value={phoneNumber}
                         onChange={(e) => setPhoneNumber(e.target.value)}
                     />
-                    <div class="gender">Płeć</div>
+                    <div class="radio-header">Płeć</div>
                     <div className="radio-container">
 
                         <div className="radio">
@@ -106,6 +108,51 @@ const Register = () => {
                                        onChange={e => setGender(e.target.value)}
                                 />
                                 Inna
+                            </label>
+                        </div>
+                    </div>
+                    <div className="radio-header">Miejscowość</div>
+
+                    <div className="radio-container">
+
+                        <div className="radio">
+                            <label>
+                                <input type="radio"
+                                       value="Warszawa"
+                                       checked={localization === 'Warszawa'}
+                                       onChange={e => setLocalization(e.target.value)}
+                                />
+                                Warszawa
+                            </label>
+                        </div>
+                        <div className="radio">
+                            <label>
+                                <input type="radio"
+                                       value="Kraków"
+                                       checked={localization === 'Kraków'}
+                                       onChange={e => setLocalization(e.target.value)}
+                                />
+                                Kraków
+                            </label>
+                        </div>
+                        <div className="radio">
+                            <label>
+                                <input type="radio"
+                                       value="Wrocław"
+                                       checked={localization === 'Wrocław'}
+                                       onChange={e => setLocalization(e.target.value)}
+                                />
+                                Wrocław
+                            </label>
+                        </div>
+                        <div className="radio">
+                            <label>
+                                <input type="radio"
+                                       value="Poznań"
+                                       checked={localization === 'Poznań'}
+                                       onChange={e => setLocalization(e.target.value)}
+                                />
+                                Poznań
                             </label>
                         </div>
                     </div>

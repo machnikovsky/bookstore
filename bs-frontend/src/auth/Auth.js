@@ -9,7 +9,8 @@ const register = (username,
                   firstName,
                   lastName,
                   phoneNumber,
-                  gender
+                  gender,
+                  localization
 
 ) => {
   return axios.post(API_URL + "register", {
@@ -19,7 +20,8 @@ const register = (username,
     firstName,
     lastName,
     phoneNumber,
-    gender
+    gender,
+    localization
   });
 };
 
