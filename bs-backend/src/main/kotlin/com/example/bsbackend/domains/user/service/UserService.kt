@@ -1,5 +1,6 @@
 package com.example.bsbackend.domains.user.service
 
+import com.example.bsbackend.domains.bookstore.repository.BookstoreRepository
 import com.example.bsbackend.domains.user.model.*
 import com.example.bsbackend.domains.user.repository.PersonRepository
 import com.example.bsbackend.domains.user.repository.UserRepository
@@ -17,6 +18,7 @@ import java.time.LocalDate
 @Service
 class UserService(
     val userRepository: UserRepository,
+    val bookstoreRepository: BookstoreRepository,
     val personRepository: PersonRepository,
     val passwordEncoder: PasswordEncoder,
     val modelMapper: ModelMapper
@@ -33,6 +35,7 @@ class UserService(
         convertedUser.roles = mutableSetOf(Role.USER)
         convertedUser.creationDate = Date.valueOf(LocalDate.now())
         convertedUser.person = savedPerson
+        convertedUser.bookstore = bookstoreRepository.findByAddress(userRegistrationDto.localization)
 
         return userRepository.save(convertedUser)
     }

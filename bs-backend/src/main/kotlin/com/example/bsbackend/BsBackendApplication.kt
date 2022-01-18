@@ -1,22 +1,17 @@
 package com.example.bsbackend
 
-import com.example.bsbackend.domains.assortment.model.Assortment
-import com.example.bsbackend.domains.assortment.repository.AssortmentRepository
 import com.example.bsbackend.domains.author.model.Author
 import com.example.bsbackend.domains.author.repository.AuthorRepository
 import com.example.bsbackend.domains.book.model.entity.Book
 import com.example.bsbackend.domains.book.model.entity.Genre
 import com.example.bsbackend.domains.book.repository.BookRepository
-import com.example.bsbackend.domains.bookstore.model.Bookstore
 import com.example.bsbackend.domains.bookstore.repository.BookstoreRepository
-import com.example.bsbackend.domains.issue.model.enum.BookType
 import com.example.bsbackend.domains.issue.model.entity.CoverType
 import com.example.bsbackend.domains.issue.model.entity.Issue
+import com.example.bsbackend.domains.issue.model.enum.BookType
 import com.example.bsbackend.domains.issue.repository.IssueRepository
 import com.example.bsbackend.domains.publishingHouse.model.PublishingHouse
 import com.example.bsbackend.domains.publishingHouse.repository.PublishingHouseRepository
-import com.example.bsbackend.domains.rating.model.Rating
-import com.example.bsbackend.domains.rating.repository.RatingRepository
 import com.example.bsbackend.domains.user.model.Gender
 import com.example.bsbackend.domains.user.model.Person
 import com.example.bsbackend.domains.user.model.Role
@@ -28,10 +23,10 @@ import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.boot.runApplication
 import org.springframework.context.event.EventListener
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
-import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 import java.sql.Date
 import java.time.LocalDate
+import java.util.*
 
 @SpringBootApplication
 @EnableWebSecurity
@@ -48,92 +43,38 @@ class ApplicationStart(
     val personRepository: PersonRepository,
     val authorRepository: AuthorRepository,
     val bookRepository: BookRepository,
-    val ratingRepository: RatingRepository,
     val issueRepository: IssueRepository,
-    val assortmentRepository: AssortmentRepository,
     val publishingHouseRepository: PublishingHouseRepository,
-    val passwordEncoder: PasswordEncoder
 ) {
     @EventListener(ApplicationReadyEvent::class)
     fun addAdminsToDb() {
 
-        val bookstore = Bookstore(
-          address = "Gdańsk"
-        );
-        bookstoreRepository.save(bookstore)
-
-        val personAdmin = Person(
-            firstName = "Weronika",
-            lastName = "Abc",
-            phoneNumber = "1234",
-            gender = Gender.FEMALE
-        )
-
-        val personWorker = Person(
-            firstName = "Kuba",
-            lastName = "Abc",
-            phoneNumber = "1234",
-            gender = Gender.MALE
-        )
-
-        val personUser = Person(
-            firstName = "Rudolf",
-            lastName = "Abc",
-            phoneNumber = "1234",
-            gender = Gender.OTHER
-        )
-
-        val personBob = Person(
-            firstName = "Bob",
-            lastName = "James",
-            phoneNumber = "5432",
-            gender = Gender.MALE
-        )
-
-        personRepository.saveAll(listOf(personAdmin, personUser, personWorker, personBob))
+        bookstoreRepository.findAll()
+            .forEach {
+                Role.values().forEach { role ->
+                    userRepository.save(
+                        User(
+                            username = "${role.name.lowercase(Locale.getDefault())}${it.address}",
+                            password = "admin",
+                            email = "admin@gmail.com",
+                            creationDate = Date.valueOf(LocalDate.now()),
+                            roles = mutableSetOf(role),
+                            person = personRepository.save(
+                                Person(
+                                    firstName = "John",
+                                    lastName = role.name.lowercase(Locale.getDefault()),
+                                    phoneNumber = "1234",
+                                    gender = Gender.FEMALE
+                                )
+                            ),
+                            bookstore = it
+                        )
+                    )
+                }
+            }
 
 
-        val admin = User(
-            username = "admin",
-            password = passwordEncoder.encode("admin"),
-            email = "admin@gmail.com",
-            creationDate = Date.valueOf(LocalDate.now()),
-            roles = mutableSetOf(Role.ADMIN),
-            person = personAdmin,
-            bookstore = bookstore
-        )
-
-        val user = User(
-            username = "user",
-            password = passwordEncoder.encode("user"),
-            email = "user@gmail.com",
-            creationDate = Date.valueOf(LocalDate.now()),
-            roles = mutableSetOf(Role.USER),
-            person = personUser,
-            bookstore = bookstore
-        )
-
-        val worker = User(
-            username = "worker",
-            password = passwordEncoder.encode("worker"),
-            email = "worker@gmail.com",
-            creationDate = Date.valueOf(LocalDate.now()),
-            roles = mutableSetOf(Role.WORKER),
-            person = personWorker,
-            bookstore = bookstore
-        )
-
-        val bookstoreOneUser = User(
-            username = "bob",
-            password = passwordEncoder.encode("bob"),
-            email = "bob@gmail.com",
-            creationDate = Date.valueOf(LocalDate.now()),
-            roles = mutableSetOf(Role.USER),
-            person = personBob,
-            bookstore = bookstoreRepository.findById(1).get()
-        )
-        userRepository.saveAll(listOf(admin, user, worker, bookstoreOneUser))
-
+        //TODO: Move to data.sql
         val author = Author(
             firstName = "Miguel",
             lastName = "de Cervantes",
@@ -152,16 +93,7 @@ class ApplicationStart(
         val authorFromDb = authorRepository.getById(author.authorId)
         authorFromDb.books = mutableListOf(book)
         authorRepository.save(authorFromDb)
-        
 
-        val rating = Rating(
-            score = 5,
-            review = "Srednia ksiazka!",
-            book = book,
-            user = user
-        )
-
-        ratingRepository.save(rating);
 
         val publishingHouse = PublishingHouse(
             name = "Mag",
@@ -182,14 +114,5 @@ class ApplicationStart(
             book = book
         )
         issueRepository.save(issue)
-
-        val assortment = Assortment(
-            count = 5,
-            bookstore = bookstore,
-            issue = issue
-        )
-
-        assortmentRepository.save(assortment);
-
     }
 }

@@ -7,7 +7,7 @@ const Success = () => {
                 <img src={congratulations} alt=""/>
             </div>
             <div className="text">
-                <p>Udało się złożyć zamówienie!</p>
+                <p>Udało się złożyć zamówienie, faktura zostanie dołączona do zamówienia.</p>
                 <p>Dziękujemy za zakupy w Bookstore!</p>
             </div>
 

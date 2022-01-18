@@ -170,7 +170,7 @@ const SingleBook = ({type}) => {
                                     </div>
                                     <div className="stat">
                                         <img src={ page_icon } alt="movie"/>
-                                        <div className="value">{ book.number_of_pages} stron</div>
+                                        <div className="value">{ book.book_type !== "AUDIOBOOK" ? `${book.number_of_pages} stron` : "Audiobook"} </div>
                                     </div>
                                     <div className="stat">
                                         <img src={ date } alt="movie"/>

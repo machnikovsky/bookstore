@@ -25,5 +25,8 @@
   .image-container, .text {
     position: relative;
     bottom: 8%;
+    p {
+      margin-bottom: 15px;
+    }
   }
 }

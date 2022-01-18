@@ -55,14 +55,6 @@ const Search = () => {
         return filters;
     }
 
-
-    // useEffect(() => {
-    //     SearchUtil.getAndSetQueriedListWithNewPage(query, bookList, setBookList, page);
-    //     //TODO: Implement loading new page on click
-    // }, [page])
-
-
-
     return (
         <div className="books-container">
             <div className="search-container">
@@ -79,7 +71,6 @@ const Search = () => {
 
             </div>
             <BookList bookList={bookList}/>
-            <button className="more-button" onClick={() => setPage(page + 1)}>Więcej</button>
         </div>
     );
 }
