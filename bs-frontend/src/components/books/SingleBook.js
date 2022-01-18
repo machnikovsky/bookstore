@@ -29,6 +29,7 @@ const SingleBook = ({type}) => {
     const [isAvailable, setIsAvailable] = useState(false);
     const [sold, setSold] = useState(0);
     const [ordered, setOrdered] = useState(0);
+    const [addedToCart, setAddedToCart] = useState(0);
     const [roles, setRoles] = useState([]);
     const scroll = Scroll.animateScroll;
     const navigate = useNavigate();
@@ -130,7 +131,7 @@ const SingleBook = ({type}) => {
 
     const handleAddToCart = async (e) => {
         e.preventDefault();
-        //TODO: Implement adding to cart logic
+        GetAndSetUtil.addToCartAndIncrementCart(issueId, addedToCart, setAddedToCart);
     }
 
     const handleSellStationary = (e) => {

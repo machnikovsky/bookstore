@@ -128,6 +128,18 @@ const getAndSetUserRoles = (username, setRoles) => {
         });
 }
 
+const addToCartAndIncrementCart = (issueId, counter, set) => {
+    ApiCall.addToCart(issueId)
+        .then(res => {
+            return res.data;
+        })
+        .then(data => {
+            set(counter + 1);
+        })
+        .catch(e => {
+            console.log(e);
+        });
+}
 
 
 
@@ -266,7 +278,7 @@ const SearchUtil = {
     sellBookAndIncrementSold,
     orderBookAndIncrementOrdered,
     getAndSetUserRoles,
-
+    addToCartAndIncrementCart,
 
     getAndSetFilteredListWithNewPage,
     getAndSetQueriedListWithNewPage,

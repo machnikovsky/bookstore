@@ -46,11 +46,13 @@ const orderAnIssue = (issueId) => {
     return axios.post(API_URL + `issue/${issueId}/order`, {}, { headers: authHeader() })
 }
 
-
 const getUserInfo = (username) => {
     return axios.get(API_URL + `user/info/${username}`, { headers: authHeader() });
 };
 
+const addToCart = (issueId) => {
+    return axios.post(API_URL + `cart/add/${issueId}`, {}, { headers: authHeader() })
+}
 
 
 
@@ -136,7 +138,7 @@ const ApiCall = {
     sellAnIssue,
     orderAnIssue,
     getUserInfo,
-
+    addToCart,
 
 
 
