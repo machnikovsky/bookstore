@@ -19,4 +19,8 @@ class CartController(
     fun addIssueToCart(@PathVariable("issueId") issueId: Int): ResponseEntity<Any> =
         cartService.addIssueToCart(issueId)
 
+    @PostMapping("/pay")
+    fun payForItemsInCart(): ResponseEntity<Any> =
+        cartService.payForItemsInCart()
+
 }

@@ -12,6 +12,7 @@ data class IssueCartDTO(
     @SerializedName("cover_type") var coverType: String? = "",
     @SerializedName("book_type") var bookType: String = "",
     @SerializedName("price") var price: Float = 0f,
+    @SerializedName("total_price") var totalPrice: Float = 0f,
     @SerializedName("image_url") var imageUrl: String = "",
     @SerializedName("background_url") var backgroundUrl: String = "",
     @SerializedName("publishing_house_id") var publishingHouseId: Int = 0,

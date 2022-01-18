@@ -38,11 +38,9 @@ const SingleBook = ({type}) => {
 
     useEffect(() => {
 
-
         GetAndSetUtil.getAndSetSingleIssue(issueId, setBook);
         GetAndSetUtil.getAndSetReviews(bookId, setReviews);
         GetAndSetUtil.getAndSetUserRoles(user, setRoles);
-
 
         GetAndSetUtil.getAndSetIsRead(bookId, setIsRead)
             .then(watched => {
@@ -50,7 +48,6 @@ const SingleBook = ({type}) => {
                     GetAndSetUtil.getAndSetScoreAndReview(bookId, setScore, setReview);
                 }
             })
-
 
         if (user) {
             ApiCall.getUserInfo(user)
@@ -74,7 +71,7 @@ const SingleBook = ({type}) => {
 
     useEffect(() => {
         GetAndSetUtil.getAndSetIsIssueAvailable(issueId, setIsAvailable);
-    }, [sold, ordered])
+    }, [sold, ordered, addedToCart])
 
 
     const handleShowReviewFormButton = (e) => {
@@ -187,7 +184,10 @@ const SingleBook = ({type}) => {
                                 <div className="overview">{ book.description }</div>
                                 <div className="single-book-buttons">
                                     { user && roles.includes('USER') && !isRead && <button className="single-book-button" onClick={handleShowReviewFormButton}>{buttonText}</button> }
-                                    { user && roles.includes('USER') && <button className="single-book-button" onClick={handleAddToCart}>Dodaj do koszyka</button> }
+                                    { user && roles.includes('USER') && ( isAvailable ?
+                                            <button className="single-book-button green-bg" onClick={handleAddToCart}>Dodaj do koszyka</button> :
+                                            <button className="single-book-button red-bg">Niedostępne</button> )
+                                    }
                                     { user && roles.includes('WORKER') && ( isAvailable ?
                                         <button className="single-book-button green-bg" onClick={handleSellStationary}>Sprzedaj stacjonarnie</button> :
                                         <button className="single-book-button red-bg">Niedostępne</button> )

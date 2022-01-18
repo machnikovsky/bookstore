@@ -34,7 +34,7 @@ class IssueService(
      val modelMapper: ModelMapper
 ) {
     fun getSingleIssue(issueId: Int): ResponseEntity<Any> =
-        issueRepository.findIssueByIssueId(issueId)
+        issueRepository.findFistByIssueId(issueId)
             ?.let { mapIssueToDTO(it) }
             ?.let { ResponseEntity.ok(it) }
             ?: ResponseEntity.status(NOT_FOUND).body("Issue with id $issueId was not found.")
@@ -104,7 +104,7 @@ class IssueService(
     fun orderAnIssue(issueId: Int): ResponseEntity<Any> {
         val bookstore = getCurrentUser()?.bookstore
             ?: return ResponseEntity.status(NOT_FOUND).body("Could not find bookstore of logged in user.")
-        val issue = issueRepository.findIssueByIssueId(issueId)
+        val issue = issueRepository.findFistByIssueId(issueId)
             ?: return ResponseEntity.status(NOT_FOUND).body("Could not issue with ID $issueId.")
 
         return bookstore
@@ -159,7 +159,10 @@ class IssueService(
     }
 
     fun mapIssueToCartDTO(issue: Issue, count: Int): IssueCartDTO =
-        modelMapper.map(mapIssueToDTO(issue), IssueCartDTO::class.java).copy(count = count)
+        modelMapper.map(mapIssueToDTO(issue), IssueCartDTO::class.java).copy(
+            count = count,
+            totalPrice = "%.2f".format(issue.price * count).replace(",", ".").toFloatOrNull()?:0f
+        )
 
      fun List<Book>.getDtoOfBooksFirstIssues(): List<IssueInfoDTO?> =
         this.map { getDtoOfBookFirstIssue(it.bookId) }

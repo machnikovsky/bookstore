@@ -83,7 +83,14 @@ class ApplicationStart(
             gender = Gender.OTHER
         )
 
-        personRepository.saveAll(listOf(personAdmin, personUser, personWorker))
+        val personBob = Person(
+            firstName = "Bob",
+            lastName = "James",
+            phoneNumber = "5432",
+            gender = Gender.MALE
+        )
+
+        personRepository.saveAll(listOf(personAdmin, personUser, personWorker, personBob))
 
 
         val admin = User(
@@ -115,7 +122,17 @@ class ApplicationStart(
             person = personWorker,
             bookstore = bookstore
         )
-        userRepository.saveAll(listOf(admin, user, worker))
+
+        val bookstoreOneUser = User(
+            username = "bob",
+            password = passwordEncoder.encode("bob"),
+            email = "bob@gmail.com",
+            creationDate = Date.valueOf(LocalDate.now()),
+            roles = mutableSetOf(Role.USER),
+            person = personBob,
+            bookstore = bookstoreRepository.findById(1).get()
+        )
+        userRepository.saveAll(listOf(admin, user, worker, bookstoreOneUser))
 
         val author = Author(
             firstName = "Miguel",

@@ -58,6 +58,9 @@ const addToCart = (issueId) => {
     return axios.post(API_URL + `cart/add/${issueId}`, {}, { headers: authHeader() })
 }
 
+const payForItemsInCart = () => {
+    return axios.post(API_URL + `cart/pay`, {}, { headers: authHeader() })
+}
 
 
 
@@ -144,7 +147,7 @@ const ApiCall = {
     getUserInfo,
     getCart,
     addToCart,
-
+    payForItemsInCart,
 
 
     getTrending,

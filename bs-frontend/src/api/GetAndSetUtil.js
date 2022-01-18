@@ -129,17 +129,18 @@ const getAndSetUserRoles = (username, setRoles) => {
 }
 
 
-const getAndSetCart = (set) => {
+const getAndSetCart = (setCartItems, setTotalPrice) => {
     ApiCall.getCart()
         .then(res => {
             return res.data;
         })
         .then(data => {
-            console.log("Cart: ", data);
-            set(data);
+            setCartItems(data.cart_items);
+            setTotalPrice(data.total_price);
         })
         .catch(e => {
-            set([]);
+            setCartItems([]);
+            setTotalPrice(0);
             console.log('Error getting cart: ', e.response.data);
         });
 }

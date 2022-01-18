@@ -13,6 +13,7 @@ import UserContext from './auth/UserContext';
 import Search from "./components/search/Search";
 import SingleBook from "./components/books/SingleBook";
 import Cart from "./components/Cart";
+import Success from "./components/Success";
 
 const App = () => {
 
@@ -34,6 +35,7 @@ const App = () => {
                     <Route exact path="/register" element={<Register />}/>
                     <Route exact path="/profile" element={<MyProfile />} />
                     <Route exact path="/cart" element={<Cart />} />
+                    <Route exact path="/success" element={<Success />} />
                 </Routes>
             </UserContext.Provider>
         </Router>

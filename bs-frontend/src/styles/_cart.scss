@@ -1,0 +1,133 @@
+.cart-container {
+
+  margin-top: 10vh;
+  h1 {
+    font-size: 3em;
+    font-weight: 100;
+  }
+
+  .cart {
+    margin-top: 5vh;
+    margin-bottom: 25vh;
+    min-height: 70vh;
+    background-color: rgba($bg-beige, 0.4);
+    display: flex;
+    flex-direction: column;
+
+    .cart-item {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 20vh;
+      margin: 2vh;
+      padding-bottom: 4vh;
+      border-bottom: 3px solid rgba($dark-green, 0.6);
+
+
+      .element {
+        width: 20vw;
+        height: 100%;
+
+        border-right: 3px solid rgba($dark-green, 0.6);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 3;
+
+        .value {
+          font-weight: 100;
+        }
+      }
+
+      .index {
+        font-size: 1.6em;
+        flex: 0.4;
+        border: none;
+      }
+
+
+      .poster-container {
+        max-height: 100%;
+        flex: 1.2;
+      }
+
+      .poster {
+        width: 5vw;
+        height: 16vh;
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: contain;
+        }
+      }
+
+      .price {
+        border: none;
+      }
+
+      .title-author, .issue-price, .price, .count {
+        font-size: 1.4em;
+        font-weight: bold;
+      }
+
+      .title-author {
+        justify-content: space-evenly;
+        flex: 5;
+
+        .title {
+          font-size: 1.3em;
+        }
+
+        .author {
+          color: rgba(#fff, 0.5);
+        }
+      }
+    }
+
+    .total-price, .pay {
+      min-height: 15vh;
+      margin-top: 5vh;
+      font-size: 2em;
+    }
+
+    .pay {
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $beige-btn;
+        border: none;
+        margin-bottom: 7vh;
+        padding: 0 2vh;
+        border-radius: 10px;
+        cursor:pointer;
+
+        .text {
+          width: 60%;
+          word-wrap: break-word;
+          font-size: 1.2em;
+          font-weight: 200;
+        }
+
+        .image {
+          width: 40%;
+
+          img {
+            max-height: 100%;
+            max-width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .empty {
+    margin-top: 5vh;
+    height: 50vh;
+    background-color: rgba($bg-beige, 0.4);
+    font-family: Lato;
+    font-size: 1.5em;
+  }
+}

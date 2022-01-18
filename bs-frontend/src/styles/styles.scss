@@ -4,10 +4,13 @@ $light-purple-background: #C4C4C4;
 $light-purple-transparent-background: rgba(#C4C4C4, 0.2);
 $beige: #DAA89B;
 $dark-beige: #a9957b;
+$dark-green: #344130;
+$bg-beige: #C4C4C4;
 $yellow: rgb(252, 241, 207);
 $dark-grey: rgba(#222, 0.9);
 $light-grey: rgba(#999, 0.9);
 $red: #d26666;
+$beige-btn: rgba(#FCEFC3, 0.8);
 
 
 @import "top";
@@ -24,6 +27,8 @@ $red: #d26666;
 @import "single_book";
 @import "colors";
 @import "about";
+@import "cart";
+@import "success";
 
 * {
     margin: 0;
