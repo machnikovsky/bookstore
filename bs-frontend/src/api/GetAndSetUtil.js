@@ -60,7 +60,7 @@ const getAndSetGenres = (setGenresAvailable) => {
 }
 
 const getAndSetFilteredList = (filters, set) => {
-    ApiCall.getFilteredList(filters, 1)
+    ApiCall.getFilteredList(filters)
         .then(res => {
             return res.data;
         })
@@ -172,8 +172,8 @@ const addToCartAndIncrementCart = (issueId, counter, set) => {
 
 
 
-const getAndSetFilteredListWithNewPage = (filters, pictureList, setPictureList, page, type) => {
-    ApiCall.getFilteredList(filters, page, type)
+const getAndSetFilteredListWithNewPage = (filters, pictureList, setPictureList) => {
+    ApiCall.getFilteredList(filters)
         .then(res => {
             return res.data;
         })

@@ -29,8 +29,7 @@ const getUserRating = (id) => {
     return axios.get(API_URL + `rating/${id}/user`, { headers: authHeader() });
 }
 
-const getFilteredList = (filters, page) => {
-    //TODO: implement page logic
+const getFilteredList = (filters) => {
     return axios.post(API_URL + `issue/filter`, filters, {})
 }
 
