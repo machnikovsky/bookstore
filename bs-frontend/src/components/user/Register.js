@@ -11,7 +11,7 @@ const Register = () => {
     const [lastName, setLastName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [gender, setGender] = useState('MALE');
-    const [localization, setLocalization] = useState('Warszawa');// Kraków, Wrocław, Poznań
+    const [localization, setLocalization] = useState('Warszawa');
     const [showError, setShowError] = useState(false);
     const navigate = useNavigate();
 
