@@ -1,6 +1,5 @@
 package com.example.bsbackend
 
-import com.example.bsbackend.domains.assortment.repository.AssortmentRepository
 import com.example.bsbackend.domains.author.model.Author
 import com.example.bsbackend.domains.author.repository.AuthorRepository
 import com.example.bsbackend.domains.book.model.entity.Book
@@ -13,7 +12,6 @@ import com.example.bsbackend.domains.issue.model.enum.BookType
 import com.example.bsbackend.domains.issue.repository.IssueRepository
 import com.example.bsbackend.domains.publishingHouse.model.PublishingHouse
 import com.example.bsbackend.domains.publishingHouse.repository.PublishingHouseRepository
-import com.example.bsbackend.domains.rating.repository.RatingRepository
 import com.example.bsbackend.domains.user.model.Gender
 import com.example.bsbackend.domains.user.model.Person
 import com.example.bsbackend.domains.user.model.Role
@@ -25,7 +23,6 @@ import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.boot.runApplication
 import org.springframework.context.event.EventListener
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
-import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 import java.sql.Date
 import java.time.LocalDate
@@ -46,11 +43,8 @@ class ApplicationStart(
     val personRepository: PersonRepository,
     val authorRepository: AuthorRepository,
     val bookRepository: BookRepository,
-    val ratingRepository: RatingRepository,
     val issueRepository: IssueRepository,
-    val assortmentRepository: AssortmentRepository,
     val publishingHouseRepository: PublishingHouseRepository,
-    val passwordEncoder: PasswordEncoder
 ) {
     @EventListener(ApplicationReadyEvent::class)
     fun addAdminsToDb() {
