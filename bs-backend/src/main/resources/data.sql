@@ -18,6 +18,10 @@ INSERT INTO author(author_id, first_name, last_name, country) VALUES (12, 'Taher
 INSERT INTO author(author_id, first_name, last_name, country) VALUES (13, 'Franz', 'Kafka', 'Czechy');
 INSERT INTO author(author_id, first_name, last_name, country) VALUES (14, 'William', 'Shakespeare', 'Anglia');
 INSERT INTO author(author_id, first_name, last_name, country) VALUES (15, 'George', 'Orwell', 'Anglia');
+INSERT INTO author(author_id, first_name, last_name, country) VALUES (16, 'Andrzej', 'Sapkowski', 'Polska');
+INSERT INTO author(author_id, first_name, last_name, country) VALUES (17, 'John', 'Green', 'Stany Zjednoczone');
+INSERT INTO author(author_id, first_name, last_name, country) VALUES (18, 'Eric Emmanuel', 'Schmitt', 'Francja');
+INSERT INTO author(author_id, first_name, last_name, country) VALUES (19, 'J. D.', 'Salinger', 'Stany Zjednoczone');
 
 INSERT INTO book(book_id, title, description, genre, original_publication_year) VALUES (1, 'Na wschód od Edenu', 'Powieść uznawana za najwybitniejsze dzieło Steinbecka opowiada o tragicznym losie rodziny Trasków, która na przełomie XIX i XX wieku osiedliła się w dolinie Salinas. Adam Trask, farmer, samotnie wychowuje dwóch synów – Arona i Kaleba. Chłopcy różnią się od siebie jak woda i ogień, a jedyne co ich łączy, to nieustanna rywalizacja o miłość surowego ojca. Aron jest spokojny i posłuszny, Kal to urodzony buntownik, który żywi wyraźną niechęć do brata i za wszelką cenę chce odnaleźć matkę. Napiętą sytuację między braćmi pogłębia jeszcze miłość do tej samej dziewczyny – Abry. W końcu Kaleb odnajduje matkę, demoniczną Kathy, w domu publicznym i odkrywa, że jest ona zupełnym przeciwieństwem tego, co uosabia ukochany ojciec. Rozdarcie wewnętrzne, konieczność dokonania wyboru i nadmiar napięć doprowadzają do tragedii…
 „Na wschód od Edenu” to jedna z najwybitniejszych i zarazem najpopularniejszych powieści XX wieku. Podczas gdy w warstwie fabularnej jest realistyczną sagą rodziny kalifornijskich ranczerów, jej drugie, głębsze dno można odczytywać jako reinterpretację biblijnej historii o Kainie i Ablu i przypowieść o walce dobra ze złem w człowieku.', 'FICTION', 1952);
@@ -58,15 +62,21 @@ INSERT INTO book(book_id, title, description, genre, original_publication_year) 
 Akcja jest osadzona w starożytnych Atenach podczas nocy świętojańskiej. Trwają przygotowania do ślubu księcia ateńskiego Tezeusza z Hipolitą, królową Amazonek. Trzy pary kochanków: Hermia i Lizander, Helena i Demetriusz oraz należący do ponadnaturalnego świata Oberon i Tytania za sprawą sprytnej interwencji elfa Puka przeżywają szaloną, pełną namiętności i magii noc.
 Shakespeare w Śnie nocy letniej po mistrzowsku podjął motywy snu i jawy, zderzenia marzeń i rzeczywistości. Nie brak też elementu komicznego w postaci amatorskiej trupy próbującej z okazji zaślubin książęcej pary wystawić sztukę o Pyramie i Tyzbe.', 'ROMANCE', 1605);
 INSERT INTO book(book_id, title, description, genre, original_publication_year) VALUES (16, 'Folwark zwierzęcy', 'Orwell pisał: „»Folwark zwierzęcy« miał być przede wszystkim satyrą na rewolucję rosyjską. Jednak, jak podkreślam, przesłanie utworu jest szersze – chciałem wyrazić w nim myśl, iż ów szczególny rodzaj rewolucji (gwałtowna rewolucja oparta na konspiracji, z motorem napędowym w postaci nieświadomie żądnych władzy osób) może doprowadzić jedynie do zmiany władców. Mój morał brzmi tak oto: rewolucje mogą przynieść radykalną poprawę, gdy masy będą czujne i będą wiedzieć, jak pozbyć się swych przywódców, gdy tamci zrobią, co do nich należy. (...) Nie można robić rewolucji, jeśli nie robi się jej dla siebie; nie ma czegoś takiego jak dobrotliwa dyktatura".', 'FICTION', 1945);
--- INSERT INTO book(book_id, title, description, genre, original_publication_year) VALUES (17, '', '','', );
--- INSERT INTO book(book_id, title, description, genre, original_publication_year) VALUES (18, '', '','', );
--- INSERT INTO book(book_id, title, description, genre, original_publication_year) VALUES (19, '', '','', );
--- INSERT INTO book(book_id, title, description, genre, original_publication_year) VALUES (20, '', '','', );
--- INSERT INTO book(book_id, title, description, genre, original_publication_year) VALUES (21, '', '','', );
--- INSERT INTO book(book_id, title, description, genre, original_publication_year) VALUES (22, '', '','', );
--- INSERT INTO book(book_id, title, description, genre, original_publication_year) VALUES (23, '', '','', );
--- INSERT INTO book(book_id, title, description, genre, original_publication_year) VALUES (24, '', '','', );
--- INSERT INTO book(book_id, title, description, genre, original_publication_year) VALUES (25, '', '', '', );
+INSERT INTO book(book_id, title, description, genre, original_publication_year) VALUES (17, 'Ostatnie życzenie', 'Później mówiono, że człowiek ów nadszedł od północy, od Bramy Powroźniczej. Nie był stary, ale włosy miał prawie zupełnie białe. Kiedy ściągnął płaszcz, okazało się, że na pasie za plecami ma miecz. Nie było w tym nic dziwnego, w Wyzimie prawie wszyscy chodzili z bronią, ale nikt nie nosił miecza na plecach niby łuku czy kołczana. Białowłosego przywiodło do miasta królewskie orędzie: trzy tysiące orenów nagrody za odczarowanie nękającej mieszkańców Wyzimy strzygi. Takie czasy nastały. Dawniej po lasach jeno wilki wyły, teraz namnożyło się wszelakiego paskudztwa – gdzie spojrzysz, tam upiory, strzygi, bobołaki plugawe, bazyliszki, diaboły, żywiołaki, wiły i utopce. Tu nie wystarczą zwykłe czary ani osinowe kołki. Tu trzeba profesjonalisty. A przybysz z dalekiej Rivii takim profesjonalistą jest. To wiedźmin Geralt, mistrz miecza i magii, mutant zaprogramowany, by strzec na świecie moralnej i biologicznej równowagi.','FANTASY', 2010);
+INSERT INTO book(book_id, title, description, genre, original_publication_year) VALUES (18, 'Szukając Alaski', 'Porównywany z przełomowym "Buszującym w zbożu" J.D. Salingera literacki debiut Johna Greena to powieść o myślących i wrażliwych młodych ludziach. Zbuntowanych, szukających intensywnych wrażeń i odpowiedzi na najważniejsze pytania: o miłość, która wywraca świat do góry nogami, o przyjaźń, której doświadcza się na całe życie.
+Niezapomniana opowieść o odkrywającym życie Milesie zakochanym w szalonej, zbuntowanej Alasce, dzięki której odnalazł Wielkie Być Może – czyli najintensywniejsze i najprawdziwsze doświadczenie rzeczywistości.','ROMANCE', 2007);
+INSERT INTO book(book_id, title, description, genre, original_publication_year) VALUES (19, 'Oskar i Pani Róża', 'Codziennie patrz na świat, jakbyś oglądał go po raz pierwszy.
+Czy w ciągu dwunastu dni można poznać smak życia i odkryć jego najgłębszy sens? Dziesięcioletni Oskar leży w szpitalu i nie wierzy już w żadne bajki. Na jego drodze staje tajemnicza pani Róża, która ma za sobą karierę zapaśniczki i potrafi znaleźć wyjście z każdej sytuacji…
+"Oskar i Pani Róża" to najsłynniejsza powieść Érica-Emmanuela Schmitta, znakomitego francuskiego pisarza i filozofa, którego książki przetłumaczono na 35 języków. Czytelnicy na całym świecie pokochali go za niezrównaną wrażliwość i mądrość, z jaką opisuje nawet najbardziej skomplikowane emocje.','CHILDRENS', 2017);
+INSERT INTO book(book_id, title, description, genre, original_publication_year) VALUES (20, 'Buszujący w zbożu', 'Bohaterem ''Buszującego w zbożu'' jest szesnastoletni uczeń, Holden Caulfield, który nie mogąc pogodzić się z otaczającą go głupotą, podłością, a przede wszystkim zakłamaniem, ucieka z college`u i przez kilka dni ''buszuje'' po Nowym Jorku, nim wreszcie powróci do domu rodzinnego. Historia tych paru dni, którą opowiada swym barwnym językiem, jest na pierwszy rzut oka przede wszystkim zabawna, jednakże rychło spostrzegamy, że pod pozorami komizmu ważą się tutaj sprawy bynajmniej nie błahe...','ADVENTURE', 1951);
+INSERT INTO book(book_id, title, description, genre, original_publication_year) VALUES (21, 'Joyland', 'Devin Jones, student college’u, zatrudnia się na okres wakacji w lunaparku, by zapomnieć o dziewczynie, która złamała mu serce. Tam jednak zmuszony jest zmierzyć się z czymś dużo straszniejszym: brutalnym morderstwem sprzed lat, losem umierającego dziecka i mrocznymi prawdami o życiu – i tym, co po nim następuje. Wszystko to sprawi, że jego świat już nigdy nie będzie taki sam...
+Życie nie zawsze jest ustawioną grą. Czasem nagrody są prawdziwe. Bywają też cenne.
+Pasjonująca opowieść o miłości i stracie, o dorastaniu i starzeniu się – i o tych, którym nie dane jest doświadczyć ani jednego, ani drugiego, bo śmierć zabiera ich przedwcześnie.
+„Joyland” to Stephen King w szczytowej pisarskiej formie, równie poruszający jak „Zielona Mila” czy „Skazani na Shawshank”. To jednocześnie kryminał, horror i słodko-gorzka powieść o dojrzewaniu, która poruszy serce nawet najbardziej cynicznego czytelnika.','HORROR', 2013);
+INSERT INTO book(book_id, title, description, genre, original_publication_year) VALUES (22, 'Lśnienie', 'To jeden z najlepszych współczesnych horrorów. Nastrój grozy i napięcia potęguje się w niej z każdą minutą. Pięcioletni chłopiec Danny znalazł się z rodzicami w opustoszałym na zimie hotelu. Wrażliwe, obdarzone zdolnościami wizjonerskimi dziecko odbiera fluidy czające się w jego murach były one świadkami krwawych porachunków świata przestępczego i milionerów. Straszliwe zdarzenia, które kończą fabułę, są jednak niczym w porównaniu z przejściami psychicznymi bohaterów.','HORROR', 1978);
+INSERT INTO book(book_id, title, description, genre, original_publication_year) VALUES (23, 'Rok 1984', 'Wielki Brat Patrzy – to właśnie napisy tej treści, w antyutopii Orwella krzyczące z plakatów rozlepionych po całym Londynie, natchnęły twórców telewizyjnego show „Big Brother”. Czyżby wraz z upadkiem komunizmu wielka, oskarżycielska powieść straciła swoją rację bytu, stając się zaledwie inspiracją programu rozrywkowego? Nie. Bo ukazuje świat, który zawsze może powrócić. Świat pustych sklepów, permanentnej wojny, jednej wiary.
+Klaustrofobiczny świat Wielkiego Brata, w którym każda sekunda ludzkiego życia znajduje się pod kontrolą, a dominującym uczuciem jest strach. Świat, w którym ludzie czują się bezradni i samotni, miłość uchodzi za zbrodnię, a takie pojęcie jak „wolność” i „sprawiedliwość” nie istnieją. Na kuli ziemskiej są miejsca, gdzie ten świat wciąż trwa. I zawsze znajdą się cudotwórcy gotowi obiecywać stworzenie nowego, który od wizji Orwella dzieli tylko krok. Niestety, piekło wybrukowane jest dobrymi chęciami. A dwa plus dwa wcale nie musi się równać cztery.','FICTION', 1948);
+INSERT INTO book(book_id, title, description, genre, original_publication_year) VALUES (24, 'Romeo i Julia', 'Matka Julii Kapulet postanawia wydać córkę za Parysa (jest to krewny księcia Werony). Organizuje ona bal, na którym młodzi mają się zapoznać. Zjawia się tam też potomek zwaśnionego z nimi rodu Monteki, Romeo. Romeo i Julia zakochują się w sobie „od pierwszego wejrzenia”. Wkrótce w tajemnicy biorą ze sobą ślub. Jednak los bywa okrutny….','ROMANCE', 1597);
 
 INSERT INTO author_book(author_id, book_id) VALUES (1, 1);
 INSERT INTO author_book(author_id, book_id) VALUES (2, 2);
@@ -84,6 +94,14 @@ INSERT INTO author_book(author_id, book_id) VALUES (12, 13);
 INSERT INTO author_book(author_id, book_id) VALUES (13, 14);
 INSERT INTO author_book(author_id, book_id) VALUES (14, 15);
 INSERT INTO author_book(author_id, book_id) VALUES (15, 16);
+INSERT INTO author_book(author_id, book_id) VALUES (16, 17);
+INSERT INTO author_book(author_id, book_id) VALUES (17, 18);
+INSERT INTO author_book(author_id, book_id) VALUES (18, 19);
+INSERT INTO author_book(author_id, book_id) VALUES (19, 20);
+INSERT INTO author_book(author_id, book_id) VALUES (7, 21);
+INSERT INTO author_book(author_id, book_id) VALUES (7, 22);
+INSERT INTO author_book(author_id, book_id) VALUES (15, 23);
+INSERT INTO author_book(author_id, book_id) VALUES (14, 24);
 
 INSERT INTO publishing_house(publishing_house_id, name, foundation_year) VALUES (1, 'Albatros', 1990);
 INSERT INTO publishing_house(publishing_house_id, name, foundation_year) VALUES (2, 'Prószyński i S-ka', 1990);
@@ -125,13 +143,29 @@ INSERT INTO issue(issue_id, language, publication_year, number_of_pages, cover_t
 INSERT INTO issue(issue_id, language, publication_year, number_of_pages, cover_type, book_type, price, image_url, background_url, publishing_house_id, book_id) VALUES
 (16, 'Polski', 2019, 315, null, 'EBOOK', 28.99, 'https://s.lubimyczytac.pl/upload/books/4900000/4900973/787844-352x500.jpg', 'https://i.ytimg.com/vi/on2flGIRmCM/maxresdefault.jpg', 4, 13);
 INSERT INTO issue(issue_id, language, publication_year, number_of_pages, cover_type, book_type, price, image_url, background_url, publishing_house_id, book_id) VALUES
-(17, 'Polski', 2017, 192, 'PAPERBACK', 'BOOK', 40.99, 'https://s.lubimyczytac.pl/upload/books/4798000/4798546/582908-352x500.jpg', 'https://lektury.kochamjp.pl/wp-content/uploads/2011/05/proces_00.jpg', 5, 14);
+(17, 'Polski', 2017, 192, 'PAPERBACK', 'BOOK', 40.99, 'https://s.lubimyczytac.pl/upload/books/4798000/4798546/582908-352x500.jpg', 'http://i.idnes.cz/09/072/gal/OB2c70c7_3.jpg', 5, 14);
 INSERT INTO issue(issue_id, language, publication_year, number_of_pages, cover_type, book_type, price, image_url, background_url, publishing_house_id, book_id) VALUES
 (18, 'Polski', 1998, 85, 'PAPERBACK', 'BOOK', 35.99, 'https://s.lubimyczytac.pl/upload/books/212000/212496/246097-352x500.jpg', 'https://www.gdansk.pl/download/2020-03/146157.jpg', 6, 15);
 INSERT INTO issue(issue_id, language, publication_year, number_of_pages, cover_type, book_type, price, image_url, background_url, publishing_house_id, book_id) VALUES
 (19, 'Polski', 2006, 136, 'PAPERBACK', 'BOOK', 42.89, 'https://s.lubimyczytac.pl/upload/books/48000/48379/352x500.jpg', 'https://ocdn.eu/pulscms-transforms/1/s5UktkpTURBXy9lMDYxOWI3NDZmNmI3MTMyYjMxMTEwMTcwNDdjM2U3OS5qcGeRlQMAH80EAM0CQA', 1, 16);
+INSERT INTO issue(issue_id, language, publication_year, number_of_pages, cover_type, book_type, price, image_url, background_url, publishing_house_id, book_id) VALUES
+(20, 'Polski', 2010, 288, null, 'EBOOK', 29.99, 'https://s.lubimyczytac.pl/upload/books/96000/96980/352x500.jpg', 'https://static.polityka.pl/_resource/res/path/78/f9/78f90ad4-05ce-43d7-ac93-d57cdfb30171_f1400x900', 1, 17);
+INSERT INTO issue(issue_id, language, publication_year, number_of_pages, cover_type, book_type, price, image_url, background_url, publishing_house_id, book_id) VALUES
+(21, 'Polski', 2013, 320, 'PAPERBACK', 'BOOK', 32.99, 'https://s.lubimyczytac.pl/upload/books/188000/188946/170383-352x500.jpg', 'https://d-tm.ppstatic.pl/kadry/73/7f/b9eed43114046984c707f47c0be4.1000.jpg', 2, 18);
+INSERT INTO issue(issue_id, language, publication_year, number_of_pages, cover_type, book_type, price, image_url, background_url, publishing_house_id, book_id) VALUES
+(22, 'Polski', 2017, 96, 'HARDCOVER', 'BOOK', 48.99, 'https://s.lubimyczytac.pl/upload/books/4805000/4805264/594213-352x500.jpg', 'https://programtv.naziemna.info/images/moviedb/00051/51880/tlo/oskar-i-pani-r%C3%B3%C5%BCa---backdrop-w1280.jpg', 3, 19);
+INSERT INTO issue(issue_id, language, publication_year, number_of_pages, cover_type, book_type, price, image_url, background_url, publishing_house_id, book_id) VALUES
+(23, 'Polski', 2017, null, null, 'AUDIOBOOK', 34.89, 'https://s.lubimyczytac.pl/upload/books/4856000/4856683/677920-352x500.jpg', 'http://static.prsa.pl/images/5fb34f8f-e568-4bd9-8780-1089f30a3df6.jpg', 4, 20);
+INSERT INTO issue(issue_id, language, publication_year, number_of_pages, cover_type, book_type, price, image_url, background_url, publishing_house_id, book_id) VALUES
+(24, 'Polski', 2013, 336, 'PAPERBACK', 'BOOK', 24.79, 'https://s.lubimyczytac.pl/upload/books/176000/176275/298556-352x500.jpg', 'https://static1.srcdn.com/wordpress/wp-content/uploads/2018/10/Joyland-Stephen-King-Freeform.jpg',5, 21);
+INSERT INTO issue(issue_id, language, publication_year, number_of_pages, cover_type, book_type, price, image_url, background_url, publishing_house_id, book_id) VALUES
+(25, 'Polski', 1997, 520, 'SOFTWRAP', 'BOOK', 35.89, 'https://s.lubimyczytac.pl/upload/books/304000/304061/940164-352x500.jpg', 'https://kulturalnemedia.pl/wp-content/uploads/2018/12/danny-lloyd.jpg', 6, 22);
+INSERT INTO issue(issue_id, language, publication_year, number_of_pages, cover_type, book_type, price, image_url, background_url, publishing_house_id, book_id) VALUES
+(26, 'Polski', 2014, 360, 'PAPERBACK', 'BOOK', 29.89, 'https://s.lubimyczytac.pl/upload/books/241000/241181/839087-352x500.jpg', 'https://instagalleryapp.com/images/are-we-living-in-an-orwellian-nightmare-did-1984-predict-real-world-surveillance.jpg', 6, 23);
+INSERT INTO issue(issue_id, language, publication_year, number_of_pages, cover_type, book_type, price, image_url, background_url, publishing_house_id, book_id) VALUES
+(27, 'Polski', 2007, 105, 'PAPERBACK', 'BOOK', 33.89, 'https://s.lubimyczytac.pl/upload/books/4900000/4900298/760411-352x500.jpg', 'https://aleklasa.pl/wp-content/uploads/2018/02/Romeo-i-Julia-2-bis.jpg', 2, 24);
 -- INSERT INTO issue(issue_id, language, publication_year, number_of_pages, cover_type, book_type, price, image_url, background_url, publishing_house_id, book_id) VALUES
--- (12, 'Polski', , , , 'BOOK', , '', '', , );
+-- (20, 'Polski', , , , 'BOOK', , '', '', , );
 
 INSERT INTO assortment(assortment_id, count, bookstore_id, issue_id) VALUES (1, 300, 1, 1);
 INSERT INTO assortment(assortment_id, count, bookstore_id, issue_id) VALUES (2, 200, 1, 2);
@@ -159,3 +193,13 @@ INSERT INTO assortment(assortment_id, count, bookstore_id, issue_id) VALUES (24,
 INSERT INTO assortment(assortment_id, count, bookstore_id, issue_id) VALUES (25, 12, 3, 18);
 INSERT INTO assortment(assortment_id, count, bookstore_id, issue_id) VALUES (26, 36, 4, 19);
 INSERT INTO assortment(assortment_id, count, bookstore_id, issue_id) VALUES (27, 8, 4, 19);
+INSERT INTO assortment(assortment_id, count, bookstore_id, issue_id) VALUES (28, 2, 1, 20);
+INSERT INTO assortment(assortment_id, count, bookstore_id, issue_id) VALUES (29, 12, 2, 21);
+INSERT INTO assortment(assortment_id, count, bookstore_id, issue_id) VALUES (30, 24, 3, 22);
+INSERT INTO assortment(assortment_id, count, bookstore_id, issue_id) VALUES (31, 15, 4, 23);
+INSERT INTO assortment(assortment_id, count, bookstore_id, issue_id) VALUES (32, 26, 4, 24);
+INSERT INTO assortment(assortment_id, count, bookstore_id, issue_id) VALUES (33, 18, 1, 25);
+INSERT INTO assortment(assortment_id, count, bookstore_id, issue_id) VALUES (34, 7, 2, 26);
+INSERT INTO assortment(assortment_id, count, bookstore_id, issue_id) VALUES (35, 1, 3, 27);
+INSERT INTO assortment(assortment_id, count, bookstore_id, issue_id) VALUES (36, 16, 4, 20);
+INSERT INTO assortment(assortment_id, count, bookstore_id, issue_id) VALUES (37, 8, 3, 27);
