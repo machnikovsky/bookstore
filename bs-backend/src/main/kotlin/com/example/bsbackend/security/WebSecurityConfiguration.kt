@@ -29,7 +29,7 @@ class WebSecurityConfiguration(
             .csrf().disable()
             .authorizeRequests()
             .antMatchers("/book/**", "/issue/**", "/user/register", "/auth/**").permitAll()
-            .antMatchers("/rating/**").permitAll()
+            .antMatchers("/rating/**", "/cart", "/cart/**").permitAll()
             .antMatchers("/user/info/**", "/rating/add").hasAnyRole("USER", "WORKER", "ADMIN")
             .antMatchers("/user/admin").hasRole("ADMIN")
             .antMatchers("/user/worker").hasRole("WORKER")

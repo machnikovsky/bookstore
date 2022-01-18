@@ -18,6 +18,8 @@ DROP TABLE IF EXISTS account CASCADE;
 DROP TABLE IF EXISTS bookstore CASCADE;
 DROP TABLE IF EXISTS person CASCADE;
 DROP TABLE IF EXISTS book CASCADE;
+DROP TABLE IF EXISTS cart CASCADE;
+DROP TABLE IF EXISTS cart_position CASCADE;
 
 -- DROPPING SEQUENCES
 DROP SEQUENCE IF EXISTS issue_issue_id_seq;
@@ -34,6 +36,8 @@ DROP SEQUENCE IF EXISTS campaign_campaign_id_seq;
 DROP SEQUENCE IF EXISTS discount_discount_id_seq;
 DROP SEQUENCE IF EXISTS shipment_shipment_id_seq;
 DROP SEQUENCE IF EXISTS issue_order_issue_order_id_seq;
+DROP SEQUENCE IF EXISTS cart_cart_id_seq;
+DROP SEQUENCE IF EXISTS cart_position_cart_position_id_seq;
 
 -- DROPPING ENUMS
 DROP TYPE IF EXISTS cover_type CASCADE;
@@ -184,6 +188,18 @@ CREATE TABLE rating (
     review text,
     book_id integer REFERENCES book(book_id),
     account_id integer REFERENCES account(account_id)
+);
+
+CREATE TABLE cart (
+    cart_id serial PRIMARY KEY,
+    account_id integer REFERENCES account(account_id)
+);
+
+CREATE TABLE cart_position (
+    cart_position_id serial PRIMARY KEY,
+    count integer NOT NULL,
+    cart_id integer REFERENCES cart(cart_id),
+    issue_id integer REFERENCES issue(issue_id)
 );
 
 CREATE TABLE author_book (

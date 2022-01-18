@@ -29,6 +29,7 @@ const SingleBook = ({type}) => {
     const [isAvailable, setIsAvailable] = useState(false);
     const [sold, setSold] = useState(0);
     const [ordered, setOrdered] = useState(0);
+    const [addedToCart, setAddedToCart] = useState(0);
     const [roles, setRoles] = useState([]);
     const scroll = Scroll.animateScroll;
     const navigate = useNavigate();
@@ -37,11 +38,9 @@ const SingleBook = ({type}) => {
 
     useEffect(() => {
 
-
         GetAndSetUtil.getAndSetSingleIssue(issueId, setBook);
         GetAndSetUtil.getAndSetReviews(bookId, setReviews);
         GetAndSetUtil.getAndSetUserRoles(user, setRoles);
-
 
         GetAndSetUtil.getAndSetIsRead(bookId, setIsRead)
             .then(watched => {
@@ -49,7 +48,6 @@ const SingleBook = ({type}) => {
                     GetAndSetUtil.getAndSetScoreAndReview(bookId, setScore, setReview);
                 }
             })
-
 
         if (user) {
             ApiCall.getUserInfo(user)
@@ -73,7 +71,7 @@ const SingleBook = ({type}) => {
 
     useEffect(() => {
         GetAndSetUtil.getAndSetIsIssueAvailable(issueId, setIsAvailable);
-    }, [sold, ordered])
+    }, [sold, ordered, addedToCart])
 
 
     const handleShowReviewFormButton = (e) => {
@@ -130,7 +128,7 @@ const SingleBook = ({type}) => {
 
     const handleAddToCart = async (e) => {
         e.preventDefault();
-        //TODO: Implement adding to cart logic
+        GetAndSetUtil.addToCartAndIncrementCart(issueId, addedToCart, setAddedToCart);
     }
 
     const handleSellStationary = (e) => {
@@ -186,7 +184,10 @@ const SingleBook = ({type}) => {
                                 <div className="overview">{ book.description }</div>
                                 <div className="single-book-buttons">
                                     { user && roles.includes('USER') && !isRead && <button className="single-book-button" onClick={handleShowReviewFormButton}>{buttonText}</button> }
-                                    { user && roles.includes('USER') && <button className="single-book-button" onClick={handleAddToCart}>Dodaj do koszyka</button> }
+                                    { user && roles.includes('USER') && ( isAvailable ?
+                                            <button className="single-book-button green-bg" onClick={handleAddToCart}>Dodaj do koszyka</button> :
+                                            <button className="single-book-button red-bg">Niedostępne</button> )
+                                    }
                                     { user && roles.includes('WORKER') && ( isAvailable ?
                                         <button className="single-book-button green-bg" onClick={handleSellStationary}>Sprzedaj stacjonarnie</button> :
                                         <button className="single-book-button red-bg">Niedostępne</button> )

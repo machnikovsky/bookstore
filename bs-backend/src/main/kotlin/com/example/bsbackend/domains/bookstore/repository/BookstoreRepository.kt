@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository
 
 
 @Repository
-interface BookstoreRepository : JpaRepository<Bookstore, Int>
+interface BookstoreRepository : JpaRepository<Bookstore, Int> {
+//    fun findById(id: Int): Bookstore
+}
 
 

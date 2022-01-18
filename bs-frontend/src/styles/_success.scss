@@ -1,0 +1,29 @@
+.success-container {
+  margin: 2vh auto;
+  background-color: rgba(#ddd, 0.05);
+
+  border-radius: 50%;
+  height: 35vw;
+  width: 35vw;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 1.4em;
+
+  .image-container {
+    height: 30vh;
+    width: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      max-height: 100%;
+      max-width: 100%;
+    }
+  }
+
+  .image-container, .text {
+    position: relative;
+    bottom: 8%;
+  }
+}

@@ -8,6 +8,7 @@ import com.example.bsbackend.domains.book.model.dto.getSorted
 import com.example.bsbackend.domains.book.model.dto.getType
 import com.example.bsbackend.domains.book.model.entity.Book
 import com.example.bsbackend.domains.book.repository.BookRepository
+import com.example.bsbackend.domains.cart.model.dto.IssueCartDTO
 import com.example.bsbackend.domains.issue.model.dto.IssueInfoDTO
 import com.example.bsbackend.domains.issue.model.entity.Issue
 import com.example.bsbackend.domains.issue.model.enum.BookType
@@ -25,15 +26,15 @@ import org.springframework.stereotype.Service
 
 @Service
 class IssueService(
-    private val issueRepository: IssueRepository,
-    private val bookRepository: BookRepository,
-    private val ratingRepository: RatingRepository,
-    private val assortmentRepository: AssortmentRepository,
-    private val userRepository: UserRepository,
-    private val modelMapper: ModelMapper
+     val issueRepository: IssueRepository,
+     val bookRepository: BookRepository,
+     val ratingRepository: RatingRepository,
+     val assortmentRepository: AssortmentRepository,
+     val userRepository: UserRepository,
+     val modelMapper: ModelMapper
 ) {
     fun getSingleIssue(issueId: Int): ResponseEntity<Any> =
-        issueRepository.findIssueByIssueId(issueId)
+        issueRepository.findFistByIssueId(issueId)
             ?.let { mapIssueToDTO(it) }
             ?.let { ResponseEntity.ok(it) }
             ?: ResponseEntity.status(NOT_FOUND).body("Issue with id $issueId was not found.")
@@ -103,7 +104,7 @@ class IssueService(
     fun orderAnIssue(issueId: Int): ResponseEntity<Any> {
         val bookstore = getCurrentUser()?.bookstore
             ?: return ResponseEntity.status(NOT_FOUND).body("Could not find bookstore of logged in user.")
-        val issue = issueRepository.findIssueByIssueId(issueId)
+        val issue = issueRepository.findFistByIssueId(issueId)
             ?: return ResponseEntity.status(NOT_FOUND).body("Could not issue with ID $issueId.")
 
         return bookstore
@@ -121,7 +122,7 @@ class IssueService(
     }
 
 
-    private fun getBooksListBasedOnQuery(query: String?): List<Book> =
+     fun getBooksListBasedOnQuery(query: String?): List<Book> =
         if (query != null) {
             bookRepository.findByTitleContainingIgnoreCaseOrAuthorsFirstNameContainingIgnoreCaseOrAuthorsLastNameContainingIgnoreCase(
                 query,
@@ -132,7 +133,7 @@ class IssueService(
             bookRepository.findAll()
         }
 
-    private fun mapIssueToDTO(issue: Issue): IssueInfoDTO? {
+     fun mapIssueToDTO(issue: Issue): IssueInfoDTO? {
         val issueInfoDTO: IssueInfoDTO = modelMapper.map(issue, IssueInfoDTO::class.java)
         val book = bookRepository.findByBookId(issue.book.bookId)
         val ratings = ratingRepository.findAllByBookBookId(issue.book.bookId)
@@ -157,28 +158,34 @@ class IssueService(
             }
     }
 
-    private fun List<Book>.getDtoOfBooksFirstIssues(): List<IssueInfoDTO?> =
+    fun mapIssueToCartDTO(issue: Issue, count: Int): IssueCartDTO =
+        modelMapper.map(mapIssueToDTO(issue), IssueCartDTO::class.java).copy(
+            count = count,
+            totalPrice = "%.2f".format(issue.price * count).replace(",", ".").toFloatOrNull()?:0f
+        )
+
+     fun List<Book>.getDtoOfBooksFirstIssues(): List<IssueInfoDTO?> =
         this.map { getDtoOfBookFirstIssue(it.bookId) }
 
-    private fun getDtoOfBookFirstIssue(bookId: Int): IssueInfoDTO? =
+     fun getDtoOfBookFirstIssue(bookId: Int): IssueInfoDTO? =
         issueRepository.findFirstByBookBookId(bookId)
             ?.let { mapIssueToDTO(it) }
 
-    private fun List<Book>.getDtoOfBooksFirstIssuesWithType(bookType: BookType?): List<IssueInfoDTO?> =
+     fun List<Book>.getDtoOfBooksFirstIssuesWithType(bookType: BookType?): List<IssueInfoDTO?> =
         if (bookType != null)
             this.mapNotNull { getDtoOfBookFirstIssueWithType(it.bookId, bookType) }
         else
             this.map { getDtoOfBookFirstIssue(it.bookId) }
 
-    private fun getDtoOfBookFirstIssueWithType(bookId: Int, bookType: BookType): IssueInfoDTO? =
+     fun getDtoOfBookFirstIssueWithType(bookId: Int, bookType: BookType): IssueInfoDTO? =
         issueRepository.findFirstByBookBookIdAndBookType(bookId, bookType)
             ?.takeIf { it.isNotEmpty() }
             ?.first()
             ?.let { mapIssueToDTO(it) }
 
-    private fun getCurrentUser(): User? =
+     fun getCurrentUser(): User? =
         userRepository.findByUsernameIgnoreCase(getCurrentUserUsername())
 
-    private fun getCurrentUserUsername(): String? =
+     fun getCurrentUserUsername(): String? =
         SecurityContextHolder.getContext().authentication.name
 }

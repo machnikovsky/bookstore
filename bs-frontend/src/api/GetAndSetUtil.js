@@ -129,6 +129,36 @@ const getAndSetUserRoles = (username, setRoles) => {
 }
 
 
+const getAndSetCart = (setCartItems, setTotalPrice) => {
+    ApiCall.getCart()
+        .then(res => {
+            return res.data;
+        })
+        .then(data => {
+            setCartItems(data.cart_items);
+            setTotalPrice(data.total_price);
+        })
+        .catch(e => {
+            setCartItems([]);
+            setTotalPrice(0);
+            console.log('Error getting cart: ', e.response.data);
+        });
+}
+
+
+const addToCartAndIncrementCart = (issueId, counter, set) => {
+    ApiCall.addToCart(issueId)
+        .then(res => {
+            return res.data;
+        })
+        .then(data => {
+            set(counter + 1);
+        })
+        .catch(e => {
+            console.log(e);
+        });
+}
+
 
 
 
@@ -266,7 +296,8 @@ const SearchUtil = {
     sellBookAndIncrementSold,
     orderBookAndIncrementOrdered,
     getAndSetUserRoles,
-
+    getAndSetCart,
+    addToCartAndIncrementCart,
 
     getAndSetFilteredListWithNewPage,
     getAndSetQueriedListWithNewPage,
