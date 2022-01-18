@@ -18,6 +18,7 @@ class CartService(
     private val issueService: IssueService
 ) {
     fun addIssueToCart(issueId: Int): ResponseEntity<Any> {
+        //TODO: Implement 'check if issue is available in your bookstore' logic
         val issue = issueRepository.findIssueByIssueId(issueId)
             ?: return ResponseEntity.status(NOT_FOUND).body("Could not find issue with ID $issueId")
         val user = issueService.getCurrentUser()
