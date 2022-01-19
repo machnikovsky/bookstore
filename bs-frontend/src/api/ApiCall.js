@@ -117,7 +117,7 @@ const ApiCall = {
     addNewIssue,
     updateUserInfo,
     getUserStats,
-    deleteMyAccount
+    deleteMyAccount,
     getOtherIssues
 };
 
