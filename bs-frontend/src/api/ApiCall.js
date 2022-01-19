@@ -64,7 +64,6 @@ const addNewIssue = (dto) => {
     return axios.post(API_URL + `issue/add`, dto, { headers: authHeader() })
 }
 
-
 const getGenres = () => {
   return axios.get(API_URL + `book/genres`, {});
 };

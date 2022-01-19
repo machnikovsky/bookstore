@@ -8,19 +8,19 @@ import user_icon from '../../assets/icons/user.png';
 import date from '../../assets/icons/date.png';
 import type_icon from '../../assets/icons/type.png';
 import not_found from '../../assets/other/404-image-not-found.jpg';
+import bg_not_found from '../../assets/other/bg_not_found.png';
 import UserContext from '../../auth/UserContext';
 import * as Scroll from 'react-scroll';
 import Stars from './Stars';
 
 
-const SingleBook = ({type}) => {
+const SingleBook = () => {
 
-    const {bookId, issueId } = useParams();
+    const {bookId, issueId} = useParams();
     const {user, setUser} = useContext(UserContext);
     const [reviews, setReviews] = useState([]);
     const [book, setBook] = useState(null);
     const [isRead, setIsRead] = useState(false);
-    const [userInfo, setUserInfo] = useState(null);
     const [buttonText, setButtonText] = useState('Oceń książkę');
     const [showForm, setShowForm] = useState(false);
     const [score, setScore] = useState(null);
@@ -51,14 +51,7 @@ const SingleBook = ({type}) => {
 
         if (user) {
             ApiCall.getUserInfo(user)
-            .then(res => {
-                return res.data;
-             })
-            .then(data => {
-                setUserInfo(data);
-            })
-            .catch(e => {
-                setUserInfo(null);
+            .catch(() => {
                 setUser(null);
                 navigate('/logout');
             });
@@ -150,6 +143,7 @@ const SingleBook = ({type}) => {
                         <div className="top-book-background">
                             <img 
                                 src={ book.background_url }
+                                onError={(event) => event.target.setAttribute("src", bg_not_found)}
                                 className="background"
                                 alt="book"/> 
                         </div>

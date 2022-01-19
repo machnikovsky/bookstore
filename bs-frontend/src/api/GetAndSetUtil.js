@@ -92,7 +92,7 @@ const sellBookAndIncrementSold = (issueId, counter, set) => {
         .then(res => {
             return res.data;
         })
-        .then(data => {
+        .then(() => {
             set(counter + 1);
         })
         .catch(e => {
@@ -105,14 +105,13 @@ const orderBookAndIncrementOrdered = (issueId, counter, set) => {
         .then(res => {
             return res.data;
         })
-        .then(data => {
+        .then(() => {
             set(counter + 1);
         })
         .catch(e => {
             console.log(e);
         });
 }
-
 
 const getAndSetUserRoles = (username, setRoles) => {
     ApiCall.getUserInfo(username)
@@ -127,7 +126,6 @@ const getAndSetUserRoles = (username, setRoles) => {
             setRoles([]);
         });
 }
-
 
 const getAndSetCart = (setCartItems, setTotalPrice) => {
     ApiCall.getCart()
@@ -145,68 +143,18 @@ const getAndSetCart = (setCartItems, setTotalPrice) => {
         });
 }
 
-
 const addToCartAndIncrementCart = (issueId, counter, set) => {
     ApiCall.addToCart(issueId)
         .then(res => {
             return res.data;
         })
-        .then(data => {
+        .then(() => {
             set(counter + 1);
         })
         .catch(e => {
             console.log(e);
         });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const getAndSetFilteredListWithNewPage = (filters, pictureList, setPictureList) => {
-    ApiCall.getFilteredList(filters)
-        .then(res => {
-            return res.data;
-        })
-        .then(data => {
-            if (Array.isArray(pictureList) && pictureList.length) {
-                setPictureList(pictureList.concat(data));
-            } else {
-                setPictureList(data);
-            }
-        })
-        .catch(e => {
-            console.log(e);
-            setPictureList(null);
-        });
-}
-
-
-const getAndSetTrending = (set, setSize) => {
-    ApiCall.getTrending()
-        .then(res => {
-            return res.data;
-        })
-        .then(data => {
-            set(data);
-            setSize(data.length);
-        })
-        .catch(e => {
-            console.log(e.message);
-        });
-}
-
-
-
 
 const getAndSetIsRead = (book_id, set) => {
     return ApiCall.getIsRead(book_id)
@@ -239,8 +187,6 @@ const getAndSetScoreAndReview = (id, setScore, setReview) => {
         });
 }
 
-
-
 const SearchUtil = {
     getAndSetAllIssues,
     getAndSetSingleIssue,
@@ -255,8 +201,7 @@ const SearchUtil = {
     getAndSetUserRoles,
     getAndSetCart,
     addToCartAndIncrementCart,
-    getAndSetScoreAndReview,
-    getAndSetTrending
+    getAndSetScoreAndReview
 };
 
 export default SearchUtil;
