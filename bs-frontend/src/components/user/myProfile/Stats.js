@@ -24,9 +24,7 @@ const Stats = () => {
         User stats
         { userStats && 
         <div className="stats-list">
-            <div className="single-stat"><div>Obejrzane Filmy:</div> <div>{ userStats.movies }</div></div>
-            <div className="single-stat"><div>Obejrzane Seriale:</div> <div>{ userStats.tv }</div></div>
-            <div className="single-stat"><div>Godziny oglądania:</div> <div>{ userStats.time }</div></div>
+            <div className="single-stat"><div>Przeczytane ksiązki</div> <div>{ userStats.books }</div></div>
             </div>
         }
         </div>

@@ -39,7 +39,7 @@ const Cart = () => {
                                     <img
                                         src={item.image_url}
                                         className="background"
-                                        alt="movie"/>
+                                        alt="book"/>
                                 </div>
                             </div>
                             <div className="title-author element">

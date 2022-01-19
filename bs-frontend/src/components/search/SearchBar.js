@@ -6,7 +6,7 @@ function SearchBar({setQuery}) {
         <input
             type="text"
             placeholder="Wprowadź tytuł, rezysera lub słowo kluczowe..."
-            onChange={ e => setQuery(e.target.value == '' ? 'a' : e.target.value) }
+            onChange={ e => setQuery(e.target.value === '' ? 'a' : e.target.value) }
         /> 
         </div>
     )

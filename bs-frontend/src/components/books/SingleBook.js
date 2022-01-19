@@ -8,19 +8,19 @@ import user_icon from '../../assets/icons/user.png';
 import date from '../../assets/icons/date.png';
 import type_icon from '../../assets/icons/type.png';
 import not_found from '../../assets/other/404-image-not-found.jpg';
+import bg_not_found from '../../assets/other/bg_not_found.png';
 import UserContext from '../../auth/UserContext';
 import * as Scroll from 'react-scroll';
 import Stars from './Stars';
 
 
-const SingleBook = ({type}) => {
+const SingleBook = () => {
 
-    const { bookId, issueId } = useParams();
+    const {bookId, issueId} = useParams();
     const {user, setUser} = useContext(UserContext);
     const [reviews, setReviews] = useState([]);
     const [book, setBook] = useState(null);
     const [isRead, setIsRead] = useState(false);
-    const [userInfo, setUserInfo] = useState(null);
     const [buttonText, setButtonText] = useState('Oceń książkę');
     const [showForm, setShowForm] = useState(false);
     const [score, setScore] = useState(null);
@@ -43,22 +43,15 @@ const SingleBook = ({type}) => {
         GetAndSetUtil.getAndSetUserRoles(user, setRoles);
 
         GetAndSetUtil.getAndSetIsRead(bookId, setIsRead)
-            .then(watched => {
-                if (watched) {
+            .then(read => {
+                if (read) {
                     GetAndSetUtil.getAndSetScoreAndReview(bookId, setScore, setReview);
                 }
             })
 
         if (user) {
             ApiCall.getUserInfo(user)
-            .then(res => {
-                return res.data;
-             })
-            .then(data => {
-                setUserInfo(data);
-            })
-            .catch(e => {
-                setUserInfo(null);
+            .catch(() => {
                 setUser(null);
                 navigate('/logout');
             });
@@ -87,7 +80,7 @@ const SingleBook = ({type}) => {
         }
     }
 
-    const handleAddToWatched = async (e) => {
+    const handleAddToRead = async (e) => {
         e.preventDefault();
         let bookRating = {
             'username': user,
@@ -145,13 +138,14 @@ const SingleBook = ({type}) => {
     return (
         <>
             {book &&
-                <div className="single-movie-page-container">
+                <div className="single-book-page-container">
                     <div className="poster-and-info-container">
-                        <div className="top-movie-background">
+                        <div className="top-book-background">
                             <img 
                                 src={ book.background_url }
+                                onError={(event) => event.target.setAttribute("src", bg_not_found)}
                                 className="background"
-                                alt="movie"/> 
+                                alt="book"/> 
                         </div>
                         
                         <div className="poster-container">
@@ -159,25 +153,25 @@ const SingleBook = ({type}) => {
                             src={ book.image_url }
                             onError={(event) => event.target.setAttribute("src", not_found)} 
                             className="poster" 
-                            alt="movie"/>
+                            alt="book"/>
                         </div>
-                        <div className="movie-info">
-                            <div className="movie-title">{ book.title }</div>
-                                <div className="movie-stats">
+                        <div className="book-info">
+                            <div className="book-title">{ book.title }</div>
+                                <div className="book-stats">
                                     <div className="stat">
-                                            <img src={ star } alt="movie"/>
+                                            <img src={ star } alt="book"/>
                                         <div className="value">{ book.mean_score}</div>
                                     </div>
                                     <div className="stat">
-                                        <img src={ page_icon } alt="movie"/>
+                                        <img src={ page_icon } alt="book"/>
                                         <div className="value">{ book.book_type !== "AUDIOBOOK" ? `${book.number_of_pages} stron` : "Audiobook"} </div>
                                     </div>
                                     <div className="stat">
-                                        <img src={ date } alt="movie"/>
+                                        <img src={ date } alt="book"/>
                                         <div className="value">{ book.original_publication_year }</div>
                                     </div>
                                     <div className="stat">
-                                        <img src={ type_icon } alt="movie"/>
+                                        <img src={ type_icon } alt="book"/>
                                         <div className="value">{ book.genre }</div>
                                     </div>
                                 </div>
@@ -208,19 +202,19 @@ const SingleBook = ({type}) => {
                                         value={review}
                                         onChange={e => setReview(e.target.value)}
                                     />
-                                    <button className="add-review-button" onClick={handleAddToWatched}> Dodaj </button>
+                                    <button className="add-review-button" onClick={handleAddToRead}> Dodaj </button>
                                 </form>
                             </div>
                     }
                     {isRead &&
-                        <div className="watched">
+                        <div className="read">
                             <p>Przeczytałeś już te książkę.</p>
                             <p>Twoja ocena:</p>
                             {score > 0 ?
                                 <Stars
                                     setScore={setScore}
                                     onlyDisplay={true}
-                                    watchedScore={score}
+                                    readScore={score}
                                 />
                                 :
                                 'Brak oceny'
@@ -248,7 +242,7 @@ const SingleBook = ({type}) => {
                                     </div>
                                     <div className="review-part">{val.review} </div>
                                     <div className="review-part">
-                                        <img src={ star } alt="movie"/>
+                                        <img src={ star } alt="book"/>
                                         <div className="score">
                                             {val.score ? `${val.score} / 10` : '-'}
                                         </div>
@@ -259,7 +253,7 @@ const SingleBook = ({type}) => {
                     </div>
                 </div>
             }
-
+            
         </>
     )
 }

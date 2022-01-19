@@ -12,7 +12,6 @@ const getFirstIssuesOfBooksByQuery = (query) => {
     return axios.get(API_URL + `issue/query/${query}`, {});
 };
 
-
 const getSingleIssue = (id) => {
     return axios.get(API_URL + `issue/${id}`, {});
 };
@@ -65,48 +64,9 @@ const addNewIssue = (dto) => {
     return axios.post(API_URL + `issue/add`, dto, { headers: authHeader() })
 }
 
-
-
-
-
-
-
-
-const getTrending = () => {
-  return axios.get(API_URL + "movie/trending", {});
-};
-
 const getGenres = () => {
   return axios.get(API_URL + `book/genres`, {});
 };
-
-const getQueriedList = (query, page) => {
-  return axios.get(API_URL + `movie/query/${query}?page=${page}`, {})
-}
-
-const getWatchedMovies = (username) => {
-  return axios.get(API_URL + `watched/movie/all/${username}`, {});
-}
-
-const addTvShowToWatched = (username, tvShowId) => {
-  return axios.post(API_URL + `watched/tv/add/${username}/${tvShowId}`, {}, {});
-}
-
-const getWatchedTvShows = (username) => {
-  return axios.get(API_URL + `watched/tv/all/${username}`, {});
-}
-
-const addNewFriend = (username) => {
-  return axios.post(API_URL + `user/friends/add/${username}`, {}, { headers: authHeader() });
-}
-
-const getAllFriends = () => {
-  return axios.get(API_URL + `user/friends/all`, { headers: authHeader() });
-}
-
-const findFriendsByQuery = (query) => {
-  return axios.get(API_URL + `user/friends/find/${query}`, { headers: authHeader() });
-}
 
 const getUserStats = () => {
   return axios.get(API_URL + `user/stats`, { headers: authHeader() });
@@ -119,17 +79,6 @@ const getAndSetPropositions = () => {
 const getIsRead = (book_id) => {
     return axios.get(API_URL + `rating/${book_id}/isRead`, { headers: authHeader() });
 }
-
-const getReview = (type, username, picture_id) => {
-    return axios.get(API_URL + `watched/${type}/${picture_id}/${username}/review`, {});
-}
-
-const getRecentPictures = (type, id) => {
-    return axios.get(API_URL + `watched/${type}/recent/${id}`, {});
-}
-
-
-
 
 const ApiCall = {
     getFirstIssuesOfAllBooks,
@@ -150,18 +99,7 @@ const ApiCall = {
     addToCart,
     payForItemsInCart,
     addNewIssue,
-
-    getTrending,
-    getQueriedList,
-    getWatchedMovies,
-    addTvShowToWatched,
-    getWatchedTvShows,
-    addNewFriend,
-    getAllFriends,
-    findFriendsByQuery,
     getUserStats,
-    getReview,
-    getRecentPictures
 };
 
 export default ApiCall;
