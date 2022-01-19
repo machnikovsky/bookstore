@@ -1,12 +1,27 @@
 version: '3'
 services:
-  spring:
-    build: .
+  backend:
+    build: ./bs-backend
     ports:
     - 8080:8080
+    depends_on:
+      - db
+    restart: always
   frontend:
-    build: ./frontend
+    build: ./bs-frontend
     ports:
     - 3000:3000
     depends_on:
-      - spring
+      - backend
+    restart: always
+  db:
+    container_name: 'db'
+    image: postgres
+    environment:
+     POSTGRES_PASSWORD: password
+     POSTGRES_USER: postgres
+     POSTGRES_DB: bookstore
+    ports:
+     - 5434:5434
+    restart: always
+    
