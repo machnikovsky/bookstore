@@ -1,6 +1,7 @@
 package com.example.bsbackend.domains.issue.controller
 
 import com.example.bsbackend.domains.book.model.dto.FilterDTO
+import com.example.bsbackend.domains.issue.model.dto.AddIssueDTO
 import com.example.bsbackend.domains.issue.service.IssueService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -41,5 +42,9 @@ class IssueController(val issueService: IssueService) {
     @PostMapping("/{issueId}/order")
     fun orderAnIssue(@PathVariable("issueId") issueId: Int): ResponseEntity<Any> =
         issueService.orderAnIssue(issueId)
+
+    @PostMapping("/add")
+    fun addNewIssue(@RequestBody addIssueDTO: AddIssueDTO): ResponseEntity<Any> =
+        issueService.addNewIssue(addIssueDTO)
 
 }

@@ -12,6 +12,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.boot.runApplication
 import org.springframework.context.event.EventListener
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 import java.sql.Date
 import java.time.LocalDate
@@ -29,7 +30,8 @@ fun main(args: Array<String>) {
 class ApplicationStart(
     val bookstoreRepository: BookstoreRepository,
     val userRepository: UserRepository,
-    val personRepository: PersonRepository
+    val personRepository: PersonRepository,
+    val encoder: PasswordEncoder
 ) {
     @EventListener(ApplicationReadyEvent::class)
     fun addAdminsToDb() {
@@ -40,7 +42,7 @@ class ApplicationStart(
                     userRepository.save(
                         User(
                             username = "${role.name.lowercase(Locale.getDefault())}${it.address}",
-                            password = "admin",
+                            password = encoder.encode("password"),
                             email = "admin@gmail.com",
                             creationDate = Date.valueOf(LocalDate.now()),
                             roles = mutableSetOf(role),
