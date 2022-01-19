@@ -131,7 +131,6 @@ class IssueService(
             ?: ResponseEntity.status(BAD_REQUEST).body("Error ordering an issue.")
     }
 
-
     fun getBooksListBasedOnQuery(query: String?): List<Book> =
         if (query != null) {
             bookRepository.findByTitleContainingIgnoreCaseOrAuthorsFirstNameContainingIgnoreCaseOrAuthorsLastNameContainingIgnoreCase(
