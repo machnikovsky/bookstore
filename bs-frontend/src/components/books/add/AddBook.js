@@ -18,7 +18,7 @@ const AddBook = () => {
     const [originalPublicationYear, setOriginalPublicationYear] = useState('');
     const [language, setLanguage] = useState('');
     const [publicationYear, setPublicationYear] = useState('');
-    const [numberOfPages, setNumberOfPages] = useState('');
+    const [numberOfPages, setNumberOfPages] = useState(0);
     const [coverType, setCoverType] = useState('HARDCOVER');
     const [bookType, setBookType] = useState('BOOK');
     const [price, setPrice] = useState('');
@@ -28,8 +28,6 @@ const AddBook = () => {
     const [publishingHouse, setPublishingHouse] = useState('Albatros');
 
     const handleAdd = async (e) => {
-        e.preventDefault();
-
         e.preventDefault();
         let addBookDTO = {
             title,
@@ -50,6 +48,8 @@ const AddBook = () => {
             backgroundUrl,
             publishingHouse
         }
+
+        console.log("Sending: ", addBookDTO);
 
         await ApiCall.addNewIssue(addBookDTO)
             .then(result => {
@@ -118,13 +118,6 @@ const AddBook = () => {
                     />
                     <input
                         type="number"
-                        placeholder="Liczba stron"
-                        required
-                        value={numberOfPages}
-                        onChange={(e) => setNumberOfPages(e.target.value)}
-                    />
-                    <input
-                        type="number"
                         step="0.01"
                         min="0"
                         placeholder="Cena"
@@ -151,6 +144,13 @@ const AddBook = () => {
                         required
                         value={number}
                         onChange={(e) => setNumber(e.target.value)}
+                    />
+                    <label>Liczba stron</label>
+                    <input
+                        type="number"
+                        placeholder="Liczba stron"
+                        value={numberOfPages}
+                        onChange={(e) => setNumberOfPages(e.target.value)}
                     />
                     <GenreForm genre={genre} setGenre={setGenre}/>
                     <LanguagesForm language={language} setLanguage={setLanguage}/>

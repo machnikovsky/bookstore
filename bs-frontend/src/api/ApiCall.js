@@ -80,6 +80,10 @@ const getIsRead = (book_id) => {
     return axios.get(API_URL + `rating/${book_id}/isRead`, { headers: authHeader() });
 }
 
+const getOtherIssues = (issue_id) => {
+    return axios.get(API_URL + `issue/${issue_id}/other`, {});
+}
+
 const ApiCall = {
     getFirstIssuesOfAllBooks,
     getFirstIssuesOfBooksByQuery,
@@ -100,6 +104,7 @@ const ApiCall = {
     payForItemsInCart,
     addNewIssue,
     getUserStats,
+    getOtherIssues
 };
 
 export default ApiCall;

@@ -49,6 +49,15 @@ class IssueService(
             ?.let { ResponseEntity.ok(it) }
             ?: ResponseEntity.status(NOT_FOUND).body("Issue with id $issueId was not found.")
 
+    fun getOtherIssues(issueId: Int): ResponseEntity<Any> =
+        issueRepository.findFistByIssueId(issueId)
+            ?.let { issueRepository.findAllByBookBookId(it.book.bookId) }
+            ?.filter { it.issueId != issueId }
+            ?.map { mapIssueToDTO(it) }
+            ?.let { ResponseEntity.ok(it) }
+            ?: ResponseEntity.status(NOT_FOUND).body("Other issues could not be found.")
+
+
     fun getAllIssues(): ResponseEntity<Any> =
         issueRepository.findAll()
             .map { mapIssueToDTO(it) }
@@ -97,6 +106,7 @@ class IssueService(
             ?.let { ResponseEntity.ok(it) }
             ?: ResponseEntity.status(BAD_REQUEST).body("Error getting information about issue availability.")
 
+
     fun sellIssueStationary(issueId: Int): ResponseEntity<Any> =
         getCurrentUser()
             ?.bookstore
@@ -130,7 +140,6 @@ class IssueService(
             ?.let { ResponseEntity.ok("Successfully ordered an issue.") }
             ?: ResponseEntity.status(BAD_REQUEST).body("Error ordering an issue.")
     }
-
 
     fun getBooksListBasedOnQuery(query: String?): List<Book> =
         if (query != null) {
@@ -178,8 +187,8 @@ class IssueService(
             Issue(
                 language = addIssueDTO.language,
                 publicationYear = addIssueDTO.publicationYear,
-                numberOfPages = addIssueDTO.numberOfPages,
-                coverType = addIssueDTO.coverType?.let { CoverType.valueOf(it) },
+                numberOfPages = if (addIssueDTO.numberOfPages == 0) null else addIssueDTO.numberOfPages,
+                coverType = if (addIssueDTO.coverType == "NONE") null else addIssueDTO.coverType?.let { CoverType.valueOf(it) },
                 bookType = BookType.valueOf(addIssueDTO.bookType),
                 price = addIssueDTO.price,
                 imageUrl = addIssueDTO.imageUrl,

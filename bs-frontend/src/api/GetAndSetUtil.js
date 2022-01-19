@@ -187,6 +187,21 @@ const getAndSetScoreAndReview = (id, setScore, setReview) => {
         });
 }
 
+const getAndSetOtherIssues = (id, set) => {
+    ApiCall.getOtherIssues(id)
+        .then(res => {
+            return res.data;
+        })
+        .then(data => {
+            set(data);
+            console.log("Other issues: ", data);
+        })
+        .catch(e => {
+            console.log('Error: ', e.response.data);
+            set(null);
+        });
+}
+
 const SearchUtil = {
     getAndSetAllIssues,
     getAndSetSingleIssue,
@@ -201,7 +216,8 @@ const SearchUtil = {
     getAndSetUserRoles,
     getAndSetCart,
     addToCartAndIncrementCart,
-    getAndSetScoreAndReview
+    getAndSetScoreAndReview,
+    getAndSetOtherIssues
 };
 
 export default SearchUtil;
