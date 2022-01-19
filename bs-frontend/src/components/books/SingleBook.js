@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import {Link, useNavigate, useParams} from 'react-router-dom';
 import ApiCall from '../../api/ApiCall';
 import GetAndSetUtil from '../../api/GetAndSetUtil';
@@ -18,6 +18,7 @@ const SingleBook = () => {
 
     const {bookId, issueId} = useParams();
     const {user, setUser} = useContext(UserContext);
+    const [otherIssues, setOtherIssues] = useState([]);
     const [reviews, setReviews] = useState([]);
     const [book, setBook] = useState(null);
     const [isRead, setIsRead] = useState(false);
@@ -30,10 +31,10 @@ const SingleBook = () => {
     const [sold, setSold] = useState(0);
     const [ordered, setOrdered] = useState(0);
     const [addedToCart, setAddedToCart] = useState(0);
+    const [changedIssue, setChangedIssue] = useState(0);
     const [roles, setRoles] = useState([]);
     const scroll = Scroll.animateScroll;
     const navigate = useNavigate();
-
 
 
     useEffect(() => {
@@ -41,6 +42,7 @@ const SingleBook = () => {
         GetAndSetUtil.getAndSetSingleIssue(issueId, setBook);
         GetAndSetUtil.getAndSetReviews(bookId, setReviews);
         GetAndSetUtil.getAndSetUserRoles(user, setRoles);
+        GetAndSetUtil.getAndSetOtherIssues(issueId, setOtherIssues);
 
         GetAndSetUtil.getAndSetIsRead(bookId, setIsRead)
             .then(read => {
@@ -51,12 +53,12 @@ const SingleBook = () => {
 
         if (user) {
             ApiCall.getUserInfo(user)
-            .catch(() => {
-                setUser(null);
-                navigate('/logout');
-            });
+                .catch(() => {
+                    setUser(null);
+                    navigate('/logout');
+                });
         }
-    }, [])
+    }, [changedIssue])
 
     useEffect(() => {
         GetAndSetUtil.getAndSetReviews(bookId, setReviews);
@@ -64,7 +66,7 @@ const SingleBook = () => {
 
     useEffect(() => {
         GetAndSetUtil.getAndSetIsIssueAvailable(issueId, setIsAvailable);
-    }, [sold, ordered, addedToCart])
+    }, [sold, ordered, addedToCart, changedIssue])
 
 
     const handleShowReviewFormButton = (e) => {
@@ -133,7 +135,13 @@ const SingleBook = () => {
         e.preventDefault();
         GetAndSetUtil.orderBookAndIncrementOrdered(issueId, ordered, setOrdered);
     }
-    
+
+    const handleOtherIssue = (event, issue) => {
+        event.preventDefault();
+        navigate(`/book/${issue.book_id}/issue/${issue.issue_id}`);
+        setChangedIssue(changedIssue + 1);
+    }
+
 
     return (
         <>
@@ -141,70 +149,86 @@ const SingleBook = () => {
                 <div className="single-book-page-container">
                     <div className="poster-and-info-container">
                         <div className="top-book-background">
-                            <img 
-                                src={ book.background_url }
+                            <img
+                                src={book.background_url}
                                 onError={(event) => event.target.setAttribute("src", bg_not_found)}
                                 className="background"
-                                alt="book"/> 
+                                alt="book"/>
                         </div>
-                        
+
                         <div className="poster-container">
-                            <img 
-                            src={ book.image_url }
-                            onError={(event) => event.target.setAttribute("src", not_found)} 
-                            className="poster" 
-                            alt="book"/>
+                            <img
+                                src={book.image_url}
+                                onError={(event) => event.target.setAttribute("src", not_found)}
+                                className="poster"
+                                alt="book"/>
                         </div>
                         <div className="book-info">
-                            <div className="book-title">{ book.title }</div>
-                                <div className="book-stats">
-                                    <div className="stat">
-                                            <img src={ star } alt="book"/>
-                                        <div className="value">{ book.mean_score}</div>
-                                    </div>
-                                    <div className="stat">
-                                        <img src={ page_icon } alt="book"/>
-                                        <div className="value">{ book.book_type !== "AUDIOBOOK" ? `${book.number_of_pages} stron` : "Audiobook"} </div>
-                                    </div>
-                                    <div className="stat">
-                                        <img src={ date } alt="book"/>
-                                        <div className="value">{ book.original_publication_year }</div>
-                                    </div>
-                                    <div className="stat">
-                                        <img src={ type_icon } alt="book"/>
-                                        <div className="value">{ book.genre }</div>
-                                    </div>
+                            <div className="book-title">{book.title}</div>
+                            <div className="book-stats">
+                                <div className="stat">
+                                    <img src={star} alt="book"/>
+                                    <div className="value">{book.mean_score}</div>
                                 </div>
-                                <div className="overview">{ book.description }</div>
-                                <div className="single-book-buttons">
-                                    { user && roles.includes('USER') && !isRead && <button className="single-book-button" onClick={handleShowReviewFormButton}>{buttonText}</button> }
-                                    { user && roles.includes('USER') && ( isAvailable ?
-                                            <button className="single-book-button green-bg" onClick={handleAddToCart}>Dodaj do koszyka</button> :
-                                            <button className="single-book-button red-bg">Niedostępne</button> )
-                                    }
-                                    { user && roles.includes('WORKER') && ( isAvailable ?
-                                        <button className="single-book-button green-bg" onClick={handleSellStationary}>Sprzedaj stacjonarnie</button> :
-                                        <button className="single-book-button red-bg">Niedostępne</button> )
-                                    }
-                                    { user && roles.includes('WORKER') && <button className="single-book-button" onClick={handleOrderIssue}>Zamów</button> }
+                                <div className="stat">
+                                    <img src={page_icon} alt="book"/>
+                                    <div
+                                        className="value">{book.book_type !== "AUDIOBOOK" ? `${book.number_of_pages} stron` : "Audiobook"} </div>
                                 </div>
+                                <div className="stat">
+                                    <img src={date} alt="book"/>
+                                    <div className="value">{book.publication_year}</div>
+                                </div>
+                                <div className="stat">
+                                    <img src={type_icon} alt="book"/>
+                                    <div className="value">{book.genre}</div>
+                                </div>
+                            </div>
+                            <div className="overview">{book.description}</div>
+                            <div className="other-issues-container">
+                                <h1>Inne wydania</h1>
+                                <div className="other-issues">
+                                    {otherIssues && otherIssues.map((issue, index) => (
+                                        <button onClick={(e) => {handleOtherIssue(e, issue)}} className="other-issue" key={ index }>
+                                            <img src={issue.image_url} alt="book" />
+                                        </button>
+                                    ))
+                                    }
+                                </div>
+                            </div>
+                            <div className="single-book-buttons">
+                                {user && roles.includes('USER') && !isRead && <button className="single-book-button"
+                                                                                      onClick={handleShowReviewFormButton}>{buttonText}</button>}
+                                {user && roles.includes('USER') && (isAvailable ?
+                                    <button className="single-book-button green-bg" onClick={handleAddToCart}>Dodaj do
+                                        koszyka</button> :
+                                    <button className="single-book-button red-bg">Niedostępne</button>)
+                                }
+                                {user && roles.includes('WORKER') && (isAvailable ?
+                                    <button className="single-book-button green-bg"
+                                            onClick={handleSellStationary}>Sprzedaj stacjonarnie</button> :
+                                    <button className="single-book-button red-bg">Niedostępne</button>)
+                                }
+                                {user && roles.includes('WORKER') &&
+                                    <button className="single-book-button" onClick={handleOrderIssue}>Zamów</button>}
+                            </div>
 
                         </div>
                     </div>
                     {showForm && !isRead &&
-                            <div className="add-form">
-                                <form>
-                                    <label>Twoja ocena:</label>
-                                    <Stars setScore={setScore} onlyDisplay={false}/>
-                                    <label>Recenzja:</label>
-                                    <textarea
-                                        className="review-input"
-                                        value={review}
-                                        onChange={e => setReview(e.target.value)}
-                                    />
-                                    <button className="add-review-button" onClick={handleAddToRead}> Dodaj </button>
-                                </form>
-                            </div>
+                        <div className="add-form">
+                            <form>
+                                <label>Twoja ocena:</label>
+                                <Stars setScore={setScore} onlyDisplay={false}/>
+                                <label>Recenzja:</label>
+                                <textarea
+                                    className="review-input"
+                                    value={review}
+                                    onChange={e => setReview(e.target.value)}
+                                />
+                                <button className="add-review-button" onClick={handleAddToRead}> Dodaj</button>
+                            </form>
+                        </div>
                     }
                     {isRead &&
                         <div className="read">
@@ -221,7 +245,7 @@ const SingleBook = () => {
                             }
                             <p>Twoja recenzja:</p>
                             <div className="review-output">
-                                { review ?
+                                {review ?
                                     review
                                     :
                                     'Brak recenzji'
@@ -231,18 +255,18 @@ const SingleBook = () => {
                     }
                     <div className="reviews">
                         <h2>Recenzje użytkowników</h2>
-                        { reviews && (
+                        {reviews && (
                             reviews.map((val, idx) => (
                                 <div className="review" key={idx}>
                                     <div className="review-part">
                                         <Link to={`/user/${val.user_id}`}>
-                                        <img src={ user_icon } alt="user"/>
-                                        <div className="username">{val.username}</div>
+                                            <img src={user_icon} alt="user"/>
+                                            <div className="username">{val.username}</div>
                                         </Link>
                                     </div>
                                     <div className="review-part">{val.review} </div>
                                     <div className="review-part">
-                                        <img src={ star } alt="book"/>
+                                        <img src={star} alt="book"/>
                                         <div className="score">
                                             {val.score ? `${val.score} / 10` : '-'}
                                         </div>
@@ -253,7 +277,7 @@ const SingleBook = () => {
                     </div>
                 </div>
             }
-            
+
         </>
     )
 }
