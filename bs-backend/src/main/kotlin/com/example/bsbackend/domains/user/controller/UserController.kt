@@ -1,11 +1,10 @@
 package com.example.bsbackend.domains.user.controller
 
 import com.example.bsbackend.domains.user.model.User
-import com.example.bsbackend.domains.user.model.UserRegistrationDto
+import com.example.bsbackend.domains.user.model.UserUpdateInfoDto
 import com.example.bsbackend.domains.user.service.UserService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import java.sql.DriverManager.println
 
 @RestController
 @RequestMapping("/user")
@@ -24,4 +23,12 @@ class UserController(val userService: UserService) {
     @GetMapping("/info/{username}")
     fun getUserInfo(@PathVariable("username") username: String): ResponseEntity<Any> =
         userService.getUserInfo(username)
+
+    @PutMapping("/update")
+    fun updateUserInfo(@RequestBody userUpdateInfoDto: UserUpdateInfoDto): ResponseEntity<Any> =
+        userService.updateUserInfo(userUpdateInfoDto)
+
+    @DeleteMapping("/delete")
+    fun removeAccount(): ResponseEntity<Any> =
+        userService.removeAccount()
 }

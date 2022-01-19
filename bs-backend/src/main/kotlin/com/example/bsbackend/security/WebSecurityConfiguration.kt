@@ -28,7 +28,7 @@ class WebSecurityConfiguration(
             .cors().and()
             .csrf().disable()
             .authorizeRequests()
-            .antMatchers("/book/**", "/issue/**", "/user/register", "/auth/**").permitAll()
+            .antMatchers("/book/**", "/issue/**", "/user/register", "/auth/**", "/user/**").permitAll()
             .antMatchers("/rating/**", "/cart", "/cart/**").permitAll()
             .antMatchers("/user/info/**", "/rating/add").hasAnyRole("USER", "WORKER", "ADMIN")
             .antMatchers("/user/admin").hasRole("ADMIN")

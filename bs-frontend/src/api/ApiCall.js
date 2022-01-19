@@ -48,6 +48,14 @@ const getUserInfo = (username) => {
     return axios.get(API_URL + `user/info/${username}`, { headers: authHeader() });
 };
 
+const updateUserInfo = (firstName, lastName, email, password) => {
+    axios.put(
+        API_URL + `user/update`,
+        {firstName, lastName, email, password},
+        { headers: authHeader() }
+    );
+}
+
 const getCart = () => {
     return axios.get(API_URL + `cart`, { headers: authHeader() })
 }
@@ -99,6 +107,7 @@ const ApiCall = {
     addToCart,
     payForItemsInCart,
     addNewIssue,
+    updateUserInfo,
     getUserStats,
 };
 
