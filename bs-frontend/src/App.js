@@ -14,6 +14,7 @@ import Search from "./components/search/Search";
 import SingleBook from "./components/books/SingleBook";
 import Cart from "./components/Cart";
 import Success from "./components/Success";
+import AddBook from "./components/books/add/AddBook";
 
 const App = () => {
 
@@ -36,6 +37,7 @@ const App = () => {
                     <Route exact path="/profile" element={<MyProfile />} />
                     <Route exact path="/cart" element={<Cart />} />
                     <Route exact path="/success" element={<Success />} />
+                    <Route exact path="/add" element={<AddBook />} />
                 </Routes>
             </UserContext.Provider>
         </Router>
