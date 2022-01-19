@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository
 
 
 @Repository
-interface PublishingHouseRepository : JpaRepository<PublishingHouse, Int>
+interface PublishingHouseRepository : JpaRepository<PublishingHouse, Int> {
+    fun findFirstByNameEquals(name: String): PublishingHouse?
+}

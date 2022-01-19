@@ -2,17 +2,24 @@ package com.example.bsbackend.domains.issue.service
 
 import com.example.bsbackend.domains.assortment.model.Assortment
 import com.example.bsbackend.domains.assortment.repository.AssortmentRepository
+import com.example.bsbackend.domains.author.model.Author
+import com.example.bsbackend.domains.author.repository.AuthorRepository
 import com.example.bsbackend.domains.book.model.dto.FilterDTO
 import com.example.bsbackend.domains.book.model.dto.getGenres
 import com.example.bsbackend.domains.book.model.dto.getSorted
 import com.example.bsbackend.domains.book.model.dto.getType
 import com.example.bsbackend.domains.book.model.entity.Book
+import com.example.bsbackend.domains.book.model.entity.Genre
 import com.example.bsbackend.domains.book.repository.BookRepository
 import com.example.bsbackend.domains.cart.model.dto.IssueCartDTO
+import com.example.bsbackend.domains.issue.model.dto.AddIssueDTO
 import com.example.bsbackend.domains.issue.model.dto.IssueInfoDTO
+import com.example.bsbackend.domains.issue.model.entity.CoverType
 import com.example.bsbackend.domains.issue.model.entity.Issue
 import com.example.bsbackend.domains.issue.model.enum.BookType
 import com.example.bsbackend.domains.issue.repository.IssueRepository
+import com.example.bsbackend.domains.publishingHouse.model.PublishingHouse
+import com.example.bsbackend.domains.publishingHouse.repository.PublishingHouseRepository
 import com.example.bsbackend.domains.rating.model.mapToDTO
 import com.example.bsbackend.domains.rating.repository.RatingRepository
 import com.example.bsbackend.domains.user.model.User
@@ -23,15 +30,18 @@ import org.springframework.http.HttpStatus.NOT_FOUND
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class IssueService(
-     val issueRepository: IssueRepository,
-     val bookRepository: BookRepository,
-     val ratingRepository: RatingRepository,
-     val assortmentRepository: AssortmentRepository,
-     val userRepository: UserRepository,
-     val modelMapper: ModelMapper
+    val issueRepository: IssueRepository,
+    val bookRepository: BookRepository,
+    val ratingRepository: RatingRepository,
+    val assortmentRepository: AssortmentRepository,
+    val userRepository: UserRepository,
+    val authorRepository: AuthorRepository,
+    val publishingHouseRepository: PublishingHouseRepository,
+    val modelMapper: ModelMapper
 ) {
     fun getSingleIssue(issueId: Int): ResponseEntity<Any> =
         issueRepository.findFistByIssueId(issueId)
@@ -122,7 +132,7 @@ class IssueService(
     }
 
 
-     fun getBooksListBasedOnQuery(query: String?): List<Book> =
+    fun getBooksListBasedOnQuery(query: String?): List<Book> =
         if (query != null) {
             bookRepository.findByTitleContainingIgnoreCaseOrAuthorsFirstNameContainingIgnoreCaseOrAuthorsLastNameContainingIgnoreCase(
                 query,
@@ -133,7 +143,69 @@ class IssueService(
             bookRepository.findAll()
         }
 
-     fun mapIssueToDTO(issue: Issue): IssueInfoDTO? {
+    @Transactional
+    fun addNewIssue(addIssueDTO: AddIssueDTO): ResponseEntity<Any> {
+        val author =
+            authorRepository.findByFirstNameAndLastName(addIssueDTO.authorFirstName, addIssueDTO.authorLastName)
+                ?: authorRepository.save(
+                    Author(
+                        firstName = addIssueDTO.authorFirstName,
+                        lastName = addIssueDTO.authorLastName,
+                        country = addIssueDTO.authorCountry,
+                        books = mutableListOf()
+                    )
+                )
+
+        val book = bookRepository.findByTitleAndAuthorsIn(addIssueDTO.title, mutableListOf(author))
+            ?: bookRepository.save(Book(
+                title = addIssueDTO.title,
+                description = addIssueDTO.description,
+                genre = Genre.values().find { it.genre == addIssueDTO.genre } ?: Genre.FICTION,
+                originalPublicationYear = addIssueDTO.originalPublicationYear,
+                authors = mutableListOf(author)
+            ))
+        authorRepository.save(author.copy(books = mutableListOf(book)))
+
+        val publishingHouse = publishingHouseRepository.findFirstByNameEquals(addIssueDTO.publishingHouse)
+            ?: publishingHouseRepository.save(
+                PublishingHouse(
+                    name = addIssueDTO.publishingHouse,
+                    foundationYear = 2022
+                )
+            )
+
+        val issue = issueRepository.save(
+            Issue(
+                language = addIssueDTO.language,
+                publicationYear = addIssueDTO.publicationYear,
+                numberOfPages = addIssueDTO.numberOfPages,
+                coverType = addIssueDTO.coverType?.let { CoverType.valueOf(it) },
+                bookType = BookType.valueOf(addIssueDTO.bookType),
+                price = addIssueDTO.price,
+                imageUrl = addIssueDTO.imageUrl,
+                backgroundUrl = addIssueDTO.backgroundUrl,
+                publishingHouse = publishingHouse,
+                book = book,
+            )
+        )
+
+        val bookstore = getCurrentUser()
+            ?.bookstore
+            ?: return ResponseEntity.status(NOT_FOUND).body("Can't find currently logged in user.")
+
+        assortmentRepository.findByBookstoreAndIssueIssueId(bookstore, issue.issueId)
+            ?: assortmentRepository.save(
+                Assortment(
+                    count = addIssueDTO.number ?: 0,
+                    bookstore = bookstore,
+                    issue = issue
+                )
+            )
+
+        return ResponseEntity.ok(mapIssueToDTO(issue))
+    }
+
+    fun mapIssueToDTO(issue: Issue): IssueInfoDTO? {
         val issueInfoDTO: IssueInfoDTO = modelMapper.map(issue, IssueInfoDTO::class.java)
         val book = bookRepository.findByBookId(issue.book.bookId)
         val ratings = ratingRepository.findAllByBookBookId(issue.book.bookId)
@@ -161,31 +233,31 @@ class IssueService(
     fun mapIssueToCartDTO(issue: Issue, count: Int): IssueCartDTO =
         modelMapper.map(mapIssueToDTO(issue), IssueCartDTO::class.java).copy(
             count = count,
-            totalPrice = "%.2f".format(issue.price * count).replace(",", ".").toFloatOrNull()?:0f
+            totalPrice = "%.2f".format(issue.price * count).replace(",", ".").toFloatOrNull() ?: 0f
         )
 
-     fun List<Book>.getDtoOfBooksFirstIssues(): List<IssueInfoDTO?> =
+    fun List<Book>.getDtoOfBooksFirstIssues(): List<IssueInfoDTO?> =
         this.map { getDtoOfBookFirstIssue(it.bookId) }
 
-     fun getDtoOfBookFirstIssue(bookId: Int): IssueInfoDTO? =
+    fun getDtoOfBookFirstIssue(bookId: Int): IssueInfoDTO? =
         issueRepository.findFirstByBookBookId(bookId)
             ?.let { mapIssueToDTO(it) }
 
-     fun List<Book>.getDtoOfBooksFirstIssuesWithType(bookType: BookType?): List<IssueInfoDTO?> =
+    fun List<Book>.getDtoOfBooksFirstIssuesWithType(bookType: BookType?): List<IssueInfoDTO?> =
         if (bookType != null)
             this.mapNotNull { getDtoOfBookFirstIssueWithType(it.bookId, bookType) }
         else
             this.map { getDtoOfBookFirstIssue(it.bookId) }
 
-     fun getDtoOfBookFirstIssueWithType(bookId: Int, bookType: BookType): IssueInfoDTO? =
+    fun getDtoOfBookFirstIssueWithType(bookId: Int, bookType: BookType): IssueInfoDTO? =
         issueRepository.findFirstByBookBookIdAndBookType(bookId, bookType)
             ?.takeIf { it.isNotEmpty() }
             ?.first()
             ?.let { mapIssueToDTO(it) }
 
-     fun getCurrentUser(): User? =
+    fun getCurrentUser(): User? =
         userRepository.findByUsernameIgnoreCase(getCurrentUserUsername())
 
-     fun getCurrentUserUsername(): String? =
+    fun getCurrentUserUsername(): String? =
         SecurityContextHolder.getContext().authentication.name
 }

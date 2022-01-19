@@ -2,21 +2,42 @@ nav {
     width: 95%;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
-    font-size: 2em;
+    justify-content: space-around;
+    font-size: 1.5em;
     height: 20vh;
 
-    ul {
+    .part {
+        padding-top: 30px;
+    }
+
+    .left {
+        flex: 0.5;
+        padding-top: 10px;
+        a {
+            .logo-container {
+                height: 100px;
+                width: 100px;
+
+                img {
+                    max-height: 100%;
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+
+    .middle {
         display: flex;
         justify-content: space-evenly;
-        flex: 4;
+        flex: 3;
         list-style: none;
         padding-top: 30px;
     }
 
-    #logo-container {
-        flex: 3;
-        padding-top: 5px;
+    .right {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
     }
 }
 

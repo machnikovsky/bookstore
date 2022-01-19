@@ -60,6 +60,11 @@ const payForItemsInCart = () => {
     return axios.post(API_URL + `cart/pay`, {}, { headers: authHeader() })
 }
 
+const addNewIssue = (dto) => {
+    return axios.post(API_URL + `issue/add`, dto, { headers: authHeader() })
+}
+
+
 const getGenres = () => {
   return axios.get(API_URL + `book/genres`, {});
 };
@@ -94,6 +99,7 @@ const ApiCall = {
     getCart,
     addToCart,
     payForItemsInCart,
+    addNewIssue,
     getUserStats,
 };
 
