@@ -15,6 +15,10 @@ class IssueController(val issueService: IssueService) {
     fun getAllIssues(@PathVariable("issueId") issueId: Int): ResponseEntity<Any> =
         issueService.getSingleIssue(issueId)
 
+    @GetMapping("/{issueId}/other")
+    fun getOtherIssues(@PathVariable("issueId") issueId: Int): ResponseEntity<Any> =
+        issueService.getOtherIssues(issueId)
+
     @GetMapping("/all")
     fun getAllIssues(): ResponseEntity<Any> =
         issueService.getAllIssues()

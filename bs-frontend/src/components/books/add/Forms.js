@@ -42,7 +42,7 @@ export const CoverTypeForm = ({coverType, setCoverType}) => {
                 <option value="HARDCOVER">Twarda</option>
                 <option value="PAPERBACK">Miękka</option>
                 <option value="SOFTWRAP">Z obwolutą</option>
-                <option value="">Brak</option>
+                <option value="NONE">Brak</option>
             </select>
         </div>
     );

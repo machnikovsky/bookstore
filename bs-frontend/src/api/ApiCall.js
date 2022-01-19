@@ -92,6 +92,10 @@ const deleteMyAccount = () => {
     return axios.delete(API_URL + `user/delete`, { headers: authHeader() });
 }
 
+const getOtherIssues = (issue_id) => {
+    return axios.get(API_URL + `issue/${issue_id}/other`, {});
+}
+
 const ApiCall = {
     getFirstIssuesOfAllBooks,
     getFirstIssuesOfBooksByQuery,
@@ -114,6 +118,7 @@ const ApiCall = {
     updateUserInfo,
     getUserStats,
     deleteMyAccount
+    getOtherIssues
 };
 
 export default ApiCall;
