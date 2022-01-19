@@ -45,7 +45,9 @@ const login = (username, password) => {
 
 const logout = () => {
   localStorage.removeItem("JwtToken");
+  localStorage.removeItem("user");
 };
+
 
 const getCurrentUser = () => {
   return axios.get(API_URL + 'username', { headers: authHeader() })

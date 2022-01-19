@@ -48,6 +48,14 @@ const getUserInfo = (username) => {
     return axios.get(API_URL + `user/info/${username}`, { headers: authHeader() });
 };
 
+const updateUserInfo = (firstName, lastName, email, password) => {
+    axios.put(
+        API_URL + `user/update`,
+        {firstName, lastName, email, password},
+        { headers: authHeader() }
+    );
+}
+
 const getCart = () => {
     return axios.get(API_URL + `cart`, { headers: authHeader() })
 }
@@ -80,6 +88,10 @@ const getIsRead = (book_id) => {
     return axios.get(API_URL + `rating/${book_id}/isRead`, { headers: authHeader() });
 }
 
+const deleteMyAccount = () => {
+    return axios.delete(API_URL + `user/delete`, { headers: authHeader() });
+}
+
 const getOtherIssues = (issue_id) => {
     return axios.get(API_URL + `issue/${issue_id}/other`, {});
 }
@@ -103,7 +115,9 @@ const ApiCall = {
     addToCart,
     payForItemsInCart,
     addNewIssue,
+    updateUserInfo,
     getUserStats,
+    deleteMyAccount
     getOtherIssues
 };
 
