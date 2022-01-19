@@ -92,12 +92,15 @@
       font-size: 2em;
     }
 
-    .pay {
+    .buttons {
+      display: flex;
+      justify-content: space-evenly;
+
       button {
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: $beige-btn;
+        background-color: rgba($beige-btn, 0.7);
         border: none;
         margin-bottom: 7vh;
         padding: 0 2vh;
@@ -112,7 +115,8 @@
         }
 
         .image {
-          width: 40%;
+          width: 70px;
+          height: 70px;
 
           img {
             max-height: 100%;
@@ -127,7 +131,7 @@
     margin-top: 5vh;
     height: 50vh;
     background-color: rgba($bg-beige, 0.4);
-    font-family: Lato;
+    font-family: Lato, serif;
     font-size: 1.5em;
   }
 }

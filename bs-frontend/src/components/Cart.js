@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import GetAndSetUtil from "../api/GetAndSetUtil";
 import cash from "../assets/icons/cash.png"
+import stationary from "../assets/icons/stationary.png"
 import {useNavigate} from "react-router-dom";
 import ApiCall from "../api/ApiCall";
 
@@ -19,7 +20,18 @@ const Cart = () => {
         e.preventDefault();
         ApiCall.payForItemsInCart()
             .then(() => {
-                navigate('/success');
+                navigate('/success', { state: {method: 'online'}});
+            })
+            .catch(error => {
+                console.log("Error paying for items in cart: ", error.response.data);
+            })
+    }
+
+    const handleReserve = (e) => {
+        e.preventDefault();
+        ApiCall.payForItemsInCart()
+            .then(() => {
+                navigate('/success', { state: {method: 'stationary'}});
             })
             .catch(error => {
                 console.log("Error paying for items in cart: ", error.response.data);
@@ -45,7 +57,7 @@ const Cart = () => {
                             <div className="title-author element">
                                 <div className="title">{item.title}</div>
                                 {item.authors.map((author, index) => (
-                                    <div className="author">{author.firstName} {author.lastName}</div>
+                                    <div className="author" key={index}>{author.firstName} {author.lastName}</div>
                                 ))}
                             </div>
                             <div className="count element">
@@ -67,7 +79,14 @@ const Cart = () => {
                             <div className="total-price center">
                                 Łącznie do zapłaty: {totalPrice}
                             </div>
-                            <div className="pay center">
+
+                            <div className="buttons center">
+                                <button onClick={handleReserve}>
+                                    <div className="text">Odbierz na miejscu</div>
+                                    <div className="image">
+                                        <img src={stationary} alt="cash"/>
+                                    </div>
+                                </button>
                                 <button onClick={handlePay}>
                                     <div className="text">Przejdź do płatności</div>
                                     <div className="image">
