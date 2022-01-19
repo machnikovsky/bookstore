@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import ApiCall from "../../../api/ApiCall";
 import UserContext from "../../../auth/UserContext";
+import Auth from "../../../auth/Auth";
 
 const UserInfo = () => {
 
@@ -51,6 +52,7 @@ const UserInfo = () => {
 
     const handleDeleteAccount = () => {
         ApiCall.deleteMyAccount();
+        Auth.logout();
         setUser(null);
         navigate('/');
     }
@@ -86,7 +88,7 @@ const UserInfo = () => {
                         />
                         <label>Hasło</label>
                         <input
-                            type="text"
+                            type="password"
                             placeholder="Hasło"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}

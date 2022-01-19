@@ -1,6 +1,8 @@
 package com.example.bsbackend.domains.user.service
 
 import com.example.bsbackend.domains.bookstore.repository.BookstoreRepository
+import com.example.bsbackend.domains.cart.repository.CartPositionRepository
+import com.example.bsbackend.domains.cart.repository.CartRepository
 import com.example.bsbackend.domains.user.model.*
 import com.example.bsbackend.domains.user.repository.PersonRepository
 import com.example.bsbackend.domains.user.repository.UserRepository
@@ -21,6 +23,8 @@ class UserService(
     val userRepository: UserRepository,
     val bookstoreRepository: BookstoreRepository,
     val personRepository: PersonRepository,
+    val cartRepository: CartRepository,
+    val cartPositionRepository: CartPositionRepository,
     val passwordEncoder: PasswordEncoder,
     val modelMapper: ModelMapper
 ) {
@@ -89,6 +93,9 @@ class UserService(
             ?.also {
                 userRepository.removeUserByUserId(it.userId)
                 personRepository.removePersonByPersonId(it.person.personId)
+                cartRepository.findByUser(it)
+                    ?.also { cart -> cartPositionRepository.removeAllByCart(cart) }
+                    ?.let { cart -> cartRepository.delete(cart) }
             }
             ?.let { ResponseEntity.ok("You successfully removed your account.") }
             ?: ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.")

@@ -88,6 +88,10 @@ const getIsRead = (book_id) => {
     return axios.get(API_URL + `rating/${book_id}/isRead`, { headers: authHeader() });
 }
 
+const deleteMyAccount = () => {
+    return axios.delete(API_URL + `user/delete`, { headers: authHeader() });
+}
+
 const ApiCall = {
     getFirstIssuesOfAllBooks,
     getFirstIssuesOfBooksByQuery,
@@ -109,6 +113,7 @@ const ApiCall = {
     addNewIssue,
     updateUserInfo,
     getUserStats,
+    deleteMyAccount
 };
 
 export default ApiCall;
