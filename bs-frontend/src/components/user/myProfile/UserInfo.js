@@ -60,7 +60,7 @@ const UserInfo = () => {
    <button className={editMode ? "edit-mode-button red" : "edit-mode-button"} onClick={() => setEditMode(!editMode)}>
                 {editMode ? 'Wyłącz edycje' : 'Edytuj dane'}
             </button>
-            {
+            { 
                 editMode ?
                     <form>
                         <label>Imię</label>
