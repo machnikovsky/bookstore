@@ -31,4 +31,8 @@ class UserController(val userService: UserService) {
     @DeleteMapping("/delete")
     fun removeAccount(): ResponseEntity<Any> =
         userService.removeAccount()
+
+    @PutMapping("/{userId}/promote")
+    fun promoteUser(@PathVariable("userId") userId: Int): ResponseEntity<Any> =
+        userService.promoteUser(userId)
 }
