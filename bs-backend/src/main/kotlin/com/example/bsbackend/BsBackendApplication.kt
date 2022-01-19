@@ -42,7 +42,7 @@ class ApplicationStart(
                     userRepository.save(
                         User(
                             username = "${role.name.lowercase(Locale.getDefault())}${it.address}",
-                            password = encoder.encode("admin"),
+                            password = encoder.encode("password"),
                             email = "admin@gmail.com",
                             creationDate = Date.valueOf(LocalDate.now()),
                             roles = mutableSetOf(role),
