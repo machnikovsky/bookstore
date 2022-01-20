@@ -22,6 +22,6 @@ services:
      POSTGRES_USER: postgres
      POSTGRES_DB: bookstore
     ports:
-     - 5434:5434
+     - 5432:5432
     restart: always
     
