@@ -4,7 +4,7 @@
 
 After cloning a repo, you have to build backend Kotlin project. You can use it either via command line:
 ```
-gradle build
+gradle build -x test
 ```
 Or in your IDE with Gradle Extension.
 
