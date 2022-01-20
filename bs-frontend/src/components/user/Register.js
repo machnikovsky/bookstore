@@ -128,8 +128,8 @@ const Register = () => {
                         <div className="radio">
                             <label>
                                 <input type="radio"
-                                       value="Kraków"
-                                       checked={localization === 'Kraków'}
+                                       value="Krakow"
+                                       checked={localization === 'Krakow'}
                                        onChange={e => setLocalization(e.target.value)}
                                 />
                                 Kraków
@@ -138,8 +138,8 @@ const Register = () => {
                         <div className="radio">
                             <label>
                                 <input type="radio"
-                                       value="Wrocław"
-                                       checked={localization === 'Wrocław'}
+                                       value="Wroclaw"
+                                       checked={localization === 'Wroclaw'}
                                        onChange={e => setLocalization(e.target.value)}
                                 />
                                 Wrocław
@@ -148,8 +148,8 @@ const Register = () => {
                         <div className="radio">
                             <label>
                                 <input type="radio"
-                                       value="Poznań"
-                                       checked={localization === 'Poznań'}
+                                       value="Poznan"
+                                       checked={localization === 'Poznan'}
                                        onChange={e => setLocalization(e.target.value)}
                                 />
                                 Poznań

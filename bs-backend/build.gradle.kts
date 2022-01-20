@@ -29,6 +29,7 @@ dependencies {
     implementation("com.google.code.gson:gson:2.8.9")
     implementation("org.modelmapper:modelmapper:2.4.5")
     implementation("io.jsonwebtoken:jjwt:0.9.1")
+    implementation("javax.validation:validation-api:2.0.1.Final")
     runtimeOnly("org.postgresql:postgresql")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")

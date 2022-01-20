@@ -1,0 +1,1046 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=Rufina&display=swap");
+.top {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+nav {
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.5em;
+  height: 20vh;
+}
+nav .part {
+  padding-top: 30px;
+}
+nav .left {
+  flex: 0.5;
+  padding-top: 10px;
+}
+nav .left a .logo-container {
+  height: 100px;
+  width: 100px;
+}
+nav .left a .logo-container img {
+  max-height: 100%;
+  max-width: 100%;
+}
+nav .middle {
+  display: flex;
+  justify-content: space-evenly;
+  flex: 3;
+  list-style: none;
+  padding-top: 30px;
+}
+nav .right {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.black {
+  color: black;
+}
+
+.beige {
+  color: #ffe9c2;
+}
+
+.top-shape-container {
+  position: relative;
+  width: 100%;
+}
+.top-shape-container img {
+  position: absolute;
+  right: 0px;
+  top: -200px;
+  width: 40%;
+  height: auto;
+  z-index: -1;
+}
+
+.bottom-shape {
+  position: absolute;
+  left: 0px;
+  bottom: -55vh;
+  width: 40%;
+  height: auto;
+  z-index: -1;
+}
+
+.scott {
+  position: absolute;
+  bottom: -5vh;
+  height: 80%;
+  width: auto;
+}
+
+.main-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35vh;
+}
+.main-container h1 {
+  font-size: 4rem;
+  font-weight: lighter;
+}
+
+.propositions-container {
+  height: 45vh;
+  position: relative;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 2fr 1fr 3fr 1fr;
+  grid-template-rows: 1fr 6fr;
+  text-align: center;
+  background-color: rgba(196, 196, 196, 0.2);
+  z-index: 0;
+}
+.propositions-container h1 {
+  grid-column: 3/4;
+  padding-top: 3vh;
+}
+.propositions-container .propositions {
+  height: 95%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  grid-column: 3/4;
+  grid-row: 2/3;
+}
+.propositions-container .propositions .proposition {
+  width: 10vw;
+  height: auto;
+}
+.propositions-container .propositions .proposition img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.genres-container {
+  background-color: #5F745E;
+  position: relative;
+  text-align: center;
+  height: 55vh;
+  padding: 2vh 0;
+}
+.genres-container .genres {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  padding: 2%;
+}
+.genres-container .genres .genre {
+  width: 60%;
+  height: 65%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7em;
+  position: relative;
+  background-color: #fcf1cf;
+  z-index: 1;
+}
+.genres-container .genres .genre .genres-header {
+  position: absolute;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.genres-container .genres .genre .genres-header h1 {
+  color: black;
+  z-index: 2;
+}
+
+.more-container {
+  height: 15vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.more-container .button-content-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.more-container .button-content-container image {
+  display: block;
+}
+
+.login, .register, .add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  position: relative;
+  background-color: rgba(196, 196, 196, 0.2);
+}
+.login form, .register form, .add form {
+  width: 50%;
+}
+.login label, .register label, .add label {
+  text-align: left;
+  display: block;
+  color: #DAA89B;
+}
+.login h1, .register h1, .add h1 {
+  font-size: 2em;
+  color: #DAA89B;
+  margin-bottom: 30px;
+}
+.login input, .login textarea, .login select, .register input, .register textarea, .register select, .add input, .add textarea, .add select {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: block;
+  color: rgba(34, 34, 34, 0.9);
+}
+.login input, .login textarea, .register input, .register textarea, .add input, .add textarea {
+  background-color: #fff;
+  border: none;
+  border-radius: 5px;
+  height: 5vh;
+  margin: 5vh auto;
+}
+.login input:focus, .login textarea:focus, .register input:focus, .register textarea:focus, .add input:focus, .add textarea:focus {
+  outline: none;
+}
+.login input::placeholder, .register input::placeholder, .add input::placeholder {
+  color: rgba(153, 153, 153, 0.9);
+}
+.login button, .register button, .add button {
+  background: #DAA89B;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 6vw;
+}
+.login .error-message, .register .error-message, .add .error-message {
+  color: #d26666;
+  font-size: 1.2em;
+  font-family: Lato, serif;
+  margin: 4vh auto;
+}
+
+.login {
+  width: 50vw;
+  height: 70vh;
+}
+
+.register, .add {
+  width: 50vw;
+  margin-bottom: 10vw;
+  padding: 3vh 0;
+}
+.register .radio-header, .add .radio-header {
+  font-size: 1.2em;
+}
+.register .radio-container, .add .radio-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+.register .radio-container .radio, .add .radio-container .radio {
+  width: 33%;
+}
+.register .radio-container .radio label, .add .radio-container .radio label {
+  text-align: center;
+  font-family: Lato, serif;
+  margin-bottom: 4vh;
+}
+.register .radio-container .radio input, .add .radio-container .radio input {
+  border: 0;
+  height: 1.7em;
+  margin-bottom: 1vh;
+}
+
+.logout {
+  height: 50vh;
+}
+
+.add option {
+  color: rgba(153, 153, 153, 0.9);
+}
+
+.profile-container {
+  text-align: center;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+.profile-container .nav-and-content {
+  background-color: rgba(255, 243, 210, 0.2);
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5vh;
+  min-height: 60vh;
+}
+.profile-container .nav-and-content .profile-nav {
+  flex: 2;
+  background-color: rgba(255, 243, 210, 0.6);
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  overflow: hidden;
+}
+.profile-container .nav-and-content .profile-nav .option {
+  outline: none;
+  border: none;
+  background: none;
+  height: 100%;
+  transition-duration: 0.5s;
+  color: #344130;
+  font-size: 1.4em;
+  font-weight: bold;
+}
+.profile-container .nav-and-content .profile-nav .option:hover {
+  transition: 1s;
+  background-color: rgba(52, 65, 48, 0.6);
+  color: rgba(252, 239, 195, 0.8);
+}
+.profile-container .nav-and-content .single-option {
+  flex: 8;
+  margin-top: 2vh;
+}
+.profile-container .nav-and-content .single-option .edit-mode-button {
+  background: rgba(187, 187, 187, 0.4);
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  margin: 5vh 0 5vh 0;
+  padding: 10px;
+}
+.profile-container .nav-and-content .single-option .red {
+  background: rgba(241, 65, 65, 0.4);
+}
+.profile-container .nav-and-content .stats .header {
+  margin-top: 15px;
+  font-size: 1.5em;
+}
+.profile-container .users {
+  display: flex;
+  justify-content: space-around;
+}
+.profile-container .users h2 {
+  margin: 0 5vh;
+}
+.profile-container .users .friends-list {
+  display: flex;
+  flex-direction: column;
+}
+.profile-container .users .friends-list button {
+  background: rgba(187, 187, 187, 0.4);
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+.profile-container .users .friends-list button .single-friend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5vh;
+  width: 100%;
+}
+.profile-container .users .promote-user {
+  width: 30vw;
+}
+.profile-container .users .promote-user form {
+  margin-top: 3vh;
+  display: flex;
+  flex-direction: column;
+}
+.profile-container .users .promote-user label {
+  margin: 1vh;
+}
+.profile-container .users .promote-user input {
+  color: #eeeeee;
+  background: rgba(187, 187, 187, 0.2);
+  border: none;
+  outline: none;
+  height: 4vh;
+  padding: 1vh;
+  margin-bottom: 5vh;
+}
+.profile-container .users .promote-user .queried-user {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  justify-items: center;
+  align-items: center;
+  background: rgba(153, 153, 153, 0.6);
+  height: 10vh;
+  margin: 10px 0;
+}
+.profile-container .users .promote-user .queried-user .queried-user-name {
+  text-align: center;
+}
+.profile-container .users .promote-user .queried-user .queried-user-name h5 {
+  font-size: 0.7em;
+  font-weight: 200;
+}
+.profile-container .users .promote-user .queried-user .queried-user-name h2 {
+  font-weight: 600;
+}
+.profile-container .users .promote-user .queried-user .user-to-promote-button {
+  width: 50%;
+  height: 80%;
+  background: rgba(34, 34, 34, 0.6);
+  border: none;
+  cursor: pointer;
+  color: #ccc;
+}
+.profile-container .info form {
+  width: 30%;
+  margin-inline: auto;
+  margin-top: 2vh;
+  display: flex;
+  flex-direction: column;
+}
+.profile-container .info label {
+  margin: 0.2vh;
+}
+.profile-container .info input {
+  color: #eeeeee;
+  background: rgba(187, 187, 187, 0.2);
+  border: none;
+  outline: none;
+  height: 4vh;
+  padding: 1vh;
+  margin-bottom: 2vh;
+}
+.profile-container .info button {
+  background: rgba(51, 232, 51, 0.2);
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-top: 2vh;
+  padding: 10px;
+}
+.profile-container .info-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 40vh;
+  width: 50%;
+  margin: 0 auto;
+  text-align: left;
+}
+.profile-container .info-list .single-info {
+  font-size: 1.4em;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5vh;
+}
+.profile-container .info-list .single-info p {
+  display: inline;
+  color: gray;
+}
+.profile-container .stats-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 90%;
+  width: 50%;
+  margin: 0 auto;
+  text-align: left;
+}
+.profile-container .stats-list .single-stat {
+  font-size: 1.4em;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5vh;
+}
+.profile-container .stats-list .single-stat p {
+  display: inline;
+  color: gray;
+}
+
+.books-container .search-container {
+  padding: 10vh 15vw 12vh 15vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.books-container .search-container .search-bar {
+  width: 50vw;
+}
+.books-container .search-container .search-bar input {
+  position: relative;
+  height: 8vh;
+  width: 100%;
+  top: 5vh;
+  margin-bottom: 8vh;
+  background: rgba(196, 196, 196, 0.4);
+  color: rgba(255, 255, 255, 0.8);
+  text-align: left;
+  border: none;
+  outline: none;
+  z-index: 3;
+  font-size: 2em;
+  padding: 1vh 1vw;
+}
+.books-container .search-container .search-bar input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+.books-container .search-container .search-filter {
+  position: relative;
+  height: 8vh;
+  width: 100%;
+  margin-bottom: 10vh;
+  top: 5vh;
+  padding-top: 2vh;
+  background: #fcefc3;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  z-index: 1;
+}
+.books-container .search-container .search-filter .filter {
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+.books-container .search-container .search-filter .filter h2 {
+  color: black;
+}
+.books-container .search-container .search-filter .filter .single-filter {
+  display: none;
+}
+.books-container .search-container .search-filter .filter:hover .single-filter {
+  display: block;
+  color: #000;
+  background: #fcefc3;
+  font-size: 0.8em;
+  padding: 1vh 0;
+  text-align: center;
+}
+.books-container .search-container .search-filter .filter:hover .single-filter button {
+  color: #000;
+  border: none;
+  outline: none;
+  background: inherit;
+  width: 100%;
+  height: 100%;
+}
+.books-container .search-container .search-filter .filter:hover .enabled {
+  background-color: #a9957b;
+}
+.books-container .more-button {
+  margin: 10vh auto;
+  padding: 2vh 5vw;
+  display: block;
+  background-color: rgba(255, 243, 210, 0.4);
+  border-radius: 10px;
+  color: #DAA89B;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.book-list {
+  text-align: center;
+  display: grid;
+  align-content: space-around;
+  justify-content: space-between;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin: 0 10vw;
+}
+.book-list .single-book {
+  height: 75vh;
+  background: rgba(255, 243, 210, 0.4);
+  width: 90%;
+  margin: 1vh auto;
+  position: relative;
+}
+.book-list .single-book h2 {
+  height: 10vh;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.book-list .single-book .book-author {
+  color: rgba(221, 221, 221, 0.8);
+}
+.book-list .single-book .poster-container {
+  margin: 2vh auto;
+}
+.book-list .single-book .poster-container img {
+  height: 34vh;
+  width: 26vh;
+  object-fit: contain;
+}
+.book-list .single-book .book-price-score-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: rgba(255, 243, 210, 0.3);
+  height: 10%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.book-list .single-book .book-price-score-container .book {
+  display: flex;
+  align-items: center;
+  font-size: 0.6em;
+}
+.book-list .single-book .book-price-score-container .book .image-container {
+  height: 5vh;
+  width: 5vh;
+}
+.book-list .single-book .book-price-score-container .book .image-container img {
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+  display: block;
+}
+.book-list .single-book .book-price-score-container .price-container, .book-list .single-book .book-price-score-container h3 {
+  margin: 0 2vh;
+}
+.book-list .single-book .book-price-score-container h3 {
+  font-size: 2em;
+}
+
+.single-book-page-container .poster-and-info-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5vh;
+}
+.single-book-page-container .poster-and-info-container .top-book-background {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0.1;
+  mask-image: linear-gradient(to top, transparent 0%, black 20%, black 80%, transparent 100%);
+}
+.single-book-page-container .poster-and-info-container .top-book-background img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.single-book-page-container .poster-and-info-container .poster-container {
+  margin: 2vh auto;
+  height: 50vh;
+  width: auto;
+  position: relative;
+  z-index: 1;
+}
+.single-book-page-container .poster-and-info-container .poster-container .poster {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(5px 5px 5px #222);
+}
+.single-book-page-container .poster-and-info-container .book-info {
+  width: 60vw;
+  margin: 0 auto;
+}
+.single-book-page-container .poster-and-info-container .book-info .book-title {
+  text-align: center;
+  font-size: 2.7em;
+  font-weight: bold;
+}
+.single-book-page-container .poster-and-info-container .book-info .overview {
+  margin-top: 5vh;
+}
+.single-book-page-container .poster-and-info-container .book-info .other-issues-container {
+  min-height: 25vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  height: 10vh;
+  width: 40vw;
+  margin-inline: auto;
+}
+.single-book-page-container .poster-and-info-container .book-info .other-issues-container .other-issues {
+  display: flex;
+  justify-content: center;
+  column-gap: 10px;
+}
+.single-book-page-container .poster-and-info-container .book-info .other-issues-container .other-issues .other-issue {
+  width: 5vw;
+  height: auto;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+.single-book-page-container .poster-and-info-container .book-info .other-issues-container .other-issues .other-issue img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.single-book-page-container .poster-and-info-container .book-info .single-book-buttons {
+  display: flex;
+}
+.single-book-page-container .poster-and-info-container .book-info .single-book-button {
+  display: block;
+  margin: 12vh auto 0 auto;
+  font-size: 1.3em;
+  font-weight: 600;
+  color: black;
+  background-color: blanchedalmond;
+  padding: 20px;
+  border-radius: 3vh;
+  min-width: 15vw;
+}
+.single-book-page-container .poster-and-info-container .book-info .book-stats {
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+  padding: 2% 10%;
+  border-bottom: #DAA89B solid 2px;
+}
+.single-book-page-container .poster-and-info-container .book-info .book-stats .stat {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.single-book-page-container .poster-and-info-container .book-info .book-stats .stat img {
+  height: 30px;
+  width: 30px;
+  object-fit: contain;
+  display: flex;
+  align-items: center;
+}
+.single-book-page-container .poster-and-info-container .book-info .book-stats .stat .value {
+  font-size: 1.3em;
+  display: flex;
+  align-items: center;
+}
+.single-book-page-container .read p {
+  font-size: 1.4em;
+  padding: 20px;
+}
+.single-book-page-container .read .review-output {
+  background: rgba(187, 187, 187, 0.3);
+  padding: 10%;
+}
+.single-book-page-container .add-form, .single-book-page-container .read {
+  text-align: center;
+  margin: 5vh auto;
+  width: 30%;
+}
+.single-book-page-container .add-form form, .single-book-page-container .read form {
+  display: flex;
+  flex-direction: column;
+}
+.single-book-page-container .add-form label, .single-book-page-container .read label {
+  text-align: center;
+  padding: 15px 0 5px 0;
+}
+.single-book-page-container .add-form textarea, .single-book-page-container .read textarea {
+  margin: 10px;
+  background: rgba(204, 204, 204, 0.5);
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  padding: 5px;
+}
+.single-book-page-container .add-form .review-input, .single-book-page-container .read .review-input {
+  height: 20vh;
+  width: 100%;
+  margin: 0 auto;
+}
+.single-book-page-container .add-form .add-review-button, .single-book-page-container .read .add-review-button {
+  color: darkolivegreen;
+  margin: 2vh;
+  width: 20%;
+  font-size: 1.3em;
+  font-weight: 800;
+  margin-inline: auto;
+  height: 4vh;
+}
+.single-book-page-container .add-form .stars, .single-book-page-container .read .stars {
+  display: flex;
+  width: 70%;
+  margin-inline: auto;
+  justify-content: space-evenly;
+}
+.single-book-page-container .add-form .stars .star img, .single-book-page-container .read .stars .star img {
+  height: 20px;
+  width: 20px;
+  object-fit: contain;
+}
+.single-book-page-container .add-form .stars .star button, .single-book-page-container .read .stars .star button {
+  background: none;
+  border: none;
+}
+.single-book-page-container .reviews {
+  width: 60vw;
+  margin: 0 auto;
+}
+.single-book-page-container .reviews h2 {
+  text-align: center;
+  padding: 5vh 0;
+}
+.single-book-page-container .reviews .review {
+  background-color: rgba(255, 243, 210, 0.2);
+  margin: 1vh 0;
+  padding: 2vh 3vw;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+  align-items: center;
+}
+.single-book-page-container .reviews .review .review-part {
+  padding: 0 2vw;
+  min-width: 8vw;
+}
+.single-book-page-container .reviews .review .review-part .score, .single-book-page-container .reviews .review .review-part .username {
+  text-align: center;
+}
+.single-book-page-container .reviews .review .review-part img {
+  height: 40px;
+  width: 40px;
+  object-fit: contain;
+  display: flex;
+  align-items: center;
+  margin-inline: auto;
+}
+
+.red-bg {
+  background-color: rgba(150, 79, 79, 0.8) !important;
+}
+
+.green-bg {
+  background-color: #90a98f !important;
+}
+
+.about_container {
+  height: 110vh;
+  display: grid;
+  grid-template-rows: 2fr 3fr;
+}
+
+.name {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  padding: 0 15vh;
+  grid-template-columns: 1fr 1fr;
+}
+.name h1 {
+  font-size: 2.5em;
+  border-bottom: 2px beige solid;
+}
+.name .bookstore-image-container {
+  width: 600px;
+  height: 333px;
+}
+.name .bookstore-image-container img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.description {
+  background-color: #5F745E;
+  height: 45vh;
+  position: relative;
+  top: -12vh;
+  z-index: -1;
+  padding: 15vh;
+  font-size: 1.2em;
+}
+.description p {
+  margin-bottom: 2vh;
+}
+
+.cart-container {
+  margin-top: 10vh;
+}
+.cart-container h1 {
+  font-size: 3em;
+  font-weight: 100;
+}
+.cart-container .cart {
+  margin-top: 5vh;
+  margin-bottom: 25vh;
+  min-height: 70vh;
+  background-color: rgba(196, 196, 196, 0.4);
+  display: flex;
+  flex-direction: column;
+}
+.cart-container .cart .cart-item {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 20vh;
+  margin: 2vh;
+  padding-bottom: 4vh;
+  border-bottom: 3px solid rgba(52, 65, 48, 0.6);
+}
+.cart-container .cart .cart-item .element {
+  width: 20vw;
+  height: 100%;
+  border-right: 3px solid rgba(52, 65, 48, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 3;
+}
+.cart-container .cart .cart-item .element .value {
+  font-weight: 100;
+}
+.cart-container .cart .cart-item .index {
+  font-size: 1.6em;
+  flex: 0.4;
+  border: none;
+}
+.cart-container .cart .cart-item .poster-container {
+  max-height: 100%;
+  flex: 1.2;
+}
+.cart-container .cart .cart-item .poster {
+  width: 5vw;
+  height: 16vh;
+}
+.cart-container .cart .cart-item .poster img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+.cart-container .cart .cart-item .price {
+  border: none;
+}
+.cart-container .cart .cart-item .title-author, .cart-container .cart .cart-item .issue-price, .cart-container .cart .cart-item .price, .cart-container .cart .cart-item .count {
+  font-size: 1.4em;
+  font-weight: bold;
+}
+.cart-container .cart .cart-item .title-author {
+  justify-content: space-evenly;
+  flex: 5;
+}
+.cart-container .cart .cart-item .title-author .title {
+  font-size: 1.3em;
+}
+.cart-container .cart .cart-item .title-author .author {
+  color: rgba(255, 255, 255, 0.5);
+}
+.cart-container .cart .total-price, .cart-container .cart .pay {
+  min-height: 15vh;
+  margin-top: 5vh;
+  font-size: 2em;
+}
+.cart-container .cart .buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+.cart-container .cart .buttons button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(252, 239, 195, 0.7);
+  border: none;
+  margin-bottom: 7vh;
+  padding: 0 2vh;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.cart-container .cart .buttons button .text {
+  width: 60%;
+  word-wrap: break-word;
+  font-size: 1.2em;
+  font-weight: 200;
+}
+.cart-container .cart .buttons button .image {
+  width: 70px;
+  height: 70px;
+}
+.cart-container .cart .buttons button .image img {
+  max-height: 100%;
+  max-width: 100%;
+}
+.cart-container .empty {
+  margin-top: 5vh;
+  height: 50vh;
+  background-color: rgba(196, 196, 196, 0.4);
+  font-family: Lato, serif;
+  font-size: 1.5em;
+}
+
+.success-container {
+  margin: 2vh auto;
+  background-color: rgba(221, 221, 221, 0.05);
+  border-radius: 50%;
+  height: 35vw;
+  width: 35vw;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 1.4em;
+}
+.success-container .image-container {
+  height: 30vh;
+  width: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.success-container .image-container img {
+  max-height: 100%;
+  max-width: 100%;
+}
+.success-container .image-container, .success-container .text {
+  position: relative;
+  bottom: 8%;
+}
+.success-container .image-container p, .success-container .text p {
+  margin-bottom: 15px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+  font-family: "Rufina", serif;
+}
+
+body {
+  background-color: #344130;
+}
+
+a {
+  text-decoration: none;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*# sourceMappingURL=styles.css.map */

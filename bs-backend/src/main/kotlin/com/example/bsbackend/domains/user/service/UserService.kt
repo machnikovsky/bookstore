@@ -63,8 +63,8 @@ class UserService(
         }
     }
 
-    fun promoteUser(userId: Int): ResponseEntity<Any> =
-        userRepository.findByUserId(userId)
+    fun promoteUser(username: String): ResponseEntity<Any> =
+        userRepository.findByUsernameIgnoreCase(username)
             ?.let {
                 it.copy(
                     roles = when (it.roles) {

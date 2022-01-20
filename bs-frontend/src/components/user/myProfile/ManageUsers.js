@@ -70,7 +70,7 @@ const ManageUsers = () => {
                             val.roles.includes("ADMIN") ?
                                 <div>Nie można awansować</div>
                                 :
-                                <button className="user-to-promote-button" onClick={() => handlePromote(val.userId)}>
+                                <button className="user-to-promote-button" onClick={() => handlePromote(val.username)}>
                                     Awansuj
                                 </button>
                             }

@@ -123,7 +123,7 @@ CREATE TABLE account (
     account_id serial PRIMARY KEY,
     login varchar(25) NOT NULL,
     password varchar(60) NOT NULL,
-    email varchar(25) NOT NULL,
+    email varchar(60) NOT NULL,
     creation_date date NOT NULL,
     person_id integer REFERENCES person(person_id),
     bookstore_id integer REFERENCES bookstore(bookstore_id)

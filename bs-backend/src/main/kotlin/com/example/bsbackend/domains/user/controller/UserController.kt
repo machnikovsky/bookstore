@@ -32,9 +32,9 @@ class UserController(val userService: UserService) {
     fun removeAccount(): ResponseEntity<Any> =
         userService.removeAccount()
 
-    @PutMapping("/{userId}/promote")
-    fun promoteUser(@PathVariable("userId") userId: Int): ResponseEntity<Any> =
-        userService.promoteUser(userId)
+    @PutMapping("/{username}/promote")
+    fun promoteUser(@PathVariable("username") username: String): ResponseEntity<Any> =
+        userService.promoteUser(username)
 
     @GetMapping("/find/{query}")
     fun findUsersByQuery(@PathVariable("query") query: String): ResponseEntity<Any> =

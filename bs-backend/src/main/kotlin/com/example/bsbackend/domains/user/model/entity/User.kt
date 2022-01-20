@@ -3,6 +3,7 @@ package com.example.bsbackend.domains.user.model.entity
 import com.example.bsbackend.domains.bookstore.model.entity.Bookstore
 import java.sql.Date
 import javax.persistence.*
+import javax.validation.constraints.Email
 
 @Entity(name = "account")
 data class User(
@@ -13,7 +14,7 @@ data class User(
     var userId: Int = 0,
     @Column(name = "login") var username: String,
     @Column(name = "password") var password: String,
-    @Column(name = "email") var email: String,
+    @Column(name = "email") @Email var email: String,
     @Column(name = "creation_date") var creationDate: Date,
     @ElementCollection(fetch = FetchType.EAGER) @Enumerated(value = EnumType.STRING) var roles: MutableSet<Role>,
     @OneToOne
