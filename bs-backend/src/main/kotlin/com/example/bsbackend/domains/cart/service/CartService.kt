@@ -1,7 +1,6 @@
 package com.example.bsbackend.domains.cart.service
 
 import com.example.bsbackend.domains.assortment.repository.AssortmentRepository
-import com.example.bsbackend.domains.bookstore.repository.BookstoreRepository
 import com.example.bsbackend.domains.cart.model.Cart
 import com.example.bsbackend.domains.cart.model.CartPosition
 import com.example.bsbackend.domains.cart.model.dto.toCart
@@ -19,7 +18,6 @@ class CartService(
     private val cartPositionRepository: CartPositionRepository,
     private val issueRepository: IssueRepository,
     private val assortmentRepository: AssortmentRepository,
-    private val bookstoreRepository: BookstoreRepository,
     private val issueService: IssueService
 ) {
     fun getCart(): ResponseEntity<Any> {

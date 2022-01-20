@@ -1,7 +1,7 @@
 package com.example.bsbackend.domains.issue.service
 
 import com.example.bsbackend.domains.assortment.model.Assortment
-import com.example.bsbackend.domains.assortment.repository.AssortmentRepository
+import com.example.bsbackend.domains.assortment.repository.IssueOrderRepository
 import com.example.bsbackend.domains.author.model.Author
 import com.example.bsbackend.domains.author.repository.AuthorRepository
 import com.example.bsbackend.domains.book.model.dto.FilterDTO
@@ -38,7 +38,7 @@ class IssueService(
     val issueRepository: IssueRepository,
     val bookRepository: BookRepository,
     val ratingRepository: RatingRepository,
-    val assortmentRepository: AssortmentRepository,
+    val assortmentRepository: IssueOrderRepository,
     val userRepository: UserRepository,
     val authorRepository: AuthorRepository,
     val publishingHouseRepository: PublishingHouseRepository,
