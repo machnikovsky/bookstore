@@ -1,6 +1,6 @@
 package com.example.bsbackend.domains.cart.model
 
-import com.example.bsbackend.domains.user.model.User
+import com.example.bsbackend.domains.user.model.entity.User
 import javax.persistence.*
 
 @Entity(name = "cart")

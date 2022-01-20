@@ -2,7 +2,7 @@ package com.example.bsbackend.domains.order.model
 
 import com.example.bsbackend.domains.payment.model.Payment
 import com.example.bsbackend.domains.shipment.model.Shipment
-import com.example.bsbackend.domains.user.model.User
+import com.example.bsbackend.domains.user.model.entity.User
 import java.sql.Date
 import javax.persistence.*
 

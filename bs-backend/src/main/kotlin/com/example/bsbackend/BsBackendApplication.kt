@@ -1,10 +1,10 @@
 package com.example.bsbackend
 
 import com.example.bsbackend.domains.bookstore.repository.BookstoreRepository
-import com.example.bsbackend.domains.user.model.Gender
-import com.example.bsbackend.domains.user.model.Person
-import com.example.bsbackend.domains.user.model.Role
-import com.example.bsbackend.domains.user.model.User
+import com.example.bsbackend.domains.user.model.entity.Gender
+import com.example.bsbackend.domains.user.model.entity.Person
+import com.example.bsbackend.domains.user.model.entity.Role
+import com.example.bsbackend.domains.user.model.entity.User
 import com.example.bsbackend.domains.user.repository.PersonRepository
 import com.example.bsbackend.domains.user.repository.UserRepository
 import org.springframework.boot.autoconfigure.SpringBootApplication

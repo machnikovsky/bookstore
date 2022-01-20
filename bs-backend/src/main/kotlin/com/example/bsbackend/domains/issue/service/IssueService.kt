@@ -23,8 +23,7 @@ import com.example.bsbackend.domains.publishingHouse.repository.PublishingHouseR
 import com.example.bsbackend.domains.rating.model.dto.RatingDTO
 import com.example.bsbackend.domains.rating.model.mapToDTO
 import com.example.bsbackend.domains.rating.repository.RatingRepository
-import com.example.bsbackend.domains.rating.service.RatingService
-import com.example.bsbackend.domains.user.model.User
+import com.example.bsbackend.domains.user.model.entity.User
 import com.example.bsbackend.domains.user.repository.UserRepository
 import org.modelmapper.ModelMapper
 import org.springframework.http.HttpStatus.BAD_REQUEST

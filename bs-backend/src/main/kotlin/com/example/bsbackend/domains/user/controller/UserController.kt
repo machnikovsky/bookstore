@@ -1,7 +1,7 @@
 package com.example.bsbackend.domains.user.controller
 
-import com.example.bsbackend.domains.user.model.User
-import com.example.bsbackend.domains.user.model.UserUpdateInfoDto
+import com.example.bsbackend.domains.user.model.entity.User
+import com.example.bsbackend.domains.user.model.dto.UserUpdateInfoDto
 import com.example.bsbackend.domains.user.service.UserService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -39,5 +39,9 @@ class UserController(val userService: UserService) {
     @GetMapping("/find/{query}")
     fun findUsersByQuery(@PathVariable("query") query: String): ResponseEntity<Any> =
         userService.findUsersByQuery(query)
+
+    @GetMapping("/stats")
+    fun getUserStats(): ResponseEntity<Any> =
+        userService.getUserStats()
 
 }

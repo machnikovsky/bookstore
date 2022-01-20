@@ -7,7 +7,7 @@ import com.example.bsbackend.domains.rating.model.dto.AddRatingDTO
 import com.example.bsbackend.domains.rating.model.dto.mapToRating
 import com.example.bsbackend.domains.rating.model.mapToDTO
 import com.example.bsbackend.domains.rating.repository.RatingRepository
-import com.example.bsbackend.domains.user.model.User
+import com.example.bsbackend.domains.user.model.entity.User
 import com.example.bsbackend.domains.user.repository.UserRepository
 import org.springframework.http.HttpStatus.BAD_REQUEST
 import org.springframework.http.ResponseEntity

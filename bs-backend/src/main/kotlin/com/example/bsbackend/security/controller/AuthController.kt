@@ -1,7 +1,7 @@
 package com.example.bsbackend.security.controller
 
-import com.example.bsbackend.domains.user.model.User
-import com.example.bsbackend.domains.user.model.UserRegistrationDto
+import com.example.bsbackend.domains.user.model.entity.User
+import com.example.bsbackend.domains.user.model.dto.UserRegistrationDto
 import com.example.bsbackend.domains.user.service.UserService
 import com.example.bsbackend.security.BookstoreUserDetailsService
 import com.example.bsbackend.security.jwt.JwtAuthRequest

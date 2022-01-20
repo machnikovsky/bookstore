@@ -1,6 +1,6 @@
 package com.example.bsbackend.domains.user.repository
 
-import com.example.bsbackend.domains.user.model.Person
+import com.example.bsbackend.domains.user.model.entity.Person
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Modifying
 import org.springframework.stereotype.Repository

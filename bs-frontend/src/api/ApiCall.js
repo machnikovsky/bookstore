@@ -108,6 +108,7 @@ const getAllBooksRatedByUser = (username) => {
     return axios.get(API_URL + `rating/${username}/all`, { headers: authHeader() });
 }
 
+
 const ApiCall = {
     getFirstIssuesOfAllBooks,
     getFirstIssuesOfBooksByQuery,

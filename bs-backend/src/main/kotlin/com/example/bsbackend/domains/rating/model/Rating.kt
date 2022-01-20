@@ -2,7 +2,7 @@ package com.example.bsbackend.domains.rating.model
 
 import com.example.bsbackend.domains.book.model.entity.Book
 import com.example.bsbackend.domains.rating.model.dto.RatingDTO
-import com.example.bsbackend.domains.user.model.User
+import com.example.bsbackend.domains.user.model.entity.User
 import javax.persistence.*
 
 
