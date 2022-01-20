@@ -43,7 +43,7 @@ class ApplicationStart(
                         User(
                             username = "${role.name.lowercase(Locale.getDefault())}${it.address}",
                             password = encoder.encode("password"),
-                            email = "admin@gmail.com",
+                            email = "${role}@mail.com",
                             creationDate = Date.valueOf(LocalDate.now()),
                             roles = mutableSetOf(role),
                             person = personRepository.save(
