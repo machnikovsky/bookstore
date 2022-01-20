@@ -28,7 +28,6 @@ class UserService(
     val passwordEncoder: PasswordEncoder,
     val modelMapper: ModelMapper
 ) {
-
     fun getAllUsers(): List<User> = userRepository.findAll()
 
     fun registerUser(userRegistrationDto: UserRegistrationDto): User? {
@@ -53,6 +52,29 @@ class UserService(
                 .body("You can only get info about currently logged in user.")
         }
     }
+
+    fun promoteUser(userId: Int): ResponseEntity<Any> =
+        userRepository.findByUserId(userId)
+            ?.let {
+                it.copy(
+                    roles = when (it.roles) {
+                        mutableSetOf(Role.USER) -> mutableSetOf(Role.WORKER)
+                        mutableSetOf(Role.WORKER) -> mutableSetOf(Role.ADMIN)
+                        mutableSetOf(Role.ADMIN) -> mutableSetOf(Role.ADMIN)
+                        else -> it.roles
+                    }
+                )
+            }
+            ?.let { userRepository.save(it) }
+            ?.let { modelMapper.map(it, UserInfoDto::class.java) }
+            ?.let { ResponseEntity.ok(it) }
+            ?: ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Could not promote user.")
+
+
+    fun findUsersByQuery(query: String): ResponseEntity<Any> =
+        userRepository.findAllByUsernameContainingIgnoreCase(query)
+            .let { modelMapper.map(it, UserInfoDto::class.java) }
+            .let { ResponseEntity.ok(it) }
 
     fun extractUserInfoFromUsername(username: String): ResponseEntity<Any> =
         userRepository.findByUsernameIgnoreCase(username)

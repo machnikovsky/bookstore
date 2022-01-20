@@ -6,12 +6,14 @@ import ProfileNav from './ProfileNav';
 import Stats from './Stats';
 import UserInfo from './UserInfo';
 import ReadBooks from './ReadBooks';
+import ManageUsers from "./ManageUsers";
 
 const MyProfile = () => {
 
     const {user, setUser} = useContext(UserContext);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [roles, setRoles] = useState([]);
     const [readBooks, setReadBooks] = useState([]);
     const [currentView, setCurrentView] = useState('info');
     const navigate = useNavigate();
@@ -25,6 +27,8 @@ const MyProfile = () => {
         .then(data => {
             setFirstName(data.firstName);
             setLastName(data.lastName);
+            setRoles(data.roles);
+            console.log('roles', data.roles);
         })
         .catch(e => {
             console.log("[MyProfile] Error getting user info: ", e);
@@ -42,11 +46,12 @@ const MyProfile = () => {
         <div className="profile-container">
             { firstName && lastName && <h1>Witaj, {capitalize(firstName)} {capitalize(lastName)}!</h1>}
             <div className="nav-and-content">
-                <ProfileNav setCurrentView={setCurrentView} />
+                <ProfileNav setCurrentView={setCurrentView} roles={roles} />
                 { currentView === 'books'  && <ReadBooks readBooks={readBooks}/> }
                 { currentView === 'info'    && <UserInfo/> }
                 { currentView === 'stats'    && <Stats/> }
-            </div>       
+                { currentView === 'manage'    && <ManageUsers /> }
+            </div>
         </div>
         :
         <div className="profile-container">
