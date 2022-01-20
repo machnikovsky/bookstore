@@ -96,6 +96,14 @@ const getOtherIssues = (issue_id) => {
     return axios.get(API_URL + `issue/${issue_id}/other`, {});
 }
 
+const promoteUser = (userId) => {
+    return axios.put(API_URL + `user/${userId}/promote`, {}, { headers: authHeader() });
+}
+
+const findUsersByQuery = (query) => {
+    return axios.get(API_URL + `user/find/${query}`, { headers: authHeader() });
+}
+
 const ApiCall = {
     getFirstIssuesOfAllBooks,
     getFirstIssuesOfBooksByQuery,
@@ -118,7 +126,9 @@ const ApiCall = {
     updateUserInfo,
     getUserStats,
     deleteMyAccount,
-    getOtherIssues
+    getOtherIssues,
+    promoteUser,
+    findUsersByQuery
 };
 
 export default ApiCall;

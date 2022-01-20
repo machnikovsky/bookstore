@@ -1,7 +1,7 @@
 INSERT INTO bookstore(bookstore_id, address) values (1, 'Warszawa');
-INSERT INTO bookstore(bookstore_id, address) values (2, 'Kraków');
-INSERT INTO bookstore(bookstore_id, address) values (3, 'Wrocław');
-INSERT INTO bookstore(bookstore_id, address) values (4, 'Poznań');
+INSERT INTO bookstore(bookstore_id, address) values (2, 'Krakow');
+INSERT INTO bookstore(bookstore_id, address) values (3, 'Wroclaw');
+INSERT INTO bookstore(bookstore_id, address) values (4, 'Poznan');
 
 INSERT INTO author(author_id, first_name, last_name, country) VALUES (1, 'John', 'Steinbeck', 'Stany Zjednoczone');
 INSERT INTO author(author_id, first_name, last_name, country) VALUES (2, 'Carlos Ruiz', 'Zafon', 'Hiszpania');
