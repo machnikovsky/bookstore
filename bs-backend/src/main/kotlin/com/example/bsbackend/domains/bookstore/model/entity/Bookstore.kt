@@ -1,4 +1,4 @@
-package com.example.bsbackend.domains.bookstore.model
+package com.example.bsbackend.domains.bookstore.model.entity
 
 import javax.persistence.*
 

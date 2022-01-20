@@ -1,6 +1,6 @@
 package com.example.bsbackend.domains.cart.service
 
-import com.example.bsbackend.domains.assortment.repository.AssortmentRepository
+import com.example.bsbackend.domains.assortment.repository.IssueOrderRepository
 import com.example.bsbackend.domains.bookstore.repository.BookstoreRepository
 import com.example.bsbackend.domains.cart.model.Cart
 import com.example.bsbackend.domains.cart.model.CartPosition
@@ -18,7 +18,7 @@ class CartService(
     private val cartRepository: CartRepository,
     private val cartPositionRepository: CartPositionRepository,
     private val issueRepository: IssueRepository,
-    private val assortmentRepository: AssortmentRepository,
+    private val assortmentRepository: IssueOrderRepository,
     private val bookstoreRepository: BookstoreRepository,
     private val issueService: IssueService
 ) {
