@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface IssueOrderRepository : JpaRepository<IssueOrder, Int> {
-    fun findByOrder(order: Order): IssueOrder?
+    fun findAllByOrder(order: Order): List<IssueOrder?>
 }
 
 

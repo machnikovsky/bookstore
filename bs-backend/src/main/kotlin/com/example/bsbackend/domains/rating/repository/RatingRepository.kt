@@ -11,5 +11,5 @@ interface RatingRepository : JpaRepository<Rating, Int> {
     fun findAllByBookBookId(bookId: Int): List<Rating>
     fun findAllByUser(user: User): List<Rating>
     fun findAllByUserUsernameAndBookBookId(username: String, bookId: Int): List<Rating>
-    fun findByUserUsernameAndBookBookId(username: String, bookId: Int): Rating
+    fun findByUserUsernameAndBookBookId(username: String, bookId: Int): Rating?
 }

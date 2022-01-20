@@ -18,11 +18,14 @@ class BookstoreService(
             .map { it.totalPrice }
             .takeIf { it.isNotEmpty() }
             ?.reduce { sum, value -> sum + value }
+            ?.cutToTwoDecimals()
             ?: 0.0f
 
         val soldBooks = orders
-            .map { issueOrderRepository.findByOrder(it) }
-            .map { it?.count ?: 0 }
+            .map { issueOrderRepository.findAllByOrder(it) }
+            .flatMap { listOfOrders ->
+                listOfOrders.map { order -> order?.count ?: 0 }
+            }
             .takeIf { it.isNotEmpty() }
             ?.reduce { sum, value -> sum + value }
             ?: 0
@@ -31,3 +34,6 @@ class BookstoreService(
     }
 
 }
+
+fun Float.cutToTwoDecimals(): Float =
+    "%.2f".format(this).replace(",", ".").toFloatOrNull() ?: 0f

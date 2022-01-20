@@ -49,7 +49,7 @@ const MyProfile = () => {
                 <ProfileNav setCurrentView={setCurrentView} roles={roles} />
                 { currentView === 'books'  && <ReadBooks readBooks={readBooks}/> }
                 { currentView === 'info'    && <UserInfo/> }
-                { currentView === 'stats'    && <Stats/> }
+                { currentView === 'stats'    && <Stats roles={roles}/> }
                 { currentView === 'manage'    && <ManageUsers /> }
             </div>
         </div>

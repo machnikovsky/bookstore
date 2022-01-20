@@ -1,14 +1,16 @@
 import React, {useEffect, useState} from 'react'
 import ApiCall from '../../../api/ApiCall';
 
-const Stats = ({type}) => {
+const Stats = ({roles}) => {
 
     const [userStats, setUserStats] = useState(null);
     const [bookstoreStats, setBookstoreStats] = useState(null);
+    const [type, setType] = useState("user");
 
 
     useEffect(() => {
-        if (type === 'user') {
+        if (roles.includes('USER')) {
+            setType('user');
             ApiCall.getUserStats()
                 .then(res => {
                     return res.data;
@@ -20,7 +22,8 @@ const Stats = ({type}) => {
                     console.log("Error: ", e);
                 });
         }
-        if (type === 'bookstore') {
+        if (roles.includes('WORKER') || roles.includes('ADMIN')) {
+            setType('bookstore');
             ApiCall.getBookstoreStats()
                 .then(res => {
                     return res.data;
@@ -60,14 +63,14 @@ const Stats = ({type}) => {
             {type === 'bookstore' &&
                 <>
                     <div className="header">Statystyki księgarni</div>
-                    {userStats &&
+                    {bookstoreStats &&
                         <div className="stats-list">
                             <div className="single-stat">
-                                <div>Przeczytane ksiązki</div>
+                                <div>Łączny przychód:</div>
                                 <div>{bookstoreStats.income}</div>
                             </div>
                             <div className="single-stat">
-                                <div>Przeczytane strony</div>
+                                <div>Liczba sprzedanych książek:</div>
                                 <div>{bookstoreStats.sold_books}</div>
                             </div>
                         </div>

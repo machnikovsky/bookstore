@@ -8,6 +8,7 @@ import javax.persistence.*
 
 
 @Entity(name = "order")
+@Table(name = "`order`")
 data class Order(
     @Column(name = "order_id") @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var orderId: Int = 0,
     @Column(name = "total_price") var totalPrice: Float,

@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface OrderRepository : JpaRepository<Order, Int> {
-
+    override fun findAll(): List<Order>
 }
