@@ -3,7 +3,15 @@ package com.example.bsbackend.domains.user.service
 import com.example.bsbackend.domains.bookstore.repository.BookstoreRepository
 import com.example.bsbackend.domains.cart.repository.CartPositionRepository
 import com.example.bsbackend.domains.cart.repository.CartRepository
-import com.example.bsbackend.domains.user.model.*
+import com.example.bsbackend.domains.issue.service.IssueService
+import com.example.bsbackend.domains.rating.repository.RatingRepository
+import com.example.bsbackend.domains.user.model.dto.UserInfoDto
+import com.example.bsbackend.domains.user.model.dto.UserRegistrationDto
+import com.example.bsbackend.domains.user.model.dto.UserStatsDTO
+import com.example.bsbackend.domains.user.model.dto.UserUpdateInfoDto
+import com.example.bsbackend.domains.user.model.entity.Person
+import com.example.bsbackend.domains.user.model.entity.Role
+import com.example.bsbackend.domains.user.model.entity.User
 import com.example.bsbackend.domains.user.repository.PersonRepository
 import com.example.bsbackend.domains.user.repository.UserRepository
 import org.modelmapper.ModelMapper
@@ -25,6 +33,8 @@ class UserService(
     val personRepository: PersonRepository,
     val cartRepository: CartRepository,
     val cartPositionRepository: CartPositionRepository,
+    val ratingRepository: RatingRepository,
+    val issueService: IssueService,
     val passwordEncoder: PasswordEncoder,
     val modelMapper: ModelMapper
 ) {
@@ -73,7 +83,7 @@ class UserService(
 
     fun findUsersByQuery(query: String): ResponseEntity<Any> =
         userRepository.findAllByUsernameContainingIgnoreCase(query)
-            .let { modelMapper.map(it, UserInfoDto::class.java) }
+            .map { modelMapper.map(it, UserInfoDto::class.java) }
             .let { ResponseEntity.ok(it) }
 
     fun extractUserInfoFromUsername(username: String): ResponseEntity<Any> =
@@ -121,5 +131,33 @@ class UserService(
             }
             ?.let { ResponseEntity.ok("You successfully removed your account.") }
             ?: ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.")
+
+    fun getUserStats(): ResponseEntity<Any> =
+        getLoggedInUser()
+            ?.let { ratingRepository.findAllByUser(it) }
+            ?.let {
+                UserStatsDTO(
+                    books = it.size,
+                    pages = it
+                        .map { rating -> issueService.getDtoOfBookFirstIssue(rating.book.bookId) }
+                        .map { issue -> issue?.numberOfPages ?: 0 }
+                        .takeIf { pages -> pages.isNotEmpty() }
+                        ?.reduce { sum, value -> sum + value }
+                        ?: 0,
+                    meanScore = it
+                        .map { rating -> rating.score }
+                        .takeIf { ratings -> ratings.isNotEmpty() }
+                        ?.reduce { sum, value -> sum + value }
+                        ?.let { totalScore -> totalScore.toDouble() / it.filter { rating -> rating.score != 0 }.size }
+                        ?: 0.0
+                )
+            }
+            ?.let { ResponseEntity.ok(it) }
+            ?: ResponseEntity.status(HttpStatus.NOT_FOUND).body("Could not get user stats.")
+
+    private fun getLoggedInUser(): User? =
+        SecurityContextHolder.getContext().authentication.name
+            .let { userRepository.findByUsernameIgnoreCase(it) }
+
 
 }

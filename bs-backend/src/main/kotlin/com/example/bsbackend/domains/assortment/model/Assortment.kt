@@ -1,6 +1,6 @@
 package com.example.bsbackend.domains.assortment.model
 
-import com.example.bsbackend.domains.bookstore.model.Bookstore
+import com.example.bsbackend.domains.bookstore.model.entity.Bookstore
 import com.example.bsbackend.domains.issue.model.entity.Issue
 import javax.persistence.*
 

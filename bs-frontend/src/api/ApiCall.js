@@ -80,6 +80,10 @@ const getUserStats = () => {
   return axios.get(API_URL + `user/stats`, { headers: authHeader() });
 }
 
+const getBookstoreStats = () => {
+    return axios.get(API_URL + `bookstore/stats`, { headers: authHeader() });
+}
+
 const getAndSetPropositions = () => {
   return axios.get(API_URL + `book/recommended/first`, {});
 }
@@ -104,6 +108,11 @@ const findUsersByQuery = (query) => {
     return axios.get(API_URL + `user/find/${query}`, { headers: authHeader() });
 }
 
+const getAllBooksRatedByUser = (username) => {
+    return axios.get(API_URL + `rating/${username}/all`, { headers: authHeader() });
+}
+
+
 const ApiCall = {
     getFirstIssuesOfAllBooks,
     getFirstIssuesOfBooksByQuery,
@@ -125,10 +134,12 @@ const ApiCall = {
     addNewIssue,
     updateUserInfo,
     getUserStats,
+    getBookstoreStats,
     deleteMyAccount,
     getOtherIssues,
     promoteUser,
-    findUsersByQuery
+    findUsersByQuery,
+    getAllBooksRatedByUser
 };
 
 export default ApiCall;

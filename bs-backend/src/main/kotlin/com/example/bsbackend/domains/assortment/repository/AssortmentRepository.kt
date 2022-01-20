@@ -1,7 +1,7 @@
 package com.example.bsbackend.domains.assortment.repository
 
 import com.example.bsbackend.domains.assortment.model.Assortment
-import com.example.bsbackend.domains.bookstore.model.Bookstore
+import com.example.bsbackend.domains.bookstore.model.entity.Bookstore
 import com.example.bsbackend.domains.issue.model.entity.Issue
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Modifying

@@ -31,7 +31,12 @@ const ManageUsers = () => {
                     return res.data;
                 })
                 .then(data => {
+                    console.log(data)
                     setUsersByQuery(data);
+                })
+                .catch(error => {
+                    console.log("ERROR: ", error);
+                    setUsersByQuery([]);
                 })
         }
     }
@@ -54,7 +59,7 @@ const ManageUsers = () => {
                         onChange={e => handleSearchQuery(e.target.value)}
                     />
                 </form>
-                { usersByQuery && (
+                { usersByQuery.length > 0 && (
                     usersByQuery.map((val, idx) => (
                         <div className="queried-user" key={idx}>
                             <div className="queried-user-name">

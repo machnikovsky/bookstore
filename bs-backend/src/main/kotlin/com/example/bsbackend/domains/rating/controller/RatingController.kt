@@ -2,6 +2,7 @@ package com.example.bsbackend.domains.rating.controller
 
 import com.example.bsbackend.domains.rating.model.dto.AddRatingDTO
 import com.example.bsbackend.domains.rating.service.RatingService
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -19,5 +20,9 @@ class RatingController(private val ratingService: RatingService) {
     fun isRead(@PathVariable("bookId") bookId: Int) = ratingService.isRead(bookId)
 
     @GetMapping("/{bookId}/user")
-    fun getUserRating(@PathVariable("bookId") bookId: Int) = ratingService.getUserRating(bookId)
+    fun getUserRating(@PathVariable("bookId") bookId: Int) = ratingService.getUserRatingResponse(bookId)
+
+    @GetMapping("/{username}/all")
+    fun getAllBooksRatedByUser(@PathVariable("username") username: String): ResponseEntity<Any> =
+        ratingService.getAllBooksRatedByUser(username)
 }

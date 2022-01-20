@@ -2,7 +2,7 @@ package com.example.bsbackend.domains.rating.model.dto
 
 import com.example.bsbackend.domains.book.model.entity.Book
 import com.example.bsbackend.domains.rating.model.Rating
-import com.example.bsbackend.domains.user.model.User
+import com.example.bsbackend.domains.user.model.entity.User
 import com.google.gson.annotations.SerializedName
 
 data class AddRatingDTO(

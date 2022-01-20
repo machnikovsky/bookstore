@@ -194,10 +194,24 @@ const getAndSetOtherIssues = (id, set) => {
         })
         .then(data => {
             set(data);
-            console.log("Other issues: ", data);
         })
         .catch(e => {
             console.log('Error: ', e.response.data);
+            set(null);
+        });
+}
+
+const getAndSetAllBooksRatedByUser = (username, set) => {
+    ApiCall.getAllBooksRatedByUser(username)
+        .then(res => {
+            return res.data;
+        })
+        .then(data => {
+            console.log("Rated: ", data);
+            set(data);
+        })
+        .catch(e => {
+            console.log('Error: ', e.response);
             set(null);
         });
 }
@@ -217,7 +231,8 @@ const SearchUtil = {
     getAndSetCart,
     addToCartAndIncrementCart,
     getAndSetScoreAndReview,
-    getAndSetOtherIssues
+    getAndSetOtherIssues,
+    getAndSetAllBooksRatedByUser
 };
 
 export default SearchUtil;

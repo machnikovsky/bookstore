@@ -22,6 +22,7 @@ data class IssueInfoDTO(
     @SerializedName("original_publication_year") var originalPublicationYear: Int = 0,
     @SerializedName("authors") var authors: List<Author> = mutableListOf(),
     @SerializedName("ratings") var ratings: List<RatingDTO> = mutableListOf(),
-    @SerializedName("mean_score") var meanScore: String = ""
+    @SerializedName("mean_score") var meanScore: String = "",
+    @SerializedName("your_score") var yourScore: Int = 0
 )
 
