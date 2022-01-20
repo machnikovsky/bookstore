@@ -1,12 +1,16 @@
 import React from 'react'
 
-const ProfileNav = ({setCurrentView}) => {
+const ProfileNav = ({setCurrentView, roles}) => {
     
     return (
         <div className="profile-nav">
             <button className="option" onClick={() => setCurrentView('books')}  >Przeczytane książki</button>
             <button className="option" onClick={() => setCurrentView('info')}   >Dane             </button>
             <button className="option" onClick={() => setCurrentView('stats')}  >Statystyki       </button>
+            {
+                roles && roles.includes('ADMIN') &&
+                <button className="option" onClick={() => setCurrentView('manage')}  >Zarządzaj       </button>
+            }
         </div>
     )
 }

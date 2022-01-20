@@ -66,9 +66,15 @@ class UserService(
                 )
             }
             ?.let { userRepository.save(it) }
+            ?.let { modelMapper.map(it, UserInfoDto::class.java) }
             ?.let { ResponseEntity.ok(it) }
             ?: ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Could not promote user.")
 
+
+    fun findUsersByQuery(query: String): ResponseEntity<Any> =
+        userRepository.findAllByUsernameContainingIgnoreCase(query)
+            .let { modelMapper.map(it, UserInfoDto::class.java) }
+            .let { ResponseEntity.ok(it) }
 
     fun extractUserInfoFromUsername(username: String): ResponseEntity<Any> =
         userRepository.findByUsernameIgnoreCase(username)

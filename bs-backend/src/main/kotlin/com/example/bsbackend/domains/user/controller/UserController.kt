@@ -35,4 +35,9 @@ class UserController(val userService: UserService) {
     @PutMapping("/{userId}/promote")
     fun promoteUser(@PathVariable("userId") userId: Int): ResponseEntity<Any> =
         userService.promoteUser(userId)
+
+    @GetMapping("/find/{query}")
+    fun findUsersByQuery(@PathVariable("query") query: String): ResponseEntity<Any> =
+        userService.findUsersByQuery(query)
+
 }
