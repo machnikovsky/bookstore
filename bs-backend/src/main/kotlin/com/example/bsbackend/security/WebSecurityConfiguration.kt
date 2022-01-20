@@ -33,6 +33,7 @@ class WebSecurityConfiguration(
             .antMatchers("/user/info/**", "/rating/add").hasAnyRole("USER", "WORKER", "ADMIN")
             .antMatchers("/user/admin").hasRole("ADMIN")
             .antMatchers("/user/worker").hasRole("WORKER")
+            .antMatchers("/bookstore/stats").hasAnyRole("WORKER", "ADMIN")
             .anyRequest().authenticated()
             .and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

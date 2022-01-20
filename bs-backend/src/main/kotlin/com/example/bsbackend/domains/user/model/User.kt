@@ -1,6 +1,6 @@
 package com.example.bsbackend.domains.user.model
 
-import com.example.bsbackend.domains.bookstore.model.Bookstore
+import com.example.bsbackend.domains.bookstore.model.entity.Bookstore
 import java.sql.Date
 import javax.persistence.*
 
