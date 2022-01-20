@@ -8,7 +8,7 @@ import audiobook_icon from '../../assets/icons/audiobook-icon.png';
 import not_found from '../../assets/other/404-image-not-found.jpg';
 
 
-const BookList = ({bookList}) => {
+const BookList = ({bookList, rated}) => {
     return (
         <div className="book-list">
         { bookList && (
@@ -32,18 +32,30 @@ const BookList = ({bookList}) => {
                                     <h2 className="book-author">{val.firstName} {val.lastName}</h2>
                                 )) }
                                 <div className="book-price-score-container">
-                                    <div className="book book-price">
-                                        <div className="image-container">
-                                            <img src={ cash } alt="price"/>
+                                    { rated ?
+                                        <div className="book book-score">
+                                            <div className="image-container">
+                                                <img src={ star } alt="score"/>
+                                            </div>
+                                            <h3 className="book-score-header">{ book.your_score }</h3>
                                         </div>
-                                        <h3 className="book-price-header">{ book.price } zł</h3>
-                                    </div>
-                                    <div className="book book-score">
+                                        :
+                                        <>
+                                        <div className="book book-price">
+                                            <div className="image-container">
+                                                <img src={ cash } alt="price"/>
+                                            </div>
+                                            <h3 className="book-price-header">{ book.price } zł</h3>
+                                        </div>
+                                        <div className="book book-score">
                                         <div className="image-container">
-                                            <img src={ star } alt="score"/>
+                                        <img src={ star } alt="score"/>
                                         </div>
                                         <h3 className="book-score-header">{ book.mean_score }</h3>
-                                    </div>
+                                        </div>
+                                        </>
+                                    }
+
                                 </div>
                         </Link>
                     ))

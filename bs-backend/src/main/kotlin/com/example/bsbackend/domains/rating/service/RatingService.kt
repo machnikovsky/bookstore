@@ -1,6 +1,7 @@
 package com.example.bsbackend.domains.rating.service
 
 import com.example.bsbackend.domains.book.repository.BookRepository
+import com.example.bsbackend.domains.issue.service.IssueService
 import com.example.bsbackend.domains.rating.model.Rating
 import com.example.bsbackend.domains.rating.model.dto.AddRatingDTO
 import com.example.bsbackend.domains.rating.model.dto.mapToRating
@@ -18,6 +19,7 @@ class RatingService(
     private val ratingRepository: RatingRepository,
     private val userRepository: UserRepository,
     private val bookRepository: BookRepository,
+    private val issueService: IssueService
 ) {
 
     fun addRating(addRatingDTO: AddRatingDTO): ResponseEntity<Any> =
@@ -40,13 +42,20 @@ class RatingService(
             ?.let { ResponseEntity.ok(it) }
             ?: ResponseEntity.status(BAD_REQUEST).body("Could not find out if book was read.")
 
-    fun getUserRating(bookId: Int): ResponseEntity<Any> =
+    fun getUserRatingResponse(bookId: Int): ResponseEntity<Any> =
         getCurrentUserUsername()
             ?.let { ratingRepository.findByUserUsernameAndBookBookId(it, bookId) }
             ?.mapToDTO()
             ?.let { ResponseEntity.ok(it) }
             ?: ResponseEntity.status(BAD_REQUEST).body("Could not find book rating.")
 
+
+    fun getAllBooksRatedByUser(username: String): ResponseEntity<Any> =
+        getCurrentUser(username)
+            ?.let { ratingRepository.findAllByUser(it) }
+            ?.map { issueService.getDtoOfBookFirstIssue(it.book.bookId) }
+            ?.let { ResponseEntity.ok(it) }
+            ?: ResponseEntity.status(BAD_REQUEST).body("Could not books rated by user.")
 
     private fun mapDtoToRating(addRatingDTO: AddRatingDTO): Rating? {
         val book = bookRepository.findByBookId(addRatingDTO.bookId) ?: return null

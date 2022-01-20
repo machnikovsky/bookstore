@@ -84,7 +84,7 @@
     margin: 10vh auto;
     padding: 2vh 5vw;
     display: block;
-    background-color: rgba($light-purple-background, 0.4);
+    background-color: rgba($light-green-background, 0.4);
     border-radius: 10px;
     color: $beige;
     font-size: 1.5em;
@@ -105,7 +105,7 @@
 
   .single-book {
     height: 75vh;
-    background: rgba($light-purple-background, 0.4);
+    background: rgba($light-green-background, 0.4);
     width: 90%;
     margin: 1vh auto;
     position: relative;
@@ -133,7 +133,7 @@
       position: absolute;
       bottom: 0;
       left: 0;
-      background: rgba($color: $light-purple-background, $alpha: 0.8);
+      background: rgba($color: $light-green-background, $alpha: 0.3);
       height: 10%;
       width: 100%;
       display: flex;

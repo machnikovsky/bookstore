@@ -104,6 +104,10 @@ const findUsersByQuery = (query) => {
     return axios.get(API_URL + `user/find/${query}`, { headers: authHeader() });
 }
 
+const getAllBooksRatedByUser = (username) => {
+    return axios.get(API_URL + `rating/${username}/all`, { headers: authHeader() });
+}
+
 const ApiCall = {
     getFirstIssuesOfAllBooks,
     getFirstIssuesOfBooksByQuery,
@@ -128,7 +132,8 @@ const ApiCall = {
     deleteMyAccount,
     getOtherIssues,
     promoteUser,
-    findUsersByQuery
+    findUsersByQuery,
+    getAllBooksRatedByUser
 };
 
 export default ApiCall;

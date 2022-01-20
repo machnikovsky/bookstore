@@ -20,8 +20,10 @@ import com.example.bsbackend.domains.issue.model.enum.BookType
 import com.example.bsbackend.domains.issue.repository.IssueRepository
 import com.example.bsbackend.domains.publishingHouse.model.PublishingHouse
 import com.example.bsbackend.domains.publishingHouse.repository.PublishingHouseRepository
+import com.example.bsbackend.domains.rating.model.dto.RatingDTO
 import com.example.bsbackend.domains.rating.model.mapToDTO
 import com.example.bsbackend.domains.rating.repository.RatingRepository
+import com.example.bsbackend.domains.rating.service.RatingService
 import com.example.bsbackend.domains.user.model.User
 import com.example.bsbackend.domains.user.repository.UserRepository
 import org.modelmapper.ModelMapper
@@ -234,7 +236,8 @@ class IssueService(
                     originalPublicationYear = it.originalPublicationYear,
                     authors = it.authors,
                     ratings = it.ratings.mapToDTO(),
-                    meanScore = meanScore
+                    meanScore = meanScore,
+                    yourScore = getUserRating(book.bookId)?.score?:0
                 )
             }
     }
@@ -269,4 +272,10 @@ class IssueService(
 
     fun getCurrentUserUsername(): String? =
         SecurityContextHolder.getContext().authentication.name
+            .takeIf { it != "anonymousUser" }
+
+    fun getUserRating(bookId: Int): RatingDTO? =
+        getCurrentUserUsername()
+            ?.let { ratingRepository.findByUserUsernameAndBookBookId(it, bookId) }
+            ?.mapToDTO()
 }

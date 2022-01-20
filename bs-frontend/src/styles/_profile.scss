@@ -7,19 +7,19 @@
   z-index: 1;
 
   .nav-and-content {
-    background-color: rgba($light-purple-background, 0.2);
+    background-color: rgba($light-green-background, 0.2);
     display: flex;
     justify-content: space-around;
     margin-top: 5vh;
-    min-height: 100vh;
+    min-height: 60vh;
 
 
     .profile-nav {
 
       flex: 2;
-      background-color: $light-purple-background;
-      border-bottom-right-radius: 40px;
-      border-top-right-radius: 40px;
+      background-color: rgba($light-green-background, 0.6);
+      border-bottom-right-radius: 20px;
+      border-top-right-radius: 20px;
 
       height: 70vh;
 
@@ -35,15 +35,15 @@
         background: none;
         height: 100%;
         transition-duration: 0.5s;
-        color: #4b0747;
+        color: $dark-green;
         font-size: 1.4em;
         font-weight: bold;
       }
 
       .option:hover {
         transition: 1s;
-        background-color: black;
-        color: #eba0e6;
+        background-color: rgba($dark-green, 0.6);
+        color: $beige-btn;
       }
     }
 

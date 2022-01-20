@@ -73,7 +73,7 @@ class UserService(
 
     fun findUsersByQuery(query: String): ResponseEntity<Any> =
         userRepository.findAllByUsernameContainingIgnoreCase(query)
-            .let { modelMapper.map(it, UserInfoDto::class.java) }
+            .map { modelMapper.map(it, UserInfoDto::class.java) }
             .let { ResponseEntity.ok(it) }
 
     fun extractUserInfoFromUsername(username: String): ResponseEntity<Any> =

@@ -70,7 +70,7 @@ const Search = () => {
                 }
 
             </div>
-            <BookList bookList={bookList}/>
+            <BookList bookList={bookList} rated={false}/>
         </div>
     );
 }
