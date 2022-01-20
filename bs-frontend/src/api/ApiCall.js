@@ -80,6 +80,10 @@ const getUserStats = () => {
   return axios.get(API_URL + `user/stats`, { headers: authHeader() });
 }
 
+const getBookstoreStats = () => {
+    return axios.get(API_URL + `bookstore/stats`, { headers: authHeader() });
+}
+
 const getAndSetPropositions = () => {
   return axios.get(API_URL + `book/recommended/first`, {});
 }
@@ -130,6 +134,7 @@ const ApiCall = {
     addNewIssue,
     updateUserInfo,
     getUserStats,
+    getBookstoreStats,
     deleteMyAccount,
     getOtherIssues,
     promoteUser,
