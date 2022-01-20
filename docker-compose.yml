@@ -1,0 +1,27 @@
+version: '3'
+services:
+  backend:
+    build: ./bs-backend
+    ports:
+    - 8080:8080
+    depends_on:
+      - db
+    restart: always
+  frontend:
+    build: ./bs-frontend
+    ports:
+    - 3000:3000
+    depends_on:
+      - backend
+    restart: always
+  db:
+    container_name: 'db'
+    image: postgres
+    environment:
+     POSTGRES_PASSWORD: password
+     POSTGRES_USER: postgres
+     POSTGRES_DB: bookstore
+    ports:
+     - 5432:5432
+    restart: always
+    
